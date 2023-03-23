@@ -1,0 +1,27 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "vnetName": {
+            "value": ""
+        },
+        "subnetName": {
+            "value": ""
+        },
+        "routeTableName": {
+            "value": ""
+        },
+        "adminUsername": {
+            "value": ""
+        },
+        "adminPublicKey": {
+            "value": ""
+        },
+        "edgeRouterKey1": {
+            "value": ""
+        },
+        "edgeRouterKey2": {
+            "value": ""
+        }
+    }
+}
