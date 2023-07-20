@@ -34,7 +34,7 @@ If you need such HA set up in more than one region, one could use workspaces. Ju
 
 1. Set up your AWS provider Authentication
 
-    [Terrafrom AWS Provider File](https://registry.terraform.io/providers/hashicorp/aws/latest/docs)
+    [Terraform AWS Provider File](https://registry.terraform.io/providers/hashicorp/aws/latest/docs)
 
     1. Create provider.tf
 
@@ -111,7 +111,7 @@ nano input_vars.tfvars.json
 
     ```shell
     sudo vi /etc/systemd/resolved.conf
-    # uncomment dns and add edgfe router resolver
+    # uncomment dns and add edge router resolver
     ...
     [Resolve]
     DNS=100.127.255.254
