@@ -52,7 +52,6 @@ If you need such HA set up in more than one region, one could use workspaces. Ju
             secret_key = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
             region     = "us-east-2"
             assume_role {
-                role_arn = "arn:aws:iam::925908137963:role/ops-mgmt-user"
                 role_arn = "arn:aws:iam::XXXXXXXXXXXX:role/ops-mgmt-user"
                 session_name = "AWS_sesion_1"
             }
