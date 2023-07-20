@@ -25,10 +25,10 @@ resource "aws_lb_target_group" "glb_tg" {
     port              = 8081
     protocol          = "HTTPS"
     path              = "/health-checks"
-    healthy_threshold = 3
-    unhealthy_threshold = 3
-    interval          = 10
-    timeout           = 5
+    healthy_threshold = 2
+    unhealthy_threshold = 2
+    interval          = 5
+    timeout           = 2
     matcher           = "200-399"
   }
 }
@@ -66,7 +66,7 @@ resource "aws_vpc_endpoint" "ep" {
 resource "aws_route" "glb_routes" {
   count = length(aws_vpc_endpoint.ep.*.id)
   route_table_id            = local.route_table_list[count.index]
-  destination_cidr_block    = "10.10.20.0/24"
+  destination_cidr_block    = "100.127.255.254/32"
   vpc_endpoint_id           = aws_vpc_endpoint.ep[count.index].id
 }
 
