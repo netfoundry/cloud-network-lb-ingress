@@ -7,9 +7,9 @@ module "vpc1" {
     name = "${var.lb_name_prefix}-vpc"
     cidr = "10.40.0.0/16"
 
-    azs             = toset([for er in var.er_map: er.zone])
+    azs             = toset([for er in var.er_map_be: "${var.region}${er.zone}"])
     //private_subnets = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
-    public_subnets  = ["10.40.101.0/24", "10.40.102.0/24"]
+    public_subnets  = toset([for er in var.er_map_be: er.publicSubnet])
 
     enable_nat_gateway      = false
     enable_vpn_gateway      = true
@@ -43,7 +43,7 @@ module "sg_be" {
     ingress_with_cidr_blocks = [
         {
             rule        = "all-all"
-            cidr_blocks = "10.40.0.0/16"
+            cidr_blocks = "10.0.0.0/8"
         },
         {
             rule        = "ssh-tcp"
@@ -75,7 +75,7 @@ module "sg_client" {
     ingress_with_cidr_blocks = [
         {
             rule        = "all-all"
-            cidr_blocks = "10.40.0.0/16"
+            cidr_blocks = "10.0.0.0/8"
         },
         {
             rule        = "ssh-tcp"
@@ -90,12 +90,22 @@ module "sg_client" {
     create = true
 }
 
-data "template_cloudinit_config" "config" {
-    count = length(local.user_data)
+data "template_cloudinit_config" "config-be" {
+    count = length(local.user_data_be)
     gzip          = true
     base64_encode = true
     part {
-        content      = local.user_data[count.index]
+        content      = local.user_data_be[count.index]
+        content_type = "text/cloud-config"
+    }
+}
+
+data "template_cloudinit_config" "config-client" {
+    count = length(local.user_data_client)
+    gzip          = true
+    base64_encode = true
+    part {
+        content      = local.user_data_client[count.index]
         content_type = "text/cloud-config"
     }
 }
@@ -104,20 +114,20 @@ module "compute_backend" {
     source  = "terraform-aws-modules/ec2-instance/aws"
     version = "~> 3.0"
 
-    count = length(var.er_map)
+    count = length(var.er_map_be)
 
-    name = "${var.instance_be_prefix}-${var.er_map[count.index].zone}"
-    availability_zone = var.er_map[count.index].zone
+    name = "${var.instance_be_prefix}-${var.region}${var.er_map_be[count.index].zone}"
+    availability_zone = "${var.region}${var.er_map_be[count.index].zone}"
     associate_public_ip_address = true
 
-    ami                    = "ami-03a6ef880c608f38c"
+    ami                    = var.ami_id[var.region]
     instance_type          = "t3.medium"
     key_name               = "dariuszKey"
     monitoring             = true
     vpc_security_group_ids = [module.sg_be.security_group_id]
     subnet_id              = module.vpc1.public_subnets[count.index]
     source_dest_check      = false
-    user_data_base64       = data.template_cloudinit_config.config[count.index].rendered
+    user_data_base64       = data.template_cloudinit_config.config-be[count.index].rendered
 
     tags = {
         Terraform   = "true"
@@ -130,19 +140,21 @@ module "compute_client" {
     source  = "terraform-aws-modules/ec2-instance/aws"
     version = "~> 3.0"
 
-    count = length(var.er_map)
+    count = length(var.er_map_be)
 
-    name = "${var.instance_client_prefix}-${var.er_map[count.index].zone}"
-    availability_zone = var.er_map[count.index].zone
+    name = "${var.instance_client_prefix}-${var.region}${var.er_map_be[count.index].zone}"
+    availability_zone = "${var.region}${var.er_map_be[count.index].zone}"
     associate_public_ip_address = true
 
-    ami                    = "ami-03a6ef880c608f38c"
+    ami                    = var.ami_id[var.region]
     instance_type          = "t3.medium"
     key_name               = "dariuszKey"
     monitoring             = true
     vpc_security_group_ids = [module.sg_client.security_group_id]
     subnet_id              = module.vpc1.public_subnets[count.index]
     source_dest_check      = false
+    user_data_base64       = data.template_cloudinit_config.config-client[count.index].rendered
+
 
     tags = {
         Terraform   = "true"
@@ -164,7 +176,7 @@ module "gwlb1" {
 resource "aws_route" "be_resolver_routes" {
     count                   = length(module.compute_backend.*.id)
     route_table_id          = module.vpc1.public_route_table_ids[0]
-    destination_cidr_block  = var.er_map[count.index].dnsSvcIpRange
+    destination_cidr_block  = var.er_map_be[count.index].dnsSvcIpRange
     network_interface_id    = module.compute_backend[count.index].primary_network_interface_id
 }
 
