@@ -9,18 +9,21 @@ Need to Create 2 Customer Hosted Edge Routers on your NF Network using the follo
 
 ```json
 {
-    "er_map": [
+    "er_map_be": [
         {
-            "edgeRouterKey": "2G6509QWV6",
+            "edgeRouterKey": "55JMPJ8B4W",
             "dnsSvcIpRange": "100.64.0.0/13",
-            "zone": "us-east-2a"
+            "zone": "a",
+            "publicSubnet": "10.40.101.0/24"
         },
         {
-            "edgeRouterKey": "RZ24GE2OBD",
+            "edgeRouterKey": "7Z7JS9MEB4",
             "dnsSvcIpRange": "100.72.0.0/13",
-            "zone": "us-east-2b"
+            "zone": "b",
+            "publicSubnet": "10.40.102.0/24"
         }
-    ]
+    ],
+    "region": "us-east-2"
 }
 ```
 
@@ -50,7 +53,7 @@ If you need such HA set up in more than one region, one could use workspaces. Ju
             # The security credentials for AWS Main Account.
             access_key = "XXXXXXXXXXXXXXXXXXXX"
             secret_key = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
-            region     = "us-east-2"
+            region     = var.region
             assume_role {
                 role_arn = "arn:aws:iam::XXXXXXXXXXXX:role/ops-mgmt-user"
                 session_name = "AWS_sesion_1"
@@ -72,16 +75,18 @@ nano input_vars.tfvars.json
 
 ```json
 {
-    "er_map": [
+    "er_map_be": [
         {
-            "edgeRouterKey": "2G6509QWV6",
+            "edgeRouterKey": "55JMPJ8B4W",
             "dnsSvcIpRange": "100.64.0.0/13",
-            "zone": "us-east-2a"
+            "zone": "a",
+            "publicSubnet": "10.40.101.0/24"
         },
         {
-            "edgeRouterKey": "RZ24GE2OBD",
+            "edgeRouterKey": "7Z7JS9MEB4",
             "dnsSvcIpRange": "100.72.0.0/13",
-            "zone": "us-east-2b"
+            "zone": "b",
+            "publicSubnet": "10.40.102.0/24"
         }
     ]
 }
@@ -96,18 +101,18 @@ nano input_vars.tfvars.json
 1. Run the plan
 
     ```bash
-    terraform plan -var-file input_vars.tfvars.json
+    terraform plan -var-file input_vars.tfvars.json -var 'region=us-east-2'
     ```
 
 1. Apply the plan if no errors otherwise fix them
 
     ```bash
-    terraform apply -var-file input_vars.tfvars.json
+    terraform apply -var-file input_vars.tfvars.json -var 'region=us-east-2'
     ```
 
 1. At this point, one should have GLB deployed with 2 Backend Edge Routers along with 2 Ubuntu VM Test Clients.
 
-    ***Note: The Client VM Resolver must be reconfigured to point to the edge router resolver for dns based services.***
+    ***Note: The Client VM Resolver is configured  to point to the edge router resolver for dns based services. Details of what was done***
 
     ```shell
     sudo vi /etc/systemd/resolved.conf
@@ -121,5 +126,13 @@ nano input_vars.tfvars.json
 1. Destroy the plan if required
 
     ```bash
-    terraform destroy -var-file input_vars.tfvars.json
+    terraform destroy -var-file input_vars.tfvars.json -var 'region=us-east-2'
     ```
+
+Note:
+One can deploy this in more than one region by using workspace option and passing region variable with the command line var option instead of including it in the vars file.
+
+```bash
+terraform workspace new us-east-2
+terraform apply -var-file input_vars.tfvars.json -var 'region=us-east-2'
+```
