@@ -30,6 +30,7 @@ write_files:
 runcmd:
 - |
   LANIF="$(/sbin/ip -o link show up|awk '$9=="UP" {print $2;}'|head -1|tr -d ":")"
+  /usr/bin/ip address add 100.127.255.254/32 dev lo scope host
   /opt/netfoundry/router-registration --dnsIPRange ${s.dnsSvcIpRange} --tunnel_ip 100.127.255.254 --lanIf $LANIF ${s.edgeRouterKey}
   /var/lib/cloud/diverter.sh
   /usr/bin/systemctl restart keepalived.service

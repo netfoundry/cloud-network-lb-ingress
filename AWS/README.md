@@ -60,7 +60,8 @@ If you need such HA set up in more than one region, one could use workspaces. Ju
             }
         }
         ```
-
+    if using sso, then `aws configure sso`, `aws sso login --profile {profile name}` and `export AWS_PROFILE={profile name}`
+    
 1. Clone the repo and cd into it
 
     ```shell
