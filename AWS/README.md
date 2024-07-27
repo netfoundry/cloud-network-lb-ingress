@@ -137,3 +137,29 @@ One can deploy this in more than one region by using workspace option and passin
 terraform workspace new us-east-2
 terraform apply -var-file input_vars.tfvars.json -var 'region=us-east-2'
 ```
+
+# Automation Script
+
+1. Update default env vars in env_vars () function if needed
+
+    ```shell
+    export NF_API_CREDENTIALS_PATH="$HOME/.netfoundry/credentials.json"
+    export NF_NETWORK_NAME="dariuszdev"
+    export REGION1_ER1="nf-be-er01-useast2"
+    export REGION1_ER2="nf-be-er02-useast2"
+    export REGION2_ER1="nf-be-er01-uswest2"
+    export REGION2_ER2="nf-be-er02-uswest2"
+    ```
+
+
+1. To create infrastucture and run the test
+
+    ```shell
+    test_case.sh run
+    ```
+
+1. To delete infrastucture
+
+    ```shell
+    test_case.sh cleanup
+    ```
