@@ -31,3 +31,11 @@ variable "ami_id" {
     us-west-2 = "ami-0333611f8a06d64d0"
   }
 }
+
+variable "github_pt" {
+  default = "test-secret"
+}
+
+variable "aws_secret_name" {
+  default = "glb_test_zfw_repo"
+}

@@ -110,6 +110,65 @@ data "template_cloudinit_config" "config-client" {
     }
 }
 
+resource "aws_secretsmanager_secret" "zfw_secret_pt" {
+    name                    = var.aws_secret_name
+    recovery_window_in_days = 0
+    #checkov:skip=CVK2_AWS_57: Disable Secrets Manager secrets automatic rotation
+}
+
+resource "aws_secretsmanager_secret_version" "zfw_secret_pt" {
+    secret_id     = aws_secretsmanager_secret.zfw_secret_pt.id
+    secret_string = var.github_pt
+}
+
+resource "aws_iam_policy" "secret_manager_zfw_policy" {
+    name        = "glb_test_zfw_secret_read_policy_${var.region}"
+    path        = "/"
+    description = "Policy to read secret stored in AWS Secrets Store"
+    policy = jsonencode({
+        Version = "2012-10-17"
+        Statement = [
+            {
+                Effect = "Allow",
+                Action = [
+                    "secretsmanager:GetSecretValue",
+                ]
+                Resource = [
+                    aws_secretsmanager_secret_version.zfw_secret_pt.arn
+                ]
+            },
+        ]
+    })
+}
+
+resource "aws_iam_role" "secret_manager_zfw_ec2_role" {
+    name = "glb_test_zfw_ec2_role_${var.region}"
+    assume_role_policy = jsonencode({
+        Version = "2012-10-17"
+        Statement = [
+            {
+                Action = "sts:AssumeRole"
+                Effect = "Allow"
+                Sid    = ""
+                Principal = {
+                    Service = "ec2.amazonaws.com"
+                }
+
+            }
+        ]
+    })
+}
+
+resource "aws_iam_role_policy_attachment" "secret_manager_zfw_policy_attachment" {
+    role = aws_iam_role.secret_manager_zfw_ec2_role.name
+    policy_arn = aws_iam_policy.secret_manager_zfw_policy.arn
+}
+
+resource "aws_iam_instance_profile" "secret_manager_zfw_ec2_profile" {
+    role = aws_iam_role.secret_manager_zfw_ec2_role.name
+    name = "glb_test_zfw_ec2_profile_${var.region}"
+}
+
 module "compute_backend" {
     source  = "terraform-aws-modules/ec2-instance/aws"
     version = "~> 3.0"
@@ -120,14 +179,15 @@ module "compute_backend" {
     availability_zone = "${var.region}${var.er_map_be[count.index].zone}"
     associate_public_ip_address = true
 
-    ami                    = var.ami_id[var.region]
-    instance_type          = "t3.medium"
-    key_name               = "dariuszKey"
-    monitoring             = true
-    vpc_security_group_ids = [module.sg_be.security_group_id]
-    subnet_id              = module.vpc1.public_subnets[count.index]
-    source_dest_check      = false
-    user_data_base64       = data.template_cloudinit_config.config-be[count.index].rendered
+    ami                      = var.ami_id[var.region]
+    instance_type            = "t3.medium"
+    key_name                 = "dariuszKey"
+    monitoring               = true
+    vpc_security_group_ids   = [module.sg_be.security_group_id]
+    subnet_id                = module.vpc1.public_subnets[count.index]
+    source_dest_check        = false
+    iam_instance_profile     = aws_iam_instance_profile.secret_manager_zfw_ec2_profile.name
+    user_data_base64         = data.template_cloudinit_config.config-be[count.index].rendered
 
     tags = {
         Terraform   = "true"
