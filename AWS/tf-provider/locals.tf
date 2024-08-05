@@ -1,9 +1,12 @@
 locals {
-  user_data_be = [ for s in var.er_map_be : <<EOF
+  local_er_map_be = [ for er in var.er_map_be:  merge(er, {region=var.region, awsSecretName=var.aws_secret_name})]
+  user_data_be = [ for s in local.local_er_map_be : <<EOF
 #cloud-config
 package_update: true
 packages:
   - keepalived
+  - gh 
+  - python3-pip
 write_files:
 - encoding: b64
   content: "IyEvYmluL2Jhc2gKCnNldCAtZQoKTVlJRj0kKC9zYmluL2lwIC1vIGxpbmsgc2hvdyB1cHxhd2sgJyQ5PT0iVVAiIHtwcmludCAkMjt9J3xoZWFkIC0xKQpNWUlQPSQoL3NiaW4vaXAgYWRkIHNob3cgIiR7TVlJRiU6fSJ8YXdrICckMT09ImluZXQiIHtwcmludCAkMjt9JykKCmlmIFsgIiQxIiA9PSAibWFzdGVyIiBdOyB0aGVuCiAgICB6ZncgLUkgLWMgJChlY2hvICRNWUlQIHxhd2sgLUYnLycgJ3twcmludCAkMX0nKSAtbSAzMiAtbyAwLjAuMC4wIC1uIDAgLWwgODA4MSAtaCA4MDgxIC10IDAgLXAgdGNwCmVsaWYgWyAiJDEiID09ICJiYWNrdXAiIF07IHRoZW4KICAgIHpmdyAtRCAtYyAkKGVjaG8gJE1ZSVAgfGF3ayAtRicvJyAne3ByaW50ICQxfScpIC1tIDMyIC1vIDAuMC4wLjAgLW4gMCAtbCA4MDgxIC1oIDgwODEgLXQgMCAtcCB0Y3AKZWxzZQogICAgZWNobyAibm8gdmFsaWQgYXJndW1lbnQgcGFzc2VkIgpmaQo="
@@ -27,26 +30,28 @@ write_files:
   owner: root:root
   path: /var/lib/cloud/01-netfoundry.conf
   permissions: '0644'
+- encoding: b64
+  content: "IyEvdXNyL2Jpbi9weXRob24zCgppbXBvcnQgYm90bzMKZnJvbSBib3RvY29yZS5leGNlcHRpb25zIGltcG9ydCBDbGllbnRFcnJvcgppbXBvcnQgYXJncGFyc2UKCmRlZiBnZXRfc2VjcmV0KGFyZ3MpOgogICAgc2VjcmV0X25hbWUgPSBhcmdzLnNlY3JldF9uYW1lCiAgICByZWdpb25fbmFtZSA9IGFyZ3MucmVnaW9uX25hbWUKCiAgICBzZXNzaW9uID0gYm90bzMuc2Vzc2lvbi5TZXNzaW9uKCkKICAgIGNsaWVudCA9IHNlc3Npb24uY2xpZW50KAogICAgICAgIHNlcnZpY2VfbmFtZT0nc2VjcmV0c21hbmFnZXInLAogICAgICAgIHJlZ2lvbl9uYW1lPXJlZ2lvbl9uYW1lLAogICAgKQoKICAgIHRyeToKICAgICAgICBnZXRfc2VjcmV0X3ZhbHVlX3Jlc3BvbnNlID0gY2xpZW50LmdldF9zZWNyZXRfdmFsdWUoCiAgICAgICAgICAgIFNlY3JldElkPXNlY3JldF9uYW1lCiAgICAgICAgKQogICAgZXhjZXB0IENsaWVudEVycm9yIGFzIGU6CiAgICAgICAgaWYgZS5yZXNwb25zZVsnRXJyb3InXVsnQ29kZSddID09ICdSZXNvdXJjZU5vdEZvdW5kRXhjZXB0aW9uJzoKICAgICAgICAgICAgcHJpbnQoIlRoZSByZXF1ZXN0ZWQgc2VjcmV0ICIgKyBzZWNyZXRfbmFtZSArICIgd2FzIG5vdCBmb3VuZCIpCiAgICAgICAgZWxpZiBlLnJlc3BvbnNlWydFcnJvciddWydDb2RlJ10gPT0gJ0ludmFsaWRSZXF1ZXN0RXhjZXB0aW9uJzoKICAgICAgICAgICAgcHJpbnQoIlRoZSByZXF1ZXN0IHdhcyBpbnZhbGlkIGR1ZSB0bzoiLCBlKQogICAgICAgIGVsaWYgZS5yZXNwb25zZVsnRXJyb3InXVsnQ29kZSddID09ICdJbnZhbGlkUGFyYW1ldGVyRXhjZXB0aW9uJzoKICAgICAgICAgICAgcHJpbnQoIlRoZSByZXF1ZXN0IGhhZCBpbnZhbGlkIHBhcmFtczoiLCBlKQogICAgICAgIGVsaWYgZS5yZXNwb25zZVsnRXJyb3InXVsnQ29kZSddID09ICdEZWNyeXB0aW9uRmFpbHVyZSc6CiAgICAgICAgICAgIHByaW50KCJUaGUgcmVxdWVzdGVkIHNlY3JldCBjYW4ndCBiZSBkZWNyeXB0ZWQgdXNpbmcgdGhlIHByb3ZpZGVkIEtNUyBrZXk6IiwgZSkKICAgICAgICBlbGlmIGUucmVzcG9uc2VbJ0Vycm9yJ11bJ0NvZGUnXSA9PSAnSW50ZXJuYWxTZXJ2aWNlRXJyb3InOgogICAgICAgICAgICBwcmludCgiQW4gZXJyb3Igb2NjdXJyZWQgb24gc2VydmljZSBzaWRlOiIsIGUpCiAgICBlbHNlOgogICAgICAgICMgU2VjcmV0cyBNYW5hZ2VyIGRlY3J5cHRzIHRoZSBzZWNyZXQgdmFsdWUgdXNpbmcgdGhlIGFzc29jaWF0ZWQgS01TIENNSwogICAgICAgICMgRGVwZW5kaW5nIG9uIHdoZXRoZXIgdGhlIHNlY3JldCB3YXMgYSBzdHJpbmcgb3IgYmluYXJ5LCBvbmx5IG9uZSBvZiB0aGVzZSBmaWVsZHMgd2lsbCBiZSBwb3B1bGF0ZWQKICAgICAgICBpZiAnU2VjcmV0U3RyaW5nJyBpbiBnZXRfc2VjcmV0X3ZhbHVlX3Jlc3BvbnNlOgogICAgICAgICAgICByZXR1cm4gZ2V0X3NlY3JldF92YWx1ZV9yZXNwb25zZVsnU2VjcmV0U3RyaW5nJ10KICAgICAgICBlbHNlOgogICAgICAgICAgICByZXR1cm4gZ2V0X3NlY3JldF92YWx1ZV9yZXNwb25zZVsnU2VjcmV0QmluYXJ5J10KCiAgICAgICAgCmlmIF9fbmFtZV9fID09ICdfX21haW5fXyc6CiAgICBwYXJzZXIgPSBhcmdwYXJzZS5Bcmd1bWVudFBhcnNlcihkZXNjcmlwdGlvbj0iUmV0cmlldmUgYSBzZWNyZXQgZnJvbSBBV1MgU2VjcmV0cyBNYW5hZ2VyIikKICAgIHBhcnNlci5hZGRfYXJndW1lbnQoIi0tc2VjcmV0LW5hbWUiLCByZXF1aXJlZD1UcnVlLCBoZWxwPSJUaGUgbmFtZSBvZiB0aGUgc2VjcmV0IikKICAgIHBhcnNlci5hZGRfYXJndW1lbnQoIi0tcmVnaW9uLW5hbWUiLCBkZWZhdWx0PSJ1cy1lYXN0LTIiLCBoZWxwPSJUaGUgQVdTIHJlZ2lvbiAoZGVmYXVsdDogdXMtZWFzdC0yKSIpCiAgICBhcmdzID0gcGFyc2VyLnBhcnNlX2FyZ3MoKQogICAgcHJpbnQoZ2V0X3NlY3JldChhcmdzKSk="
+  owner: root:root
+  path: /opt/netfoundry/get_aws_secret.py
+  permissions: '0755'
+- encoding: b64
+  content: "IyEvYmluL2Jhc2gKCi91c3IvYmluL2doIGF1dGggbG9naW4gLS13aXRoLXRva2VuIDw8PCQxCmFzc2V0PSQoL3Vzci9iaW4vZ2ggYXBpIC9yZXBvcy9uZXRmb3VuZHJ5L3pmdy9hY3Rpb25zL2FydGlmYWN0cyAtLWpxICIuYXJ0aWZhY3RzWyQyXSAuYXJjaGl2ZV9kb3dubG9hZF91cmwiKQovdXNyL2Jpbi9jdXJsIC1McyAgIiRhc3NldCIgICAgLUggIkFjY2VwdDogYXBwbGljYXRpb24vdm5kLmdpdGh1Yi52Mytqc29uIiAgICAtSCAiQXV0aG9yaXphdGlvbjogQmVhcmVyICQxIiAgLS1vdXRwdXQgL29wdC9uZXRmb3VuZHJ5L2FydGlmYWN0LnppcAovdXNyL2Jpbi91bnppcCAgLWQgL29wdC9uZXRmb3VuZHJ5LyAvb3B0L25ldGZvdW5kcnkvYXJ0aWZhY3QuemlwCi91c3IvYmluL2Rwa2cgLWkgL29wdC9uZXRmb3VuZHJ5L3pmdy1yb3V0ZXJfKl9hbWQ2NC5kZWI="
+  owner: root:root
+  path: /opt/netfoundry/dl_artifacts_zfw.sh
+  permissions: '0755'
 runcmd:
 - |
+  pip install boto3
   LANIF="$(/sbin/ip -o link show up|awk '$9=="UP" {print $2;}'|head -1|tr -d ":")"
   /usr/bin/ip address add 100.127.255.254/32 dev lo scope host
   /opt/netfoundry/router-registration --dnsIPRange ${s.dnsSvcIpRange} --tunnel_ip 100.127.255.254 --lanIf $LANIF ${s.edgeRouterKey}
   /var/lib/cloud/diverter.sh
+  /opt/netfoundry/dl_artifacts_zfw.sh $(/opt/netfoundry/get_aws_secret.py --secret-name ${s.awsSecretName} --region-name ${s.region}) 1
+  /usr/bin/systemctl restart ziti-router.service
   /usr/bin/systemctl restart keepalived.service
 EOF
   ]
-  # flatten_list = {
-  #     for item in flatten([
-  #         for table in module.vpc1.public_route_table_ids : [
-  #             for vm in module.compute_backend.*.id: {
-  #                 vm = vm
-  #                 table = table
-  #             }
-  #         ] 
-  #     ])
-  #     : item.vm => item
-  # }
   user_data_client = [ for s in var.er_map_be : <<EOF
 #cloud-config
 package_update: 
