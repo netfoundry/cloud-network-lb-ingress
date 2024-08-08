@@ -55,8 +55,13 @@ delete_nf_er () {
 
 get_nf_token () {
 
-    export NF_API_CLIENT_ID=`jq -r .clientId $NF_API_CREDENTIALS_PATH`
-    export NF_API_CLIENT_SECRET=`jq -r .password $NF_API_CREDENTIALS_PATH`
+    if [ -z "$NF_API_CLIENT_ID" ] && [ -z "$NF_API_CLIENT_SECRET" ]; then
+        echo " NF Environmental Var Creds not set, it will use the NF Creds File in home directory"
+        export NF_API_CLIENT_ID=`jq -r .clientId $NF_API_CREDENTIALS_PATH`
+        export NF_API_CLIENT_SECRET=`jq -r .password $NF_API_CREDENTIALS_PATH`
+    else
+        echo " NF Environmental Var Creds set!!!"
+    fi
     export RESPONSE=`curl --silent --location --request POST "https://netfoundry-production-xfjiye.auth.us-east-1.amazoncognito.com/oauth2/token" \
                         --header "Content-Type: application/x-www-form-urlencoded" \
                         --user "$NF_API_CLIENT_ID:$NF_API_CLIENT_SECRET" --data-urlencode "grant_type=client_credentials"`
@@ -71,7 +76,8 @@ run () {
     
     terraform init
     
-    terraform workspace new us-west-2
+    export AWS_REGION='us-west-2'
+    terraform workspace new $AWS_REGION
     export ATTRIBUTE="bind-services"
     # router1
     export ER=$REGION2_ER1
@@ -81,9 +87,10 @@ run () {
     export ER=$REGION2_ER2
     export COUNT=1
     get_nf_er_reg_keys
-    terraform apply -var-file input_vars.tfvars.json -var 'region=us-west-2' -auto-approve
+    terraform apply -var-file input_vars.tfvars.json -var $AWS_REGION -auto-approve
 
-    terraform workspace new us-east-2
+    export AWS_REGION='us-east-2'
+    terraform workspace new $AWS_REGION
     export ATTRIBUTE="novis"
     # router1
     export ER=$REGION1_ER1
@@ -93,7 +100,7 @@ run () {
     export ER=$REGION1_ER2
     export COUNT=1
     get_nf_er_reg_keys
-    terraform apply -var-file input_vars.tfvars.json -var 'region=us-east-2' -auto-approve
+    terraform apply -var-file input_vars.tfvars.json -var $AWS_REGION -auto-approve
     
 }
 
@@ -117,13 +124,18 @@ cleanup () {
         delete_nf_er
     done
 
-    terraform workspace select us-east-2
-    terraform apply -destroy -var-file input_vars.tfvars.json -var 'region=us-east-2' -auto-approve
-    terraform workspace select us-west-2
-    terraform apply -destroy -var-file input_vars.tfvars.json -var 'region=us-west-2' -auto-approve
+    export AWS_REGION='us-east-2'
+    terraform workspace select $AWS_REGION
+    terraform apply -destroy -var-file input_vars.tfvars.json -var $AWS_REGION -auto-approve
+    export AWS_REGION='us-west-2'
+    terraform workspace select $AWS_REGION
+    terraform apply -destroy -var-file input_vars.tfvars.json -var $AWS_REGION -auto-approve
     terraform workspace select default
-    terraform workspace delete us-east-2
-    terraform workspace delete us-west-2
+    for workspace in $(terraform workspace list | grep -v default)
+    do
+        terraform workspace delete $workspace
+    done
+
 }
 
 # Main Program
