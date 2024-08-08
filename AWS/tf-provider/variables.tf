@@ -40,6 +40,8 @@ variable "aws_secret_name" {
   default = "glb_test_zfw_repo"
 }
 
-variable "ssh_public_key" {
-  default = "DariuszKey"
+variable "ssh_public_key" {}
+
+variable "ssh_key_name" {
+  default = "be-test-ssh-key"
 }

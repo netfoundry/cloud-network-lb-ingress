@@ -75,7 +75,7 @@ run () {
     get_nf_token
     
     terraform init
-    
+
     export AWS_REGION='us-west-2'
     terraform workspace new $AWS_REGION
     export ATTRIBUTE="bind-services"
@@ -87,7 +87,7 @@ run () {
     export ER=$REGION2_ER2
     export COUNT=1
     get_nf_er_reg_keys
-    terraform apply -var-file input_vars.tfvars.json -var $AWS_REGION -auto-approve
+    terraform apply -var-file input_vars.tfvars.json -var region=$AWS_REGION -auto-approve
 
     export AWS_REGION='us-east-2'
     terraform workspace new $AWS_REGION
@@ -100,7 +100,7 @@ run () {
     export ER=$REGION1_ER2
     export COUNT=1
     get_nf_er_reg_keys
-    terraform apply -var-file input_vars.tfvars.json -var $AWS_REGION -auto-approve
+    terraform apply -var-file input_vars.tfvars.json -var region=$AWS_REGION -auto-approve
     
 }
 
@@ -126,10 +126,10 @@ cleanup () {
 
     export AWS_REGION='us-east-2'
     terraform workspace select $AWS_REGION
-    terraform apply -destroy -var-file input_vars.tfvars.json -var $AWS_REGION -auto-approve
+    terraform apply -destroy -var-file input_vars.tfvars.json -var region=$AWS_REGION -auto-approve
     export AWS_REGION='us-west-2'
     terraform workspace select $AWS_REGION
-    terraform apply -destroy -var-file input_vars.tfvars.json -var $AWS_REGION -auto-approve
+    terraform apply -destroy -var-file input_vars.tfvars.json -var region=$AWS_REGION -auto-approve
     terraform workspace select default
     for workspace in $(terraform workspace list | grep -v default)
     do

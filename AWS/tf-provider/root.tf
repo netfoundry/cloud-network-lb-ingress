@@ -170,11 +170,12 @@ resource "aws_iam_instance_profile" "secret_manager_zfw_ec2_profile" {
 }
 
 resource "aws_key_pair" "ssh_public_key" {
-  key_name   = "be-test-ssh-key"
+  key_name   = var.ssh_key_name
   public_key = var.ssh_public_key
 }
 
 module "compute_backend" {
+    depends_on = [ resource.aws_key_pair.ssh_public_key ]
     source  = "terraform-aws-modules/ec2-instance/aws"
     version = "~> 3.0"
 
@@ -186,7 +187,7 @@ module "compute_backend" {
 
     ami                      = var.ami_id[var.region]
     instance_type            = "t3.medium"
-    key_name                 = "be-test-ssh-key"
+    key_name                 = var.ssh_key_name
     monitoring               = true
     vpc_security_group_ids   = [module.sg_be.security_group_id]
     subnet_id                = module.vpc1.public_subnets[count.index]
@@ -202,6 +203,7 @@ module "compute_backend" {
 }
 
 module "compute_client" {
+    depends_on = [ resource.aws_key_pair.ssh_public_key ]
     source  = "terraform-aws-modules/ec2-instance/aws"
     version = "~> 3.0"
 
@@ -213,7 +215,7 @@ module "compute_client" {
 
     ami                    = var.ami_id[var.region]
     instance_type          = "t3.medium"
-    key_name               = "be-test-ssh-key"
+    key_name               = var.ssh_key_name
     monitoring             = true
     vpc_security_group_ids = [module.sg_client.security_group_id]
     subnet_id              = module.vpc1.public_subnets[count.index]
