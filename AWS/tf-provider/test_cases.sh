@@ -107,11 +107,14 @@ run () {
 env_vars () {
 
     export NF_API_CREDENTIALS_PATH="$HOME/.netfoundry/credentials.json"
-    export NF_NETWORK_NAME="dariuszdev"
-    export REGION1_ER1="nf-be-er01-useast2"
-    export REGION1_ER2="nf-be-er02-useast2"
-    export REGION2_ER1="nf-be-er01-uswest2"
-    export REGION2_ER2="nf-be-er02-uswest2"
+    if [ -z $NF_NETWORK_NAME ]; then export NF_NETWORK_NAME="dariuszdev"; fi
+    if [ -z $REGION1_ER1 ] && [ -z $REGION1_ER2 ] && [ -z $REGION2_ER1 ] && [ -z $REGION2_ER2 ]; then
+        echo " NF Environmental Var ER Names not set, it will use the defaults"
+        export REGION1_ER1="be-er01-useast2"
+        export REGION1_ER2="be-er02-useast2"
+        export REGION2_ER1="be-er01-uswest2"
+        export REGION2_ER2="be-er02-uswest2"
+    fi
     
 }
 

@@ -110,8 +110,15 @@ data "template_cloudinit_config" "config-client" {
     }
 }
 
+resource "random_string" "random_secret_name" {
+  length    = 20
+  special   = false
+  numeric   = false
+  upper     = false
+}
+
 resource "aws_secretsmanager_secret" "zfw_secret_pt" {
-    name                    = var.aws_secret_name
+    name                    = local.aws_secret_name
     recovery_window_in_days = 0
     #checkov:skip=CVK2_AWS_57: Disable Secrets Manager secrets automatic rotation
 }
@@ -166,7 +173,7 @@ resource "aws_iam_role_policy_attachment" "secret_manager_zfw_policy_attachment"
 
 resource "aws_iam_instance_profile" "secret_manager_zfw_ec2_profile" {
     role = aws_iam_role.secret_manager_zfw_ec2_role.name
-    name = "glb_test_zfw_ec2_profile_${var.region}"
+    name = "test_zfw_ec2_profile_${var.region}"
 }
 
 resource "aws_key_pair" "ssh_public_key" {

@@ -12,7 +12,7 @@ variable "region" {
 }
 
 variable "instance_be_prefix" {
-  default = "nf-be-er"
+  default = "be-er"
 }
 variable "instance_client_prefix" {
   default = "test_client"
@@ -36,12 +36,16 @@ variable "github_pt" {
   default = "test-secret"
 }
 
-variable "aws_secret_name" {
-  default = "glb_test_zfw_repo"
-}
-
 variable "ssh_public_key" {}
 
 variable "ssh_key_name" {
   default = "be-test-ssh-key"
+}
+
+variable "test_initital_delay" {
+  default = 600
+}
+
+variable "test_iterate_count" {
+  default = 200
 }

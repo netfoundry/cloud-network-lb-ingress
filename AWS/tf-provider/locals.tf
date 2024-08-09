@@ -1,6 +1,7 @@
 locals {
-  local_er_map_be = [ for er in var.er_map_be:  merge(er, {region=var.region, awsSecretName=var.aws_secret_name})]
-  user_data_be = [ for s in local.local_er_map_be : <<EOF
+  aws_secret_name = "${random_string.random_secret_name.result}"
+  er_map_be = [ for er in var.er_map_be:  merge(er, {region=var.region, awsSecretName=local.aws_secret_name})]
+  user_data_be = [ for s in local.er_map_be : <<EOF
 #cloud-config
 package_update: true
 packages:
@@ -52,7 +53,8 @@ runcmd:
   /usr/bin/systemctl restart keepalived.service
 EOF
   ]
-  user_data_client = [ for s in var.er_map_be : <<EOF
+  local_user_data_client = [ for er in var.er_map_be:  merge(er, {initialDelay=var.test_initital_delay, iterate=var.test_iterate_count})]
+  user_data_client = [ for s in local.local_user_data_client : <<EOF
 #cloud-config
 package_update: 
 write_files:
@@ -76,7 +78,7 @@ runcmd:
   /usr/local/go/bin/go mod init http
   /usr/local/go/bin/go mod tidy
   /usr/local/go/bin/go build
-  nohup /opt/netfoundry/http run --initial-delay 600 --iterate 200 > /var/log/http.log 2>&1 &
+  nohup /opt/netfoundry/http run --initial-delay ${s.initialDelay} --iterate ${s.iterate} > /var/log/http.log 2>&1 &
 EOF
   ]
 }

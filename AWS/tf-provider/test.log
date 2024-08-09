@@ -1,0 +1,2462 @@
+ NF Environmental Var ER Names not set, it will use the defaults
+ NF Environmental Var Creds not set, it will use the NF Creds File in home directory
+
+[0m[1mInitializing the backend...[0m
+[0m[1mInitializing modules...[0m
+
+[0m[1mInitializing provider plugins...[0m
+- Reusing previous version of hashicorp/template from the dependency lock file
+- Reusing previous version of hashicorp/aws from the dependency lock file
+- Using previously-installed hashicorp/template v2.2.0
+- Using previously-installed hashicorp/aws v5.59.0
+
+[0m[1m[32mTerraform has been successfully initialized![0m[32m[0m
+[0m[32m
+You may now begin working with Terraform. Try running "terraform plan" to see
+any changes that are required for your infrastructure. All Terraform commands
+should now work.
+
+If you ever set or change modules or backend configuration for Terraform,
+rerun this command to reinitialize your working directory. If you forget, other
+commands will detect it and remind you to do so if necessary.[0m
+[0m[32m[1mCreated and switched to workspace "us-west-2"![0m[32m
+
+You're now on a new, empty workspace. Workspaces isolate their state,
+so if you run "terraform plan" Terraform will not see any existing state
+for this configuration.[0m
+{"id":"a3f6dc68-cade-476a-b97a-b7d30fb5607d","ownerIdentityId":"09d7c14a-a1ee-4552-a0fd-63c236648b00","createdBy":"09d7c14a-a1ee-4552-a0fd-63c236648b00","createdAt":"2024-08-09T13:32:59.537297Z","updatedAt":"2024-08-09T13:32:59.537297Z","deletedBy":null,"deletedAt":null,"networkId":"3d22b880-31df-4b5d-949f-e34fec3cd068","zitiId":"CZb2UKzVxB","name":"be-er01-uswest2","typeId":"Router","appId":null,"appVersion":null,"branch":null,"revision":null,"type":null,"version":null,"arch":null,"os":null,"osRelease":null,"osVersion":null,"externalId":null,"authPolicyId":"8cce46f6-bfb4-4688-9486-fbc8a78de1c6","disabled":false,"disabledAt":null,"disabledUntil":null,"hasApiSession":false,"hasEdgeRouterConnection":false,"lastOnlineAt":null,"syncId":null,"syncResourceId":null,"attributes":["#bind-services"],"jwtExpiresAt":null,"mfaEnabled":false,"jwt":null,"online":false,"managedBy":"Router","_links":{"self":{"href":"https://gateway.production.netfoundry.io/core/v2/endpoints/a3f6dc68-cade-476a-b97a-b7d30fb5607d","title":"be-er01-uswest2"},"network":{"href":"https://gateway.production.netfoundry.io/core/v2/networks/3d22b880-31df-4b5d-949f-e34fec3cd068","title":"dariuszdev","profile":"parent"},"auth-policy":{"href":"https://gateway.production.netfoundry.io/core/v2/auth-policies/8cce46f6-bfb4-4688-9486-fbc8a78de1c6","title":"Default"}}}{"id":"21412f2d-eb63-483d-baa7-033a9ff3b21a","ownerIdentityId":"09d7c14a-a1ee-4552-a0fd-63c236648b00","createdBy":"09d7c14a-a1ee-4552-a0fd-63c236648b00","createdAt":"2024-08-09T13:33:12.364475Z","updatedAt":"2024-08-09T13:33:12.364475Z","deletedBy":null,"deletedAt":null,"networkId":"3d22b880-31df-4b5d-949f-e34fec3cd068","zitiId":"o5MiqhLVx","name":"be-er02-uswest2","typeId":"Router","appId":null,"appVersion":null,"branch":null,"revision":null,"type":null,"version":null,"arch":null,"os":null,"osRelease":null,"osVersion":null,"externalId":null,"authPolicyId":"8cce46f6-bfb4-4688-9486-fbc8a78de1c6","disabled":false,"disabledAt":null,"disabledUntil":null,"hasApiSession":false,"hasEdgeRouterConnection":false,"lastOnlineAt":null,"syncId":null,"syncResourceId":null,"attributes":["#bind-services"],"jwtExpiresAt":null,"mfaEnabled":false,"jwt":null,"online":false,"managedBy":"Router","_links":{"auth-policy":{"href":"https://gateway.production.netfoundry.io/core/v2/auth-policies/8cce46f6-bfb4-4688-9486-fbc8a78de1c6","title":"Default"},"self":{"href":"https://gateway.production.netfoundry.io/core/v2/endpoints/21412f2d-eb63-483d-baa7-033a9ff3b21a","title":"be-er02-uswest2"},"network":{"href":"https://gateway.production.netfoundry.io/core/v2/networks/3d22b880-31df-4b5d-949f-e34fec3cd068","title":"dariuszdev","profile":"parent"}}}[0m[1mdata.template_cloudinit_config.config-client[0]: Reading...[0m[0m
+[0m[1mdata.template_cloudinit_config.config-be[0]: Reading...[0m[0m
+[0m[1mdata.template_cloudinit_config.config-client[1]: Reading...[0m[0m
+[0m[1mdata.template_cloudinit_config.config-be[1]: Reading...[0m[0m
+[0m[1mdata.template_cloudinit_config.config-client[0]: Read complete after 0s [id=2171264367][0m
+[0m[1mdata.template_cloudinit_config.config-be[0]: Read complete after 0s [id=2569999398][0m
+[0m[1mdata.template_cloudinit_config.config-be[1]: Read complete after 0s [id=1560948209][0m
+[0m[1mdata.template_cloudinit_config.config-client[1]: Read complete after 0s [id=2171264367][0m
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  [32m+[0m create[0m
+
+Terraform will perform the following actions:
+
+[1m  # aws_iam_instance_profile.secret_manager_zfw_ec2_profile[0m will be created
+[0m  [32m+[0m[0m resource "aws_iam_instance_profile" "secret_manager_zfw_ec2_profile" {
+      [32m+[0m[0m arn         = (known after apply)
+      [32m+[0m[0m create_date = (known after apply)
+      [32m+[0m[0m id          = (known after apply)
+      [32m+[0m[0m name        = "glb_test_zfw_ec2_profile_us-west-2"
+      [32m+[0m[0m name_prefix = (known after apply)
+      [32m+[0m[0m path        = "/"
+      [32m+[0m[0m role        = "glb_test_zfw_ec2_role_us-west-2"
+      [32m+[0m[0m tags_all    = (known after apply)
+      [32m+[0m[0m unique_id   = (known after apply)
+    }
+
+[1m  # aws_iam_policy.secret_manager_zfw_policy[0m will be created
+[0m  [32m+[0m[0m resource "aws_iam_policy" "secret_manager_zfw_policy" {
+      [32m+[0m[0m arn              = (known after apply)
+      [32m+[0m[0m attachment_count = (known after apply)
+      [32m+[0m[0m description      = "Policy to read secret stored in AWS Secrets Store"
+      [32m+[0m[0m id               = (known after apply)
+      [32m+[0m[0m name             = "glb_test_zfw_secret_read_policy_us-west-2"
+      [32m+[0m[0m name_prefix      = (known after apply)
+      [32m+[0m[0m path             = "/"
+      [32m+[0m[0m policy           = (known after apply)
+      [32m+[0m[0m policy_id        = (known after apply)
+      [32m+[0m[0m tags_all         = (known after apply)
+    }
+
+[1m  # aws_iam_role.secret_manager_zfw_ec2_role[0m will be created
+[0m  [32m+[0m[0m resource "aws_iam_role" "secret_manager_zfw_ec2_role" {
+      [32m+[0m[0m arn                   = (known after apply)
+      [32m+[0m[0m assume_role_policy    = jsonencode(
+            {
+              [32m+[0m[0m Statement = [
+                  [32m+[0m[0m {
+                      [32m+[0m[0m Action    = "sts:AssumeRole"
+                      [32m+[0m[0m Effect    = "Allow"
+                      [32m+[0m[0m Principal = {
+                          [32m+[0m[0m Service = "ec2.amazonaws.com"
+                        }
+                      [32m+[0m[0m Sid       = ""
+                    },
+                ]
+              [32m+[0m[0m Version   = "2012-10-17"
+            }
+        )
+      [32m+[0m[0m create_date           = (known after apply)
+      [32m+[0m[0m force_detach_policies = false
+      [32m+[0m[0m id                    = (known after apply)
+      [32m+[0m[0m managed_policy_arns   = (known after apply)
+      [32m+[0m[0m max_session_duration  = 3600
+      [32m+[0m[0m name                  = "glb_test_zfw_ec2_role_us-west-2"
+      [32m+[0m[0m name_prefix           = (known after apply)
+      [32m+[0m[0m path                  = "/"
+      [32m+[0m[0m tags_all              = (known after apply)
+      [32m+[0m[0m unique_id             = (known after apply)
+    }
+
+[1m  # aws_iam_role_policy_attachment.secret_manager_zfw_policy_attachment[0m will be created
+[0m  [32m+[0m[0m resource "aws_iam_role_policy_attachment" "secret_manager_zfw_policy_attachment" {
+      [32m+[0m[0m id         = (known after apply)
+      [32m+[0m[0m policy_arn = (known after apply)
+      [32m+[0m[0m role       = "glb_test_zfw_ec2_role_us-west-2"
+    }
+
+[1m  # aws_key_pair.ssh_public_key[0m will be created
+[0m  [32m+[0m[0m resource "aws_key_pair" "ssh_public_key" {
+      [32m+[0m[0m arn             = (known after apply)
+      [32m+[0m[0m fingerprint     = (known after apply)
+      [32m+[0m[0m id              = (known after apply)
+      [32m+[0m[0m key_name        = "be-test-ssh-key"
+      [32m+[0m[0m key_name_prefix = (known after apply)
+      [32m+[0m[0m key_pair_id     = (known after apply)
+      [32m+[0m[0m key_type        = (known after apply)
+      [32m+[0m[0m public_key      = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCjga67wcolSXaD1bswknLrejRYtZ4W55Y6qfoipYfeDVrwVgtalcWcEGPsrqcs3hd/+xSZ0bC6BakO4wpuX38I3uMH0RVOiZlKzgCkVih5hJoAi2YAMCCpV0FhAvKEWIs9HPXEW0Ke5hRkGybi7lkHIfKWwOBOQZTkHCbTR4HdcjrOo2MdTbJK/6EgsJF6Cy9k+F0z8SSKd0C2S0O2VZ49/iF5OcEHeUuyjurJZWdPl3CutQ9dNTgUkOiVfHWRUco7n4wTa/1I/8V0w8dU2F+rHu2UEo1h3humFfyT0nOfsySgLTG+4h90C+INMSungC0QwoVmpJs/TrPnaWRvZ9dJ DariuszSliwinski@dsliwinski-byod"
+      [32m+[0m[0m tags_all        = (known after apply)
+    }
+
+[1m  # aws_route.be_resolver_routes[0][0m will be created
+[0m  [32m+[0m[0m resource "aws_route" "be_resolver_routes" {
+      [32m+[0m[0m destination_cidr_block = "100.64.0.0/13"
+      [32m+[0m[0m id                     = (known after apply)
+      [32m+[0m[0m instance_id            = (known after apply)
+      [32m+[0m[0m instance_owner_id      = (known after apply)
+      [32m+[0m[0m network_interface_id   = (known after apply)
+      [32m+[0m[0m origin                 = (known after apply)
+      [32m+[0m[0m route_table_id         = (known after apply)
+      [32m+[0m[0m state                  = (known after apply)
+    }
+
+[1m  # aws_route.be_resolver_routes[1][0m will be created
+[0m  [32m+[0m[0m resource "aws_route" "be_resolver_routes" {
+      [32m+[0m[0m destination_cidr_block = "100.72.0.0/13"
+      [32m+[0m[0m id                     = (known after apply)
+      [32m+[0m[0m instance_id            = (known after apply)
+      [32m+[0m[0m instance_owner_id      = (known after apply)
+      [32m+[0m[0m network_interface_id   = (known after apply)
+      [32m+[0m[0m origin                 = (known after apply)
+      [32m+[0m[0m route_table_id         = (known after apply)
+      [32m+[0m[0m state                  = (known after apply)
+    }
+
+[1m  # aws_secretsmanager_secret.zfw_secret_pt[0m will be created
+[0m  [32m+[0m[0m resource "aws_secretsmanager_secret" "zfw_secret_pt" {
+      [32m+[0m[0m arn                            = (known after apply)
+      [32m+[0m[0m force_overwrite_replica_secret = false
+      [32m+[0m[0m id                             = (known after apply)
+      [32m+[0m[0m name                           = "glb_test_zfw_repo"
+      [32m+[0m[0m name_prefix                    = (known after apply)
+      [32m+[0m[0m policy                         = (known after apply)
+      [32m+[0m[0m recovery_window_in_days        = 0
+      [32m+[0m[0m tags_all                       = (known after apply)
+    }
+
+[1m  # aws_secretsmanager_secret_version.zfw_secret_pt[0m will be created
+[0m  [32m+[0m[0m resource "aws_secretsmanager_secret_version" "zfw_secret_pt" {
+      [32m+[0m[0m arn            = (known after apply)
+      [32m+[0m[0m id             = (known after apply)
+      [32m+[0m[0m secret_id      = (known after apply)
+      [32m+[0m[0m secret_string  = (sensitive value)
+      [32m+[0m[0m version_id     = (known after apply)
+      [32m+[0m[0m version_stages = (known after apply)
+    }
+
+[1m  # module.compute_backend[0].aws_instance.this[0][0m will be created
+[0m  [32m+[0m[0m resource "aws_instance" "this" {
+      [32m+[0m[0m ami                                  = "ami-0333611f8a06d64d0"
+      [32m+[0m[0m arn                                  = (known after apply)
+      [32m+[0m[0m associate_public_ip_address          = true
+      [32m+[0m[0m availability_zone                    = "us-west-2a"
+      [32m+[0m[0m cpu_core_count                       = (known after apply)
+      [32m+[0m[0m cpu_threads_per_core                 = (known after apply)
+      [32m+[0m[0m disable_api_stop                     = (known after apply)
+      [32m+[0m[0m disable_api_termination              = (known after apply)
+      [32m+[0m[0m ebs_optimized                        = (known after apply)
+      [32m+[0m[0m get_password_data                    = false
+      [32m+[0m[0m host_id                              = (known after apply)
+      [32m+[0m[0m host_resource_group_arn              = (known after apply)
+      [32m+[0m[0m iam_instance_profile                 = "glb_test_zfw_ec2_profile_us-west-2"
+      [32m+[0m[0m id                                   = (known after apply)
+      [32m+[0m[0m instance_initiated_shutdown_behavior = (known after apply)
+      [32m+[0m[0m instance_lifecycle                   = (known after apply)
+      [32m+[0m[0m instance_state                       = (known after apply)
+      [32m+[0m[0m instance_type                        = "t3.medium"
+      [32m+[0m[0m ipv6_address_count                   = (known after apply)
+      [32m+[0m[0m ipv6_addresses                       = (known after apply)
+      [32m+[0m[0m key_name                             = "be-test-ssh-key"
+      [32m+[0m[0m monitoring                           = true
+      [32m+[0m[0m outpost_arn                          = (known after apply)
+      [32m+[0m[0m password_data                        = (known after apply)
+      [32m+[0m[0m placement_group                      = (known after apply)
+      [32m+[0m[0m placement_partition_number           = (known after apply)
+      [32m+[0m[0m primary_network_interface_id         = (known after apply)
+      [32m+[0m[0m private_dns                          = (known after apply)
+      [32m+[0m[0m private_ip                           = (known after apply)
+      [32m+[0m[0m public_dns                           = (known after apply)
+      [32m+[0m[0m public_ip                            = (known after apply)
+      [32m+[0m[0m secondary_private_ips                = (known after apply)
+      [32m+[0m[0m security_groups                      = (known after apply)
+      [32m+[0m[0m source_dest_check                    = false
+      [32m+[0m[0m spot_instance_request_id             = (known after apply)
+      [32m+[0m[0m subnet_id                            = (known after apply)
+      [32m+[0m[0m tags                                 = {
+          [32m+[0m[0m "Environment" = "dariusz"
+          [32m+[0m[0m "Name"        = "be-er-us-west-2a"
+          [32m+[0m[0m "Terraform"   = "true"
+        }
+      [32m+[0m[0m tags_all                             = {
+          [32m+[0m[0m "Environment" = "dariusz"
+          [32m+[0m[0m "Name"        = "be-er-us-west-2a"
+          [32m+[0m[0m "Terraform"   = "true"
+        }
+      [32m+[0m[0m tenancy                              = (known after apply)
+      [32m+[0m[0m user_data                            = (known after apply)
+      [32m+[0m[0m user_data_base64                     = "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"
+      [32m+[0m[0m user_data_replace_on_change          = false
+      [32m+[0m[0m volume_tags                          = {
+          [32m+[0m[0m "Name" = "be-er-us-west-2a"
+        }
+      [32m+[0m[0m vpc_security_group_ids               = (known after apply)
+
+      [32m+[0m[0m credit_specification {}
+
+      [32m+[0m[0m enclave_options {
+          [32m+[0m[0m enabled = (known after apply)
+        }
+
+      [32m+[0m[0m metadata_options {
+          [32m+[0m[0m http_endpoint               = "enabled"
+          [32m+[0m[0m http_protocol_ipv6          = "disabled"
+          [32m+[0m[0m http_put_response_hop_limit = 1
+          [32m+[0m[0m http_tokens                 = "optional"
+          [32m+[0m[0m instance_metadata_tags      = (known after apply)
+        }
+
+      [32m+[0m[0m timeouts {}
+    }
+
+[1m  # module.compute_backend[1].aws_instance.this[0][0m will be created
+[0m  [32m+[0m[0m resource "aws_instance" "this" {
+      [32m+[0m[0m ami                                  = "ami-0333611f8a06d64d0"
+      [32m+[0m[0m arn                                  = (known after apply)
+      [32m+[0m[0m associate_public_ip_address          = true
+      [32m+[0m[0m availability_zone                    = "us-west-2b"
+      [32m+[0m[0m cpu_core_count                       = (known after apply)
+      [32m+[0m[0m cpu_threads_per_core                 = (known after apply)
+      [32m+[0m[0m disable_api_stop                     = (known after apply)
+      [32m+[0m[0m disable_api_termination              = (known after apply)
+      [32m+[0m[0m ebs_optimized                        = (known after apply)
+      [32m+[0m[0m get_password_data                    = false
+      [32m+[0m[0m host_id                              = (known after apply)
+      [32m+[0m[0m host_resource_group_arn              = (known after apply)
+      [32m+[0m[0m iam_instance_profile                 = "glb_test_zfw_ec2_profile_us-west-2"
+      [32m+[0m[0m id                                   = (known after apply)
+      [32m+[0m[0m instance_initiated_shutdown_behavior = (known after apply)
+      [32m+[0m[0m instance_lifecycle                   = (known after apply)
+      [32m+[0m[0m instance_state                       = (known after apply)
+      [32m+[0m[0m instance_type                        = "t3.medium"
+      [32m+[0m[0m ipv6_address_count                   = (known after apply)
+      [32m+[0m[0m ipv6_addresses                       = (known after apply)
+      [32m+[0m[0m key_name                             = "be-test-ssh-key"
+      [32m+[0m[0m monitoring                           = true
+      [32m+[0m[0m outpost_arn                          = (known after apply)
+      [32m+[0m[0m password_data                        = (known after apply)
+      [32m+[0m[0m placement_group                      = (known after apply)
+      [32m+[0m[0m placement_partition_number           = (known after apply)
+      [32m+[0m[0m primary_network_interface_id         = (known after apply)
+      [32m+[0m[0m private_dns                          = (known after apply)
+      [32m+[0m[0m private_ip                           = (known after apply)
+      [32m+[0m[0m public_dns                           = (known after apply)
+      [32m+[0m[0m public_ip                            = (known after apply)
+      [32m+[0m[0m secondary_private_ips                = (known after apply)
+      [32m+[0m[0m security_groups                      = (known after apply)
+      [32m+[0m[0m source_dest_check                    = false
+      [32m+[0m[0m spot_instance_request_id             = (known after apply)
+      [32m+[0m[0m subnet_id                            = (known after apply)
+      [32m+[0m[0m tags                                 = {
+          [32m+[0m[0m "Environment" = "dariusz"
+          [32m+[0m[0m "Name"        = "be-er-us-west-2b"
+          [32m+[0m[0m "Terraform"   = "true"
+        }
+      [32m+[0m[0m tags_all                             = {
+          [32m+[0m[0m "Environment" = "dariusz"
+          [32m+[0m[0m "Name"        = "be-er-us-west-2b"
+          [32m+[0m[0m "Terraform"   = "true"
+        }
+      [32m+[0m[0m tenancy                              = (known after apply)
+      [32m+[0m[0m user_data                            = (known after apply)
+      [32m+[0m[0m user_data_base64                     = "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"
+      [32m+[0m[0m user_data_replace_on_change          = false
+      [32m+[0m[0m volume_tags                          = {
+          [32m+[0m[0m "Name" = "be-er-us-west-2b"
+        }
+      [32m+[0m[0m vpc_security_group_ids               = (known after apply)
+
+      [32m+[0m[0m credit_specification {}
+
+      [32m+[0m[0m enclave_options {
+          [32m+[0m[0m enabled = (known after apply)
+        }
+
+      [32m+[0m[0m metadata_options {
+          [32m+[0m[0m http_endpoint               = "enabled"
+          [32m+[0m[0m http_protocol_ipv6          = "disabled"
+          [32m+[0m[0m http_put_response_hop_limit = 1
+          [32m+[0m[0m http_tokens                 = "optional"
+          [32m+[0m[0m instance_metadata_tags      = (known after apply)
+        }
+
+      [32m+[0m[0m timeouts {}
+    }
+
+[1m  # module.compute_client[0].aws_instance.this[0][0m will be created
+[0m  [32m+[0m[0m resource "aws_instance" "this" {
+      [32m+[0m[0m ami                                  = "ami-0333611f8a06d64d0"
+      [32m+[0m[0m arn                                  = (known after apply)
+      [32m+[0m[0m associate_public_ip_address          = true
+      [32m+[0m[0m availability_zone                    = "us-west-2a"
+      [32m+[0m[0m cpu_core_count                       = (known after apply)
+      [32m+[0m[0m cpu_threads_per_core                 = (known after apply)
+      [32m+[0m[0m disable_api_stop                     = (known after apply)
+      [32m+[0m[0m disable_api_termination              = (known after apply)
+      [32m+[0m[0m ebs_optimized                        = (known after apply)
+      [32m+[0m[0m get_password_data                    = false
+      [32m+[0m[0m host_id                              = (known after apply)
+      [32m+[0m[0m host_resource_group_arn              = (known after apply)
+      [32m+[0m[0m iam_instance_profile                 = (known after apply)
+      [32m+[0m[0m id                                   = (known after apply)
+      [32m+[0m[0m instance_initiated_shutdown_behavior = (known after apply)
+      [32m+[0m[0m instance_lifecycle                   = (known after apply)
+      [32m+[0m[0m instance_state                       = (known after apply)
+      [32m+[0m[0m instance_type                        = "t3.medium"
+      [32m+[0m[0m ipv6_address_count                   = (known after apply)
+      [32m+[0m[0m ipv6_addresses                       = (known after apply)
+      [32m+[0m[0m key_name                             = "be-test-ssh-key"
+      [32m+[0m[0m monitoring                           = true
+      [32m+[0m[0m outpost_arn                          = (known after apply)
+      [32m+[0m[0m password_data                        = (known after apply)
+      [32m+[0m[0m placement_group                      = (known after apply)
+      [32m+[0m[0m placement_partition_number           = (known after apply)
+      [32m+[0m[0m primary_network_interface_id         = (known after apply)
+      [32m+[0m[0m private_dns                          = (known after apply)
+      [32m+[0m[0m private_ip                           = (known after apply)
+      [32m+[0m[0m public_dns                           = (known after apply)
+      [32m+[0m[0m public_ip                            = (known after apply)
+      [32m+[0m[0m secondary_private_ips                = (known after apply)
+      [32m+[0m[0m security_groups                      = (known after apply)
+      [32m+[0m[0m source_dest_check                    = false
+      [32m+[0m[0m spot_instance_request_id             = (known after apply)
+      [32m+[0m[0m subnet_id                            = (known after apply)
+      [32m+[0m[0m tags                                 = {
+          [32m+[0m[0m "Environment" = "dariusz"
+          [32m+[0m[0m "Name"        = "test_client-us-west-2a"
+          [32m+[0m[0m "Terraform"   = "true"
+        }
+      [32m+[0m[0m tags_all                             = {
+          [32m+[0m[0m "Environment" = "dariusz"
+          [32m+[0m[0m "Name"        = "test_client-us-west-2a"
+          [32m+[0m[0m "Terraform"   = "true"
+        }
+      [32m+[0m[0m tenancy                              = (known after apply)
+      [32m+[0m[0m user_data                            = (known after apply)
+      [32m+[0m[0m user_data_base64                     = "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"
+      [32m+[0m[0m user_data_replace_on_change          = false
+      [32m+[0m[0m volume_tags                          = {
+          [32m+[0m[0m "Name" = "test_client-us-west-2a"
+        }
+      [32m+[0m[0m vpc_security_group_ids               = (known after apply)
+
+      [32m+[0m[0m credit_specification {}
+
+      [32m+[0m[0m enclave_options {
+          [32m+[0m[0m enabled = (known after apply)
+        }
+
+      [32m+[0m[0m metadata_options {
+          [32m+[0m[0m http_endpoint               = "enabled"
+          [32m+[0m[0m http_protocol_ipv6          = "disabled"
+          [32m+[0m[0m http_put_response_hop_limit = 1
+          [32m+[0m[0m http_tokens                 = "optional"
+          [32m+[0m[0m instance_metadata_tags      = (known after apply)
+        }
+
+      [32m+[0m[0m timeouts {}
+    }
+
+[1m  # module.compute_client[1].aws_instance.this[0][0m will be created
+[0m  [32m+[0m[0m resource "aws_instance" "this" {
+      [32m+[0m[0m ami                                  = "ami-0333611f8a06d64d0"
+      [32m+[0m[0m arn                                  = (known after apply)
+      [32m+[0m[0m associate_public_ip_address          = true
+      [32m+[0m[0m availability_zone                    = "us-west-2b"
+      [32m+[0m[0m cpu_core_count                       = (known after apply)
+      [32m+[0m[0m cpu_threads_per_core                 = (known after apply)
+      [32m+[0m[0m disable_api_stop                     = (known after apply)
+      [32m+[0m[0m disable_api_termination              = (known after apply)
+      [32m+[0m[0m ebs_optimized                        = (known after apply)
+      [32m+[0m[0m get_password_data                    = false
+      [32m+[0m[0m host_id                              = (known after apply)
+      [32m+[0m[0m host_resource_group_arn              = (known after apply)
+      [32m+[0m[0m iam_instance_profile                 = (known after apply)
+      [32m+[0m[0m id                                   = (known after apply)
+      [32m+[0m[0m instance_initiated_shutdown_behavior = (known after apply)
+      [32m+[0m[0m instance_lifecycle                   = (known after apply)
+      [32m+[0m[0m instance_state                       = (known after apply)
+      [32m+[0m[0m instance_type                        = "t3.medium"
+      [32m+[0m[0m ipv6_address_count                   = (known after apply)
+      [32m+[0m[0m ipv6_addresses                       = (known after apply)
+      [32m+[0m[0m key_name                             = "be-test-ssh-key"
+      [32m+[0m[0m monitoring                           = true
+      [32m+[0m[0m outpost_arn                          = (known after apply)
+      [32m+[0m[0m password_data                        = (known after apply)
+      [32m+[0m[0m placement_group                      = (known after apply)
+      [32m+[0m[0m placement_partition_number           = (known after apply)
+      [32m+[0m[0m primary_network_interface_id         = (known after apply)
+      [32m+[0m[0m private_dns                          = (known after apply)
+      [32m+[0m[0m private_ip                           = (known after apply)
+      [32m+[0m[0m public_dns                           = (known after apply)
+      [32m+[0m[0m public_ip                            = (known after apply)
+      [32m+[0m[0m secondary_private_ips                = (known after apply)
+      [32m+[0m[0m security_groups                      = (known after apply)
+      [32m+[0m[0m source_dest_check                    = false
+      [32m+[0m[0m spot_instance_request_id             = (known after apply)
+      [32m+[0m[0m subnet_id                            = (known after apply)
+      [32m+[0m[0m tags                                 = {
+          [32m+[0m[0m "Environment" = "dariusz"
+          [32m+[0m[0m "Name"        = "test_client-us-west-2b"
+          [32m+[0m[0m "Terraform"   = "true"
+        }
+      [32m+[0m[0m tags_all                             = {
+          [32m+[0m[0m "Environment" = "dariusz"
+          [32m+[0m[0m "Name"        = "test_client-us-west-2b"
+          [32m+[0m[0m "Terraform"   = "true"
+        }
+      [32m+[0m[0m tenancy                              = (known after apply)
+      [32m+[0m[0m user_data                            = (known after apply)
+      [32m+[0m[0m user_data_base64                     = "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"
+      [32m+[0m[0m user_data_replace_on_change          = false
+      [32m+[0m[0m volume_tags                          = {
+          [32m+[0m[0m "Name" = "test_client-us-west-2b"
+        }
+      [32m+[0m[0m vpc_security_group_ids               = (known after apply)
+
+      [32m+[0m[0m credit_specification {}
+
+      [32m+[0m[0m enclave_options {
+          [32m+[0m[0m enabled = (known after apply)
+        }
+
+      [32m+[0m[0m metadata_options {
+          [32m+[0m[0m http_endpoint               = "enabled"
+          [32m+[0m[0m http_protocol_ipv6          = "disabled"
+          [32m+[0m[0m http_put_response_hop_limit = 1
+          [32m+[0m[0m http_tokens                 = "optional"
+          [32m+[0m[0m instance_metadata_tags      = (known after apply)
+        }
+
+      [32m+[0m[0m timeouts {}
+    }
+
+[1m  # module.gwlb1.aws_lb.glb[0m will be created
+[0m  [32m+[0m[0m resource "aws_lb" "glb" {
+      [32m+[0m[0m arn                                                          = (known after apply)
+      [32m+[0m[0m arn_suffix                                                   = (known after apply)
+      [32m+[0m[0m dns_name                                                     = (known after apply)
+      [32m+[0m[0m enable_cross_zone_load_balancing                             = true
+      [32m+[0m[0m enable_deletion_protection                                   = false
+      [32m+[0m[0m enforce_security_group_inbound_rules_on_private_link_traffic = (known after apply)
+      [32m+[0m[0m id                                                           = (known after apply)
+      [32m+[0m[0m internal                                                     = (known after apply)
+      [32m+[0m[0m ip_address_type                                              = (known after apply)
+      [32m+[0m[0m load_balancer_type                                           = "gateway"
+      [32m+[0m[0m name                                                         = "nf-lb-01"
+      [32m+[0m[0m name_prefix                                                  = (known after apply)
+      [32m+[0m[0m security_groups                                              = (known after apply)
+      [32m+[0m[0m subnets                                                      = (known after apply)
+      [32m+[0m[0m tags_all                                                     = (known after apply)
+      [32m+[0m[0m vpc_id                                                       = (known after apply)
+      [32m+[0m[0m zone_id                                                      = (known after apply)
+
+      [32m+[0m[0m subnet_mapping {
+          [32m+[0m[0m outpost_id           = (known after apply)
+          [32m+[0m[0m subnet_id            = (known after apply)
+            [90m# (3 unchanged attributes hidden)[0m[0m
+        }
+      [32m+[0m[0m subnet_mapping {
+          [32m+[0m[0m outpost_id           = (known after apply)
+          [32m+[0m[0m subnet_id            = (known after apply)
+            [90m# (3 unchanged attributes hidden)[0m[0m
+        }
+    }
+
+[1m  # module.gwlb1.aws_lb_listener.glb_fe[0m will be created
+[0m  [32m+[0m[0m resource "aws_lb_listener" "glb_fe" {
+      [32m+[0m[0m arn               = (known after apply)
+      [32m+[0m[0m id                = (known after apply)
+      [32m+[0m[0m load_balancer_arn = (known after apply)
+      [32m+[0m[0m protocol          = (known after apply)
+      [32m+[0m[0m ssl_policy        = (known after apply)
+      [32m+[0m[0m tags_all          = (known after apply)
+
+      [32m+[0m[0m default_action {
+          [32m+[0m[0m order            = (known after apply)
+          [32m+[0m[0m target_group_arn = (known after apply)
+          [32m+[0m[0m type             = "forward"
+        }
+    }
+
+[1m  # module.gwlb1.aws_lb_target_group.glb_tg[0m will be created
+[0m  [32m+[0m[0m resource "aws_lb_target_group" "glb_tg" {
+      [32m+[0m[0m arn                                = (known after apply)
+      [32m+[0m[0m arn_suffix                         = (known after apply)
+      [32m+[0m[0m connection_termination             = (known after apply)
+      [32m+[0m[0m deregistration_delay               = "300"
+      [32m+[0m[0m id                                 = (known after apply)
+      [32m+[0m[0m ip_address_type                    = (known after apply)
+      [32m+[0m[0m lambda_multi_value_headers_enabled = false
+      [32m+[0m[0m load_balancer_arns                 = (known after apply)
+      [32m+[0m[0m load_balancing_algorithm_type      = (known after apply)
+      [32m+[0m[0m load_balancing_anomaly_mitigation  = (known after apply)
+      [32m+[0m[0m load_balancing_cross_zone_enabled  = (known after apply)
+      [32m+[0m[0m name                               = "nf-lb-tg"
+      [32m+[0m[0m name_prefix                        = (known after apply)
+      [32m+[0m[0m port                               = 6081
+      [32m+[0m[0m preserve_client_ip                 = (known after apply)
+      [32m+[0m[0m protocol                           = "GENEVE"
+      [32m+[0m[0m protocol_version                   = (known after apply)
+      [32m+[0m[0m proxy_protocol_v2                  = false
+      [32m+[0m[0m slow_start                         = 0
+      [32m+[0m[0m tags_all                           = (known after apply)
+      [32m+[0m[0m target_type                        = "instance"
+      [32m+[0m[0m vpc_id                             = (known after apply)
+
+      [32m+[0m[0m health_check {
+          [32m+[0m[0m enabled             = true
+          [32m+[0m[0m healthy_threshold   = 2
+          [32m+[0m[0m interval            = 5
+          [32m+[0m[0m matcher             = "200-399"
+          [32m+[0m[0m path                = "/health-checks"
+          [32m+[0m[0m port                = "8081"
+          [32m+[0m[0m protocol            = "HTTPS"
+          [32m+[0m[0m timeout             = 2
+          [32m+[0m[0m unhealthy_threshold = 2
+        }
+    }
+
+[1m  # module.gwlb1.aws_lb_target_group_attachment.glb_tg_attach[0][0m will be created
+[0m  [32m+[0m[0m resource "aws_lb_target_group_attachment" "glb_tg_attach" {
+      [32m+[0m[0m id               = (known after apply)
+      [32m+[0m[0m target_group_arn = (known after apply)
+      [32m+[0m[0m target_id        = (known after apply)
+    }
+
+[1m  # module.gwlb1.aws_lb_target_group_attachment.glb_tg_attach[1][0m will be created
+[0m  [32m+[0m[0m resource "aws_lb_target_group_attachment" "glb_tg_attach" {
+      [32m+[0m[0m id               = (known after apply)
+      [32m+[0m[0m target_group_arn = (known after apply)
+      [32m+[0m[0m target_id        = (known after apply)
+    }
+
+[1m  # module.gwlb1.aws_route.glb_routes[0][0m will be created
+[0m  [32m+[0m[0m resource "aws_route" "glb_routes" {
+      [32m+[0m[0m destination_cidr_block = "100.127.255.254/32"
+      [32m+[0m[0m id                     = (known after apply)
+      [32m+[0m[0m instance_id            = (known after apply)
+      [32m+[0m[0m instance_owner_id      = (known after apply)
+      [32m+[0m[0m network_interface_id   = (known after apply)
+      [32m+[0m[0m origin                 = (known after apply)
+      [32m+[0m[0m route_table_id         = (known after apply)
+      [32m+[0m[0m state                  = (known after apply)
+      [32m+[0m[0m vpc_endpoint_id        = (known after apply)
+    }
+
+[1m  # module.gwlb1.aws_route.glb_routes[1][0m will be created
+[0m  [32m+[0m[0m resource "aws_route" "glb_routes" {
+      [32m+[0m[0m destination_cidr_block = "100.127.255.254/32"
+      [32m+[0m[0m id                     = (known after apply)
+      [32m+[0m[0m instance_id            = (known after apply)
+      [32m+[0m[0m instance_owner_id      = (known after apply)
+      [32m+[0m[0m network_interface_id   = (known after apply)
+      [32m+[0m[0m origin                 = (known after apply)
+      [32m+[0m[0m route_table_id         = (known after apply)
+      [32m+[0m[0m state                  = (known after apply)
+      [32m+[0m[0m vpc_endpoint_id        = (known after apply)
+    }
+
+[1m  # module.gwlb1.aws_vpc_endpoint.ep[0][0m will be created
+[0m  [32m+[0m[0m resource "aws_vpc_endpoint" "ep" {
+      [32m+[0m[0m arn                   = (known after apply)
+      [32m+[0m[0m cidr_blocks           = (known after apply)
+      [32m+[0m[0m dns_entry             = (known after apply)
+      [32m+[0m[0m id                    = (known after apply)
+      [32m+[0m[0m ip_address_type       = (known after apply)
+      [32m+[0m[0m network_interface_ids = (known after apply)
+      [32m+[0m[0m owner_id              = (known after apply)
+      [32m+[0m[0m policy                = (known after apply)
+      [32m+[0m[0m prefix_list_id        = (known after apply)
+      [32m+[0m[0m private_dns_enabled   = (known after apply)
+      [32m+[0m[0m requester_managed     = (known after apply)
+      [32m+[0m[0m route_table_ids       = (known after apply)
+      [32m+[0m[0m security_group_ids    = (known after apply)
+      [32m+[0m[0m service_name          = (known after apply)
+      [32m+[0m[0m state                 = (known after apply)
+      [32m+[0m[0m subnet_ids            = (known after apply)
+      [32m+[0m[0m tags_all              = (known after apply)
+      [32m+[0m[0m vpc_endpoint_type     = (known after apply)
+      [32m+[0m[0m vpc_id                = (known after apply)
+    }
+
+[1m  # module.gwlb1.aws_vpc_endpoint.ep[1][0m will be created
+[0m  [32m+[0m[0m resource "aws_vpc_endpoint" "ep" {
+      [32m+[0m[0m arn                   = (known after apply)
+      [32m+[0m[0m cidr_blocks           = (known after apply)
+      [32m+[0m[0m dns_entry             = (known after apply)
+      [32m+[0m[0m id                    = (known after apply)
+      [32m+[0m[0m ip_address_type       = (known after apply)
+      [32m+[0m[0m network_interface_ids = (known after apply)
+      [32m+[0m[0m owner_id              = (known after apply)
+      [32m+[0m[0m policy                = (known after apply)
+      [32m+[0m[0m prefix_list_id        = (known after apply)
+      [32m+[0m[0m private_dns_enabled   = (known after apply)
+      [32m+[0m[0m requester_managed     = (known after apply)
+      [32m+[0m[0m route_table_ids       = (known after apply)
+      [32m+[0m[0m security_group_ids    = (known after apply)
+      [32m+[0m[0m service_name          = (known after apply)
+      [32m+[0m[0m state                 = (known after apply)
+      [32m+[0m[0m subnet_ids            = (known after apply)
+      [32m+[0m[0m tags_all              = (known after apply)
+      [32m+[0m[0m vpc_endpoint_type     = (known after apply)
+      [32m+[0m[0m vpc_id                = (known after apply)
+    }
+
+[1m  # module.gwlb1.aws_vpc_endpoint_service.glb_es[0m will be created
+[0m  [32m+[0m[0m resource "aws_vpc_endpoint_service" "glb_es" {
+      [32m+[0m[0m acceptance_required            = false
+      [32m+[0m[0m allowed_principals             = [
+          [32m+[0m[0m "arn:aws:iam::aws-account-id:user/*",
+        ]
+      [32m+[0m[0m arn                            = (known after apply)
+      [32m+[0m[0m availability_zones             = (known after apply)
+      [32m+[0m[0m base_endpoint_dns_names        = (known after apply)
+      [32m+[0m[0m gateway_load_balancer_arns     = (known after apply)
+      [32m+[0m[0m id                             = (known after apply)
+      [32m+[0m[0m manages_vpc_endpoints          = (known after apply)
+      [32m+[0m[0m private_dns_name               = (known after apply)
+      [32m+[0m[0m private_dns_name_configuration = (known after apply)
+      [32m+[0m[0m service_name                   = (known after apply)
+      [32m+[0m[0m service_type                   = (known after apply)
+      [32m+[0m[0m state                          = (known after apply)
+      [32m+[0m[0m supported_ip_address_types     = (known after apply)
+      [32m+[0m[0m tags_all                       = (known after apply)
+    }
+
+[1m  # module.sg_be.aws_security_group.this_name_prefix[0][0m will be created
+[0m  [32m+[0m[0m resource "aws_security_group" "this_name_prefix" {
+      [32m+[0m[0m arn                    = (known after apply)
+      [32m+[0m[0m description            = "Security group for backend er of glb with custom ports open within VPC"
+      [32m+[0m[0m egress                 = (known after apply)
+      [32m+[0m[0m id                     = (known after apply)
+      [32m+[0m[0m ingress                = (known after apply)
+      [32m+[0m[0m name                   = (known after apply)
+      [32m+[0m[0m name_prefix            = "be-er-sg-"
+      [32m+[0m[0m owner_id               = (known after apply)
+      [32m+[0m[0m revoke_rules_on_delete = false
+      [32m+[0m[0m tags                   = {
+          [32m+[0m[0m "Environment" = "dariusz"
+          [32m+[0m[0m "Name"        = "be-er-sg"
+          [32m+[0m[0m "Terraform"   = "true"
+        }
+      [32m+[0m[0m tags_all               = {
+          [32m+[0m[0m "Environment" = "dariusz"
+          [32m+[0m[0m "Name"        = "be-er-sg"
+          [32m+[0m[0m "Terraform"   = "true"
+        }
+      [32m+[0m[0m vpc_id                 = (known after apply)
+
+      [32m+[0m[0m timeouts {
+          [32m+[0m[0m create = "10m"
+          [32m+[0m[0m delete = "15m"
+        }
+    }
+
+[1m  # module.sg_be.aws_security_group_rule.egress_with_cidr_blocks[0][0m will be created
+[0m  [32m+[0m[0m resource "aws_security_group_rule" "egress_with_cidr_blocks" {
+      [32m+[0m[0m cidr_blocks              = [
+          [32m+[0m[0m "0.0.0.0/0",
+        ]
+      [32m+[0m[0m description              = "Egress Rule"
+      [32m+[0m[0m from_port                = -1
+      [32m+[0m[0m id                       = (known after apply)
+      [32m+[0m[0m prefix_list_ids          = []
+      [32m+[0m[0m protocol                 = "-1"
+      [32m+[0m[0m security_group_id        = (known after apply)
+      [32m+[0m[0m security_group_rule_id   = (known after apply)
+      [32m+[0m[0m self                     = false
+      [32m+[0m[0m source_security_group_id = (known after apply)
+      [32m+[0m[0m to_port                  = -1
+      [32m+[0m[0m type                     = "egress"
+    }
+
+[1m  # module.sg_be.aws_security_group_rule.ingress_with_cidr_blocks[0][0m will be created
+[0m  [32m+[0m[0m resource "aws_security_group_rule" "ingress_with_cidr_blocks" {
+      [32m+[0m[0m cidr_blocks              = [
+          [32m+[0m[0m "10.0.0.0/8",
+        ]
+      [32m+[0m[0m description              = "Ingress Rule"
+      [32m+[0m[0m from_port                = -1
+      [32m+[0m[0m id                       = (known after apply)
+      [32m+[0m[0m prefix_list_ids          = []
+      [32m+[0m[0m protocol                 = "-1"
+      [32m+[0m[0m security_group_id        = (known after apply)
+      [32m+[0m[0m security_group_rule_id   = (known after apply)
+      [32m+[0m[0m self                     = false
+      [32m+[0m[0m source_security_group_id = (known after apply)
+      [32m+[0m[0m to_port                  = -1
+      [32m+[0m[0m type                     = "ingress"
+    }
+
+[1m  # module.sg_be.aws_security_group_rule.ingress_with_cidr_blocks[1][0m will be created
+[0m  [32m+[0m[0m resource "aws_security_group_rule" "ingress_with_cidr_blocks" {
+      [32m+[0m[0m cidr_blocks              = [
+          [32m+[0m[0m "0.0.0.0/0",
+        ]
+      [32m+[0m[0m description              = "Ingress Rule"
+      [32m+[0m[0m from_port                = 22
+      [32m+[0m[0m id                       = (known after apply)
+      [32m+[0m[0m prefix_list_ids          = []
+      [32m+[0m[0m protocol                 = "tcp"
+      [32m+[0m[0m security_group_id        = (known after apply)
+      [32m+[0m[0m security_group_rule_id   = (known after apply)
+      [32m+[0m[0m self                     = false
+      [32m+[0m[0m source_security_group_id = (known after apply)
+      [32m+[0m[0m to_port                  = 22
+      [32m+[0m[0m type                     = "ingress"
+    }
+
+[1m  # module.sg_client.aws_security_group.this_name_prefix[0][0m will be created
+[0m  [32m+[0m[0m resource "aws_security_group" "this_name_prefix" {
+      [32m+[0m[0m arn                    = (known after apply)
+      [32m+[0m[0m description            = "Security group for clients with custom ports open within VPC"
+      [32m+[0m[0m egress                 = (known after apply)
+      [32m+[0m[0m id                     = (known after apply)
+      [32m+[0m[0m ingress                = (known after apply)
+      [32m+[0m[0m name                   = (known after apply)
+      [32m+[0m[0m name_prefix            = "test_client-sg-"
+      [32m+[0m[0m owner_id               = (known after apply)
+      [32m+[0m[0m revoke_rules_on_delete = false
+      [32m+[0m[0m tags                   = {
+          [32m+[0m[0m "Environment" = "dariusz"
+          [32m+[0m[0m "Name"        = "test_client-sg"
+          [32m+[0m[0m "Terraform"   = "true"
+        }
+      [32m+[0m[0m tags_all               = {
+          [32m+[0m[0m "Environment" = "dariusz"
+          [32m+[0m[0m "Name"        = "test_client-sg"
+          [32m+[0m[0m "Terraform"   = "true"
+        }
+      [32m+[0m[0m vpc_id                 = (known after apply)
+
+      [32m+[0m[0m timeouts {
+          [32m+[0m[0m create = "10m"
+          [32m+[0m[0m delete = "15m"
+        }
+    }
+
+[1m  # module.sg_client.aws_security_group_rule.egress_with_cidr_blocks[0][0m will be created
+[0m  [32m+[0m[0m resource "aws_security_group_rule" "egress_with_cidr_blocks" {
+      [32m+[0m[0m cidr_blocks              = [
+          [32m+[0m[0m "0.0.0.0/0",
+        ]
+      [32m+[0m[0m description              = "Egress Rule"
+      [32m+[0m[0m from_port                = -1
+      [32m+[0m[0m id                       = (known after apply)
+      [32m+[0m[0m prefix_list_ids          = []
+      [32m+[0m[0m protocol                 = "-1"
+      [32m+[0m[0m security_group_id        = (known after apply)
+      [32m+[0m[0m security_group_rule_id   = (known after apply)
+      [32m+[0m[0m self                     = false
+      [32m+[0m[0m source_security_group_id = (known after apply)
+      [32m+[0m[0m to_port                  = -1
+      [32m+[0m[0m type                     = "egress"
+    }
+
+[1m  # module.sg_client.aws_security_group_rule.ingress_with_cidr_blocks[0][0m will be created
+[0m  [32m+[0m[0m resource "aws_security_group_rule" "ingress_with_cidr_blocks" {
+      [32m+[0m[0m cidr_blocks              = [
+          [32m+[0m[0m "10.0.0.0/8",
+        ]
+      [32m+[0m[0m description              = "Ingress Rule"
+      [32m+[0m[0m from_port                = -1
+      [32m+[0m[0m id                       = (known after apply)
+      [32m+[0m[0m prefix_list_ids          = []
+      [32m+[0m[0m protocol                 = "-1"
+      [32m+[0m[0m security_group_id        = (known after apply)
+      [32m+[0m[0m security_group_rule_id   = (known after apply)
+      [32m+[0m[0m self                     = false
+      [32m+[0m[0m source_security_group_id = (known after apply)
+      [32m+[0m[0m to_port                  = -1
+      [32m+[0m[0m type                     = "ingress"
+    }
+
+[1m  # module.sg_client.aws_security_group_rule.ingress_with_cidr_blocks[1][0m will be created
+[0m  [32m+[0m[0m resource "aws_security_group_rule" "ingress_with_cidr_blocks" {
+      [32m+[0m[0m cidr_blocks              = [
+          [32m+[0m[0m "0.0.0.0/0",
+        ]
+      [32m+[0m[0m description              = "Ingress Rule"
+      [32m+[0m[0m from_port                = 22
+      [32m+[0m[0m id                       = (known after apply)
+      [32m+[0m[0m prefix_list_ids          = []
+      [32m+[0m[0m protocol                 = "tcp"
+      [32m+[0m[0m security_group_id        = (known after apply)
+      [32m+[0m[0m security_group_rule_id   = (known after apply)
+      [32m+[0m[0m self                     = false
+      [32m+[0m[0m source_security_group_id = (known after apply)
+      [32m+[0m[0m to_port                  = 22
+      [32m+[0m[0m type                     = "ingress"
+    }
+
+[1m  # module.vpc1.aws_default_network_acl.this[0][0m will be created
+[0m  [32m+[0m[0m resource "aws_default_network_acl" "this" {
+      [32m+[0m[0m arn                    = (known after apply)
+      [32m+[0m[0m default_network_acl_id = (known after apply)
+      [32m+[0m[0m id                     = (known after apply)
+      [32m+[0m[0m owner_id               = (known after apply)
+      [32m+[0m[0m tags                   = {
+          [32m+[0m[0m "Environment" = "dariusz"
+          [32m+[0m[0m "Name"        = "nf-lb-vpc-default"
+          [32m+[0m[0m "Terraform"   = "true"
+        }
+      [32m+[0m[0m tags_all               = {
+          [32m+[0m[0m "Environment" = "dariusz"
+          [32m+[0m[0m "Name"        = "nf-lb-vpc-default"
+          [32m+[0m[0m "Terraform"   = "true"
+        }
+      [32m+[0m[0m vpc_id                 = (known after apply)
+
+      [32m+[0m[0m egress {
+          [32m+[0m[0m action          = "allow"
+          [32m+[0m[0m from_port       = 0
+          [32m+[0m[0m ipv6_cidr_block = "::/0"
+          [32m+[0m[0m protocol        = "-1"
+          [32m+[0m[0m rule_no         = 101
+          [32m+[0m[0m to_port         = 0
+            [90m# (1 unchanged attribute hidden)[0m[0m
+        }
+      [32m+[0m[0m egress {
+          [32m+[0m[0m action          = "allow"
+          [32m+[0m[0m cidr_block      = "0.0.0.0/0"
+          [32m+[0m[0m from_port       = 0
+          [32m+[0m[0m protocol        = "-1"
+          [32m+[0m[0m rule_no         = 100
+          [32m+[0m[0m to_port         = 0
+            [90m# (1 unchanged attribute hidden)[0m[0m
+        }
+
+      [32m+[0m[0m ingress {
+          [32m+[0m[0m action          = "allow"
+          [32m+[0m[0m from_port       = 0
+          [32m+[0m[0m ipv6_cidr_block = "::/0"
+          [32m+[0m[0m protocol        = "-1"
+          [32m+[0m[0m rule_no         = 101
+          [32m+[0m[0m to_port         = 0
+            [90m# (1 unchanged attribute hidden)[0m[0m
+        }
+      [32m+[0m[0m ingress {
+          [32m+[0m[0m action          = "allow"
+          [32m+[0m[0m cidr_block      = "0.0.0.0/0"
+          [32m+[0m[0m from_port       = 0
+          [32m+[0m[0m protocol        = "-1"
+          [32m+[0m[0m rule_no         = 100
+          [32m+[0m[0m to_port         = 0
+            [90m# (1 unchanged attribute hidden)[0m[0m
+        }
+    }
+
+[1m  # module.vpc1.aws_default_route_table.default[0][0m will be created
+[0m  [32m+[0m[0m resource "aws_default_route_table" "default" {
+      [32m+[0m[0m arn                    = (known after apply)
+      [32m+[0m[0m default_route_table_id = (known after apply)
+      [32m+[0m[0m id                     = (known after apply)
+      [32m+[0m[0m owner_id               = (known after apply)
+      [32m+[0m[0m route                  = (known after apply)
+      [32m+[0m[0m tags                   = {
+          [32m+[0m[0m "Environment" = "dariusz"
+          [32m+[0m[0m "Name"        = "nf-lb-vpc-default"
+          [32m+[0m[0m "Terraform"   = "true"
+        }
+      [32m+[0m[0m tags_all               = {
+          [32m+[0m[0m "Environment" = "dariusz"
+          [32m+[0m[0m "Name"        = "nf-lb-vpc-default"
+          [32m+[0m[0m "Terraform"   = "true"
+        }
+      [32m+[0m[0m vpc_id                 = (known after apply)
+
+      [32m+[0m[0m timeouts {
+          [32m+[0m[0m create = "5m"
+          [32m+[0m[0m update = "5m"
+        }
+    }
+
+[1m  # module.vpc1.aws_default_security_group.this[0][0m will be created
+[0m  [32m+[0m[0m resource "aws_default_security_group" "this" {
+      [32m+[0m[0m arn                    = (known after apply)
+      [32m+[0m[0m description            = (known after apply)
+      [32m+[0m[0m egress                 = (known after apply)
+      [32m+[0m[0m id                     = (known after apply)
+      [32m+[0m[0m ingress                = (known after apply)
+      [32m+[0m[0m name                   = (known after apply)
+      [32m+[0m[0m name_prefix            = (known after apply)
+      [32m+[0m[0m owner_id               = (known after apply)
+      [32m+[0m[0m revoke_rules_on_delete = false
+      [32m+[0m[0m tags                   = {
+          [32m+[0m[0m "Environment" = "dariusz"
+          [32m+[0m[0m "Name"        = "nf-lb-vpc-default"
+          [32m+[0m[0m "Terraform"   = "true"
+        }
+      [32m+[0m[0m tags_all               = {
+          [32m+[0m[0m "Environment" = "dariusz"
+          [32m+[0m[0m "Name"        = "nf-lb-vpc-default"
+          [32m+[0m[0m "Terraform"   = "true"
+        }
+      [32m+[0m[0m vpc_id                 = (known after apply)
+    }
+
+[1m  # module.vpc1.aws_internet_gateway.this[0][0m will be created
+[0m  [32m+[0m[0m resource "aws_internet_gateway" "this" {
+      [32m+[0m[0m arn      = (known after apply)
+      [32m+[0m[0m id       = (known after apply)
+      [32m+[0m[0m owner_id = (known after apply)
+      [32m+[0m[0m tags     = {
+          [32m+[0m[0m "Environment" = "dariusz"
+          [32m+[0m[0m "Name"        = "nf-lb-vpc"
+          [32m+[0m[0m "Terraform"   = "true"
+        }
+      [32m+[0m[0m tags_all = {
+          [32m+[0m[0m "Environment" = "dariusz"
+          [32m+[0m[0m "Name"        = "nf-lb-vpc"
+          [32m+[0m[0m "Terraform"   = "true"
+        }
+      [32m+[0m[0m vpc_id   = (known after apply)
+    }
+
+[1m  # module.vpc1.aws_route.public_internet_gateway[0][0m will be created
+[0m  [32m+[0m[0m resource "aws_route" "public_internet_gateway" {
+      [32m+[0m[0m destination_cidr_block = "0.0.0.0/0"
+      [32m+[0m[0m gateway_id             = (known after apply)
+      [32m+[0m[0m id                     = (known after apply)
+      [32m+[0m[0m instance_id            = (known after apply)
+      [32m+[0m[0m instance_owner_id      = (known after apply)
+      [32m+[0m[0m network_interface_id   = (known after apply)
+      [32m+[0m[0m origin                 = (known after apply)
+      [32m+[0m[0m route_table_id         = (known after apply)
+      [32m+[0m[0m state                  = (known after apply)
+
+      [32m+[0m[0m timeouts {
+          [32m+[0m[0m create = "5m"
+        }
+    }
+
+[1m  # module.vpc1.aws_route_table.public[0][0m will be created
+[0m  [32m+[0m[0m resource "aws_route_table" "public" {
+      [32m+[0m[0m arn              = (known after apply)
+      [32m+[0m[0m id               = (known after apply)
+      [32m+[0m[0m owner_id         = (known after apply)
+      [32m+[0m[0m propagating_vgws = (known after apply)
+      [32m+[0m[0m route            = (known after apply)
+      [32m+[0m[0m tags             = {
+          [32m+[0m[0m "Environment" = "dariusz"
+          [32m+[0m[0m "Name"        = "nf-lb-vpc-public"
+          [32m+[0m[0m "Terraform"   = "true"
+        }
+      [32m+[0m[0m tags_all         = {
+          [32m+[0m[0m "Environment" = "dariusz"
+          [32m+[0m[0m "Name"        = "nf-lb-vpc-public"
+          [32m+[0m[0m "Terraform"   = "true"
+        }
+      [32m+[0m[0m vpc_id           = (known after apply)
+    }
+
+[1m  # module.vpc1.aws_route_table_association.public[0][0m will be created
+[0m  [32m+[0m[0m resource "aws_route_table_association" "public" {
+      [32m+[0m[0m id             = (known after apply)
+      [32m+[0m[0m route_table_id = (known after apply)
+      [32m+[0m[0m subnet_id      = (known after apply)
+    }
+
+[1m  # module.vpc1.aws_route_table_association.public[1][0m will be created
+[0m  [32m+[0m[0m resource "aws_route_table_association" "public" {
+      [32m+[0m[0m id             = (known after apply)
+      [32m+[0m[0m route_table_id = (known after apply)
+      [32m+[0m[0m subnet_id      = (known after apply)
+    }
+
+[1m  # module.vpc1.aws_subnet.public[0][0m will be created
+[0m  [32m+[0m[0m resource "aws_subnet" "public" {
+      [32m+[0m[0m arn                                            = (known after apply)
+      [32m+[0m[0m assign_ipv6_address_on_creation                = false
+      [32m+[0m[0m availability_zone                              = "us-west-2a"
+      [32m+[0m[0m availability_zone_id                           = (known after apply)
+      [32m+[0m[0m cidr_block                                     = "10.40.101.0/24"
+      [32m+[0m[0m enable_dns64                                   = false
+      [32m+[0m[0m enable_resource_name_dns_a_record_on_launch    = false
+      [32m+[0m[0m enable_resource_name_dns_aaaa_record_on_launch = false
+      [32m+[0m[0m id                                             = (known after apply)
+      [32m+[0m[0m ipv6_cidr_block_association_id                 = (known after apply)
+      [32m+[0m[0m ipv6_native                                    = false
+      [32m+[0m[0m map_public_ip_on_launch                        = true
+      [32m+[0m[0m owner_id                                       = (known after apply)
+      [32m+[0m[0m private_dns_hostname_type_on_launch            = (known after apply)
+      [32m+[0m[0m tags                                           = {
+          [32m+[0m[0m "Environment" = "dariusz"
+          [32m+[0m[0m "Name"        = "nf-lb-vpc-public-us-west-2a"
+          [32m+[0m[0m "Terraform"   = "true"
+        }
+      [32m+[0m[0m tags_all                                       = {
+          [32m+[0m[0m "Environment" = "dariusz"
+          [32m+[0m[0m "Name"        = "nf-lb-vpc-public-us-west-2a"
+          [32m+[0m[0m "Terraform"   = "true"
+        }
+      [32m+[0m[0m vpc_id                                         = (known after apply)
+    }
+
+[1m  # module.vpc1.aws_subnet.public[1][0m will be created
+[0m  [32m+[0m[0m resource "aws_subnet" "public" {
+      [32m+[0m[0m arn                                            = (known after apply)
+      [32m+[0m[0m assign_ipv6_address_on_creation                = false
+      [32m+[0m[0m availability_zone                              = "us-west-2b"
+      [32m+[0m[0m availability_zone_id                           = (known after apply)
+      [32m+[0m[0m cidr_block                                     = "10.40.102.0/24"
+      [32m+[0m[0m enable_dns64                                   = false
+      [32m+[0m[0m enable_resource_name_dns_a_record_on_launch    = false
+      [32m+[0m[0m enable_resource_name_dns_aaaa_record_on_launch = false
+      [32m+[0m[0m id                                             = (known after apply)
+      [32m+[0m[0m ipv6_cidr_block_association_id                 = (known after apply)
+      [32m+[0m[0m ipv6_native                                    = false
+      [32m+[0m[0m map_public_ip_on_launch                        = true
+      [32m+[0m[0m owner_id                                       = (known after apply)
+      [32m+[0m[0m private_dns_hostname_type_on_launch            = (known after apply)
+      [32m+[0m[0m tags                                           = {
+          [32m+[0m[0m "Environment" = "dariusz"
+          [32m+[0m[0m "Name"        = "nf-lb-vpc-public-us-west-2b"
+          [32m+[0m[0m "Terraform"   = "true"
+        }
+      [32m+[0m[0m tags_all                                       = {
+          [32m+[0m[0m "Environment" = "dariusz"
+          [32m+[0m[0m "Name"        = "nf-lb-vpc-public-us-west-2b"
+          [32m+[0m[0m "Terraform"   = "true"
+        }
+      [32m+[0m[0m vpc_id                                         = (known after apply)
+    }
+
+[1m  # module.vpc1.aws_vpc.this[0][0m will be created
+[0m  [32m+[0m[0m resource "aws_vpc" "this" {
+      [32m+[0m[0m arn                                  = (known after apply)
+      [32m+[0m[0m cidr_block                           = "10.40.0.0/16"
+      [32m+[0m[0m default_network_acl_id               = (known after apply)
+      [32m+[0m[0m default_route_table_id               = (known after apply)
+      [32m+[0m[0m default_security_group_id            = (known after apply)
+      [32m+[0m[0m dhcp_options_id                      = (known after apply)
+      [32m+[0m[0m enable_dns_hostnames                 = true
+      [32m+[0m[0m enable_dns_support                   = true
+      [32m+[0m[0m enable_network_address_usage_metrics = (known after apply)
+      [32m+[0m[0m id                                   = (known after apply)
+      [32m+[0m[0m instance_tenancy                     = "default"
+      [32m+[0m[0m ipv6_association_id                  = (known after apply)
+      [32m+[0m[0m ipv6_cidr_block                      = (known after apply)
+      [32m+[0m[0m ipv6_cidr_block_network_border_group = (known after apply)
+      [32m+[0m[0m main_route_table_id                  = (known after apply)
+      [32m+[0m[0m owner_id                             = (known after apply)
+      [32m+[0m[0m tags                                 = {
+          [32m+[0m[0m "Environment" = "dariusz"
+          [32m+[0m[0m "Name"        = "nf-lb-vpc"
+          [32m+[0m[0m "Terraform"   = "true"
+        }
+      [32m+[0m[0m tags_all                             = {
+          [32m+[0m[0m "Environment" = "dariusz"
+          [32m+[0m[0m "Name"        = "nf-lb-vpc"
+          [32m+[0m[0m "Terraform"   = "true"
+        }
+    }
+
+[1m  # module.vpc1.aws_vpn_gateway.this[0][0m will be created
+[0m  [32m+[0m[0m resource "aws_vpn_gateway" "this" {
+      [32m+[0m[0m amazon_side_asn = "64512"
+      [32m+[0m[0m arn             = (known after apply)
+      [32m+[0m[0m id              = (known after apply)
+      [32m+[0m[0m tags            = {
+          [32m+[0m[0m "Environment" = "dariusz"
+          [32m+[0m[0m "Name"        = "nf-lb-vpc"
+          [32m+[0m[0m "Terraform"   = "true"
+        }
+      [32m+[0m[0m tags_all        = {
+          [32m+[0m[0m "Environment" = "dariusz"
+          [32m+[0m[0m "Name"        = "nf-lb-vpc"
+          [32m+[0m[0m "Terraform"   = "true"
+        }
+      [32m+[0m[0m vpc_id          = (known after apply)
+    }
+
+[1mPlan:[0m 43 to add, 0 to change, 0 to destroy.
+[0m
+Changes to Outputs:
+  [32m+[0m[0m backend_public_ips = [
+      [32m+[0m[0m (known after apply),
+      [32m+[0m[0m (known after apply),
+    ]
+  [32m+[0m[0m client_public_ips  = [
+      [32m+[0m[0m (known after apply),
+      [32m+[0m[0m (known after apply),
+    ]
+  [32m+[0m[0m endpoint_ids       = [
+      [32m+[0m[0m (known after apply),
+      [32m+[0m[0m (known after apply),
+    ]
+  [32m+[0m[0m route_table_ids    = [
+      [32m+[0m[0m (known after apply),
+    ]
+  [32m+[0m[0m subnets            = [
+      [32m+[0m[0m (known after apply),
+      [32m+[0m[0m (known after apply),
+    ]
+[0m[1maws_iam_role.secret_manager_zfw_ec2_role: Creating...[0m[0m
+[0m[1maws_secretsmanager_secret.zfw_secret_pt: Creating...[0m[0m
+[0m[1maws_key_pair.ssh_public_key: Creating...[0m[0m
+[0m[1mmodule.vpc1.aws_vpc.this[0]: Creating...[0m[0m
+[0m[1maws_iam_role.secret_manager_zfw_ec2_role: Creation complete after 0s [id=glb_test_zfw_ec2_role_us-west-2][0m
+[0m[1maws_iam_instance_profile.secret_manager_zfw_ec2_profile: Creating...[0m[0m
+[0m[1maws_key_pair.ssh_public_key: Creation complete after 1s [id=be-test-ssh-key][0m
+[0m[1maws_secretsmanager_secret.zfw_secret_pt: Still creating... [10s elapsed][0m[0m
+[0m[1mmodule.vpc1.aws_vpc.this[0]: Still creating... [10s elapsed][0m[0m
+[0m[1mmodule.vpc1.aws_vpc.this[0]: Creation complete after 13s [id=vpc-05bab091ee8feb07d][0m
+[0m[1mmodule.vpc1.aws_route_table.public[0]: Creating...[0m[0m
+[0m[1mmodule.vpc1.aws_subnet.public[1]: Creating...[0m[0m
+[0m[1mmodule.vpc1.aws_vpn_gateway.this[0]: Creating...[0m[0m
+[0m[1mmodule.vpc1.aws_subnet.public[0]: Creating...[0m[0m
+[0m[1mmodule.vpc1.aws_default_route_table.default[0]: Creating...[0m[0m
+[0m[1mmodule.vpc1.aws_default_security_group.this[0]: Creating...[0m[0m
+[0m[1mmodule.vpc1.aws_internet_gateway.this[0]: Creating...[0m[0m
+[0m[1mmodule.gwlb1.aws_lb_target_group.glb_tg: Creating...[0m[0m
+[0m[1mmodule.vpc1.aws_default_network_acl.this[0]: Creating...[0m[0m
+[0m[1mmodule.vpc1.aws_default_route_table.default[0]: Creation complete after 0s [id=rtb-0333217190bc08ae5][0m
+[0m[1mmodule.sg_client.aws_security_group.this_name_prefix[0]: Creating...[0m[0m
+[0m[1mmodule.vpc1.aws_route_table.public[0]: Creation complete after 1s [id=rtb-0e9ced6c51b6e849e][0m
+[0m[1mmodule.sg_be.aws_security_group.this_name_prefix[0]: Creating...[0m[0m
+[0m[1mmodule.vpc1.aws_internet_gateway.this[0]: Creation complete after 1s [id=igw-0f25c952b3c904e90][0m
+[0m[1mmodule.vpc1.aws_route.public_internet_gateway[0]: Creating...[0m[0m
+[0m[1mmodule.gwlb1.aws_lb_target_group.glb_tg: Creation complete after 2s [id=arn:aws:elasticloadbalancing:us-west-2:925908137963:targetgroup/nf-lb-tg/002ae649aec8e83e2d][0m
+[0m[1mmodule.vpc1.aws_default_network_acl.this[0]: Creation complete after 2s [id=acl-018476d87f37cd06f][0m
+[0m[1mmodule.vpc1.aws_route.public_internet_gateway[0]: Creation complete after 1s [id=r-rtb-0e9ced6c51b6e849e1080289494][0m
+[0m[1mmodule.vpc1.aws_default_security_group.this[0]: Creation complete after 2s [id=sg-055942f3cf382b299][0m
+[0m[1mmodule.sg_client.aws_security_group.this_name_prefix[0]: Creation complete after 3s [id=sg-06c4f3c12e4595962][0m
+[0m[1mmodule.sg_client.aws_security_group_rule.ingress_with_cidr_blocks[0]: Creating...[0m[0m
+[0m[1mmodule.sg_client.aws_security_group_rule.egress_with_cidr_blocks[0]: Creating...[0m[0m
+[0m[1mmodule.sg_client.aws_security_group_rule.ingress_with_cidr_blocks[1]: Creating...[0m[0m
+[0m[1mmodule.sg_be.aws_security_group.this_name_prefix[0]: Creation complete after 2s [id=sg-0f1b91df895d79c7c][0m
+[0m[1mmodule.sg_be.aws_security_group_rule.egress_with_cidr_blocks[0]: Creating...[0m[0m
+[0m[1mmodule.sg_be.aws_security_group_rule.ingress_with_cidr_blocks[1]: Creating...[0m[0m
+[0m[1mmodule.sg_be.aws_security_group_rule.ingress_with_cidr_blocks[0]: Creating...[0m[0m
+[0m[1mmodule.sg_client.aws_security_group_rule.egress_with_cidr_blocks[0]: Creation complete after 0s [id=sgrule-3009593699][0m
+[0m[1mmodule.sg_be.aws_security_group_rule.egress_with_cidr_blocks[0]: Creation complete after 1s [id=sgrule-3016639095][0m
+[0m[1mmodule.sg_client.aws_security_group_rule.ingress_with_cidr_blocks[1]: Creation complete after 1s [id=sgrule-1797060220][0m
+[0m[1mmodule.sg_be.aws_security_group_rule.ingress_with_cidr_blocks[0]: Creation complete after 2s [id=sgrule-259482655][0m
+[0m[1mmodule.sg_client.aws_security_group_rule.ingress_with_cidr_blocks[0]: Creation complete after 2s [id=sgrule-1432904060][0m
+[0m[1mmodule.sg_be.aws_security_group_rule.ingress_with_cidr_blocks[1]: Creation complete after 2s [id=sgrule-1154345047][0m
+[0m[1maws_secretsmanager_secret.zfw_secret_pt: Still creating... [20s elapsed][0m[0m
+[0m[1mmodule.vpc1.aws_subnet.public[1]: Still creating... [10s elapsed][0m[0m
+[0m[1mmodule.vpc1.aws_vpn_gateway.this[0]: Still creating... [10s elapsed][0m[0m
+[0m[1mmodule.vpc1.aws_subnet.public[0]: Still creating... [10s elapsed][0m[0m
+[0m[1mmodule.vpc1.aws_subnet.public[1]: Creation complete after 11s [id=subnet-0c1dc4dc8c57c8a00][0m
+[0m[1mmodule.vpc1.aws_subnet.public[0]: Creation complete after 11s [id=subnet-0e1a7aa54c6e25e46][0m
+[0m[1mmodule.vpc1.aws_route_table_association.public[1]: Creating...[0m[0m
+[0m[1mmodule.vpc1.aws_route_table_association.public[0]: Creating...[0m[0m
+[0m[1mmodule.gwlb1.aws_lb.glb: Creating...[0m[0m
+[0m[1mmodule.compute_client[0].aws_instance.this[0]: Creating...[0m[0m
+[0m[1mmodule.compute_client[1].aws_instance.this[0]: Creating...[0m[0m
+[0m[1mmodule.vpc1.aws_route_table_association.public[1]: Creation complete after 1s [id=rtbassoc-0a3202fca64de4b0c][0m
+[0m[1mmodule.vpc1.aws_route_table_association.public[0]: Creation complete after 1s [id=rtbassoc-064fd7fe3dd466433][0m
+[0m[1maws_secretsmanager_secret.zfw_secret_pt: Still creating... [30s elapsed][0m[0m
+[0m[1mmodule.vpc1.aws_vpn_gateway.this[0]: Still creating... [20s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_lb.glb: Still creating... [10s elapsed][0m[0m
+[0m[1mmodule.compute_client[0].aws_instance.this[0]: Still creating... [10s elapsed][0m[0m
+[0m[1mmodule.compute_client[1].aws_instance.this[0]: Still creating... [10s elapsed][0m[0m
+[0m[1mmodule.compute_client[0].aws_instance.this[0]: Creation complete after 14s [id=i-08967a930eaa2c8d8][0m
+[0m[1mmodule.compute_client[1].aws_instance.this[0]: Creation complete after 14s [id=i-0cdc7584c72e6e4ea][0m
+[0m[1maws_secretsmanager_secret.zfw_secret_pt: Still creating... [40s elapsed][0m[0m
+[0m[1mmodule.vpc1.aws_vpn_gateway.this[0]: Still creating... [30s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_lb.glb: Still creating... [20s elapsed][0m[0m
+[0m[1mmodule.vpc1.aws_vpn_gateway.this[0]: Creation complete after 35s [id=vgw-0d6546992cf692f87][0m
+[0m[1maws_secretsmanager_secret.zfw_secret_pt: Still creating... [50s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_lb.glb: Still creating... [30s elapsed][0m[0m
+[0m[1maws_secretsmanager_secret.zfw_secret_pt: Still creating... [1m0s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_lb.glb: Still creating... [40s elapsed][0m[0m
+[0m[1maws_secretsmanager_secret.zfw_secret_pt: Still creating... [1m10s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_lb.glb: Still creating... [50s elapsed][0m[0m
+[0m[1maws_secretsmanager_secret.zfw_secret_pt: Still creating... [1m20s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_lb.glb: Still creating... [1m1s elapsed][0m[0m
+[0m[1maws_secretsmanager_secret.zfw_secret_pt: Still creating... [1m30s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_lb.glb: Still creating... [1m11s elapsed][0m[0m
+[0m[1maws_secretsmanager_secret.zfw_secret_pt: Still creating... [1m40s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_lb.glb: Still creating... [1m21s elapsed][0m[0m
+[0m[1maws_secretsmanager_secret.zfw_secret_pt: Still creating... [1m50s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_lb.glb: Still creating... [1m31s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_lb.glb: Still creating... [1m41s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_lb.glb: Still creating... [1m51s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_lb.glb: Still creating... [2m1s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_lb.glb: Still creating... [2m11s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_lb.glb: Still creating... [2m21s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_lb.glb: Creation complete after 2m24s [id=arn:aws:elasticloadbalancing:us-west-2:925908137963:loadbalancer/gwy/nf-lb-01/5f67812409257bcb][0m
+[0m[1mmodule.gwlb1.aws_vpc_endpoint_service.glb_es: Creating...[0m[0m
+[0m[1mmodule.gwlb1.aws_lb_listener.glb_fe: Creating...[0m[0m
+[0m[1mmodule.gwlb1.aws_lb_listener.glb_fe: Creation complete after 0s [id=arn:aws:elasticloadbalancing:us-west-2:925908137963:listener/gwy/nf-lb-01/5f67812409257bcb/49d33abce13cda12][0m
+[0m[1mmodule.gwlb1.aws_vpc_endpoint_service.glb_es: Creation complete after 6s [id=vpce-svc-04ae2d240e48fe008][0m
+[0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[0]: Creating...[0m[0m
+[0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[1]: Creating...[0m[0m
+[0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[1]: Still creating... [10s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[0]: Still creating... [10s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[0]: Still creating... [20s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[1]: Still creating... [20s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[1]: Still creating... [30s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[0]: Still creating... [30s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[1]: Still creating... [40s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[0]: Still creating... [40s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[0]: Still creating... [50s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[1]: Still creating... [50s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[1]: Still creating... [1m0s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[0]: Still creating... [1m0s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[0]: Still creating... [1m10s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[1]: Still creating... [1m10s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[0]: Still creating... [1m20s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[1]: Still creating... [1m20s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[1]: Still creating... [1m30s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[0]: Still creating... [1m30s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[0]: Creation complete after 1m33s [id=vpce-03365ab15355e57b5][0m
+[0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[1]: Still creating... [1m40s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[1]: Creation complete after 1m44s [id=vpce-00da7b02768604e28][0m
+[0m[1mmodule.gwlb1.aws_route.glb_routes[0]: Creating...[0m[0m
+[0m[1mmodule.gwlb1.aws_route.glb_routes[1]: Creating...[0m[0m
+[0m[1mmodule.gwlb1.aws_route.glb_routes[1]: Creation complete after 1s [id=r-rtb-0333217190bc08ae53117404284][0m
+[0m[1mmodule.gwlb1.aws_route.glb_routes[0]: Creation complete after 1s [id=r-rtb-0e9ced6c51b6e849e3117404284][0m
+[0m[32m[1mCreated and switched to workspace "us-east-2"![0m[32m
+
+You're now on a new, empty workspace. Workspaces isolate their state,
+so if you run "terraform plan" Terraform will not see any existing state
+for this configuration.[0m
+{"id":"154f8e6f-0ad2-4f3a-8311-0eddef738349","ownerIdentityId":"09d7c14a-a1ee-4552-a0fd-63c236648b00","createdBy":"09d7c14a-a1ee-4552-a0fd-63c236648b00","createdAt":"2024-08-09T13:38:13.522754Z","updatedAt":"2024-08-09T13:38:13.522754Z","deletedBy":null,"deletedAt":null,"networkId":"3d22b880-31df-4b5d-949f-e34fec3cd068","zitiId":"yrVB4hLeM","name":"be-er01-useast2","typeId":"Router","appId":null,"appVersion":null,"branch":null,"revision":null,"type":null,"version":null,"arch":null,"os":null,"osRelease":null,"osVersion":null,"externalId":null,"authPolicyId":"8cce46f6-bfb4-4688-9486-fbc8a78de1c6","disabled":false,"disabledAt":null,"disabledUntil":null,"hasApiSession":false,"hasEdgeRouterConnection":false,"lastOnlineAt":null,"syncId":null,"syncResourceId":null,"attributes":["#novis"],"jwtExpiresAt":null,"mfaEnabled":false,"jwt":null,"online":false,"managedBy":"Router","_links":{"self":{"href":"https://gateway.production.netfoundry.io/core/v2/endpoints/154f8e6f-0ad2-4f3a-8311-0eddef738349","title":"be-er01-useast2"},"network":{"href":"https://gateway.production.netfoundry.io/core/v2/networks/3d22b880-31df-4b5d-949f-e34fec3cd068","title":"dariuszdev","profile":"parent"},"auth-policy":{"href":"https://gateway.production.netfoundry.io/core/v2/auth-policies/8cce46f6-bfb4-4688-9486-fbc8a78de1c6","title":"Default"}}}{"id":"85cc5af9-5d59-4e46-9af1-8a19bd769ada","ownerIdentityId":"09d7c14a-a1ee-4552-a0fd-63c236648b00","createdBy":"09d7c14a-a1ee-4552-a0fd-63c236648b00","createdAt":"2024-08-09T13:38:26.283901Z","updatedAt":"2024-08-09T13:38:26.283901Z","deletedBy":null,"deletedAt":null,"networkId":"3d22b880-31df-4b5d-949f-e34fec3cd068","zitiId":"IGlFsKzexB","name":"be-er02-useast2","typeId":"Router","appId":null,"appVersion":null,"branch":null,"revision":null,"type":null,"version":null,"arch":null,"os":null,"osRelease":null,"osVersion":null,"externalId":null,"authPolicyId":"8cce46f6-bfb4-4688-9486-fbc8a78de1c6","disabled":false,"disabledAt":null,"disabledUntil":null,"hasApiSession":false,"hasEdgeRouterConnection":false,"lastOnlineAt":null,"syncId":null,"syncResourceId":null,"attributes":["#novis"],"jwtExpiresAt":null,"mfaEnabled":false,"jwt":null,"online":false,"managedBy":"Router","_links":{"self":{"href":"https://gateway.production.netfoundry.io/core/v2/endpoints/85cc5af9-5d59-4e46-9af1-8a19bd769ada","title":"be-er02-useast2"},"network":{"href":"https://gateway.production.netfoundry.io/core/v2/networks/3d22b880-31df-4b5d-949f-e34fec3cd068","title":"dariuszdev","profile":"parent"},"auth-policy":{"href":"https://gateway.production.netfoundry.io/core/v2/auth-policies/8cce46f6-bfb4-4688-9486-fbc8a78de1c6","title":"Default"}}}[0m[1mdata.template_cloudinit_config.config-be[1]: Reading...[0m[0m
+[0m[1mdata.template_cloudinit_config.config-client[1]: Reading...[0m[0m
+[0m[1mdata.template_cloudinit_config.config-be[0]: Reading...[0m[0m
+[0m[1mdata.template_cloudinit_config.config-client[1]: Read complete after 0s [id=2171264367][0m
+[0m[1mdata.template_cloudinit_config.config-be[1]: Read complete after 0s [id=4165761949][0m
+[0m[1mdata.template_cloudinit_config.config-be[0]: Read complete after 0s [id=4101748531][0m
+[0m[1mdata.template_cloudinit_config.config-client[0]: Reading...[0m[0m
+[0m[1mdata.template_cloudinit_config.config-client[0]: Read complete after 0s [id=2171264367][0m
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  [32m+[0m create[0m
+
+Terraform will perform the following actions:
+
+[1m  # aws_iam_instance_profile.secret_manager_zfw_ec2_profile[0m will be created
+[0m  [32m+[0m[0m resource "aws_iam_instance_profile" "secret_manager_zfw_ec2_profile" {
+      [32m+[0m[0m arn         = (known after apply)
+      [32m+[0m[0m create_date = (known after apply)
+      [32m+[0m[0m id          = (known after apply)
+      [32m+[0m[0m name        = "glb_test_zfw_ec2_profile_us-east-2"
+      [32m+[0m[0m name_prefix = (known after apply)
+      [32m+[0m[0m path        = "/"
+      [32m+[0m[0m role        = "glb_test_zfw_ec2_role_us-east-2"
+      [32m+[0m[0m tags_all    = (known after apply)
+      [32m+[0m[0m unique_id   = (known after apply)
+    }
+
+[1m  # aws_iam_policy.secret_manager_zfw_policy[0m will be created
+[0m  [32m+[0m[0m resource "aws_iam_policy" "secret_manager_zfw_policy" {
+      [32m+[0m[0m arn              = (known after apply)
+      [32m+[0m[0m attachment_count = (known after apply)
+      [32m+[0m[0m description      = "Policy to read secret stored in AWS Secrets Store"
+      [32m+[0m[0m id               = (known after apply)
+      [32m+[0m[0m name             = "glb_test_zfw_secret_read_policy_us-east-2"
+      [32m+[0m[0m name_prefix      = (known after apply)
+      [32m+[0m[0m path             = "/"
+      [32m+[0m[0m policy           = (known after apply)
+      [32m+[0m[0m policy_id        = (known after apply)
+      [32m+[0m[0m tags_all         = (known after apply)
+    }
+
+[1m  # aws_iam_role.secret_manager_zfw_ec2_role[0m will be created
+[0m  [32m+[0m[0m resource "aws_iam_role" "secret_manager_zfw_ec2_role" {
+      [32m+[0m[0m arn                   = (known after apply)
+      [32m+[0m[0m assume_role_policy    = jsonencode(
+            {
+              [32m+[0m[0m Statement = [
+                  [32m+[0m[0m {
+                      [32m+[0m[0m Action    = "sts:AssumeRole"
+                      [32m+[0m[0m Effect    = "Allow"
+                      [32m+[0m[0m Principal = {
+                          [32m+[0m[0m Service = "ec2.amazonaws.com"
+                        }
+                      [32m+[0m[0m Sid       = ""
+                    },
+                ]
+              [32m+[0m[0m Version   = "2012-10-17"
+            }
+        )
+      [32m+[0m[0m create_date           = (known after apply)
+      [32m+[0m[0m force_detach_policies = false
+      [32m+[0m[0m id                    = (known after apply)
+      [32m+[0m[0m managed_policy_arns   = (known after apply)
+      [32m+[0m[0m max_session_duration  = 3600
+      [32m+[0m[0m name                  = "glb_test_zfw_ec2_role_us-east-2"
+      [32m+[0m[0m name_prefix           = (known after apply)
+      [32m+[0m[0m path                  = "/"
+      [32m+[0m[0m tags_all              = (known after apply)
+      [32m+[0m[0m unique_id             = (known after apply)
+    }
+
+[1m  # aws_iam_role_policy_attachment.secret_manager_zfw_policy_attachment[0m will be created
+[0m  [32m+[0m[0m resource "aws_iam_role_policy_attachment" "secret_manager_zfw_policy_attachment" {
+      [32m+[0m[0m id         = (known after apply)
+      [32m+[0m[0m policy_arn = (known after apply)
+      [32m+[0m[0m role       = "glb_test_zfw_ec2_role_us-east-2"
+    }
+
+[1m  # aws_key_pair.ssh_public_key[0m will be created
+[0m  [32m+[0m[0m resource "aws_key_pair" "ssh_public_key" {
+      [32m+[0m[0m arn             = (known after apply)
+      [32m+[0m[0m fingerprint     = (known after apply)
+      [32m+[0m[0m id              = (known after apply)
+      [32m+[0m[0m key_name        = "be-test-ssh-key"
+      [32m+[0m[0m key_name_prefix = (known after apply)
+      [32m+[0m[0m key_pair_id     = (known after apply)
+      [32m+[0m[0m key_type        = (known after apply)
+      [32m+[0m[0m public_key      = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCjga67wcolSXaD1bswknLrejRYtZ4W55Y6qfoipYfeDVrwVgtalcWcEGPsrqcs3hd/+xSZ0bC6BakO4wpuX38I3uMH0RVOiZlKzgCkVih5hJoAi2YAMCCpV0FhAvKEWIs9HPXEW0Ke5hRkGybi7lkHIfKWwOBOQZTkHCbTR4HdcjrOo2MdTbJK/6EgsJF6Cy9k+F0z8SSKd0C2S0O2VZ49/iF5OcEHeUuyjurJZWdPl3CutQ9dNTgUkOiVfHWRUco7n4wTa/1I/8V0w8dU2F+rHu2UEo1h3humFfyT0nOfsySgLTG+4h90C+INMSungC0QwoVmpJs/TrPnaWRvZ9dJ DariuszSliwinski@dsliwinski-byod"
+      [32m+[0m[0m tags_all        = (known after apply)
+    }
+
+[1m  # aws_route.be_resolver_routes[0][0m will be created
+[0m  [32m+[0m[0m resource "aws_route" "be_resolver_routes" {
+      [32m+[0m[0m destination_cidr_block = "100.64.0.0/13"
+      [32m+[0m[0m id                     = (known after apply)
+      [32m+[0m[0m instance_id            = (known after apply)
+      [32m+[0m[0m instance_owner_id      = (known after apply)
+      [32m+[0m[0m network_interface_id   = (known after apply)
+      [32m+[0m[0m origin                 = (known after apply)
+      [32m+[0m[0m route_table_id         = (known after apply)
+      [32m+[0m[0m state                  = (known after apply)
+    }
+
+[1m  # aws_route.be_resolver_routes[1][0m will be created
+[0m  [32m+[0m[0m resource "aws_route" "be_resolver_routes" {
+      [32m+[0m[0m destination_cidr_block = "100.72.0.0/13"
+      [32m+[0m[0m id                     = (known after apply)
+      [32m+[0m[0m instance_id            = (known after apply)
+      [32m+[0m[0m instance_owner_id      = (known after apply)
+      [32m+[0m[0m network_interface_id   = (known after apply)
+      [32m+[0m[0m origin                 = (known after apply)
+      [32m+[0m[0m route_table_id         = (known after apply)
+      [32m+[0m[0m state                  = (known after apply)
+    }
+
+[1m  # aws_secretsmanager_secret.zfw_secret_pt[0m will be created
+[0m  [32m+[0m[0m resource "aws_secretsmanager_secret" "zfw_secret_pt" {
+      [32m+[0m[0m arn                            = (known after apply)
+      [32m+[0m[0m force_overwrite_replica_secret = false
+      [32m+[0m[0m id                             = (known after apply)
+      [32m+[0m[0m name                           = "glb_test_zfw_repo"
+      [32m+[0m[0m name_prefix                    = (known after apply)
+      [32m+[0m[0m policy                         = (known after apply)
+      [32m+[0m[0m recovery_window_in_days        = 0
+      [32m+[0m[0m tags_all                       = (known after apply)
+    }
+
+[1m  # aws_secretsmanager_secret_version.zfw_secret_pt[0m will be created
+[0m  [32m+[0m[0m resource "aws_secretsmanager_secret_version" "zfw_secret_pt" {
+      [32m+[0m[0m arn            = (known after apply)
+      [32m+[0m[0m id             = (known after apply)
+      [32m+[0m[0m secret_id      = (known after apply)
+      [32m+[0m[0m secret_string  = (sensitive value)
+      [32m+[0m[0m version_id     = (known after apply)
+      [32m+[0m[0m version_stages = (known after apply)
+    }
+
+[1m  # module.compute_backend[0].aws_instance.this[0][0m will be created
+[0m  [32m+[0m[0m resource "aws_instance" "this" {
+      [32m+[0m[0m ami                                  = "ami-0b30ef8bf8f331e78"
+      [32m+[0m[0m arn                                  = (known after apply)
+      [32m+[0m[0m associate_public_ip_address          = true
+      [32m+[0m[0m availability_zone                    = "us-east-2a"
+      [32m+[0m[0m cpu_core_count                       = (known after apply)
+      [32m+[0m[0m cpu_threads_per_core                 = (known after apply)
+      [32m+[0m[0m disable_api_stop                     = (known after apply)
+      [32m+[0m[0m disable_api_termination              = (known after apply)
+      [32m+[0m[0m ebs_optimized                        = (known after apply)
+      [32m+[0m[0m get_password_data                    = false
+      [32m+[0m[0m host_id                              = (known after apply)
+      [32m+[0m[0m host_resource_group_arn              = (known after apply)
+      [32m+[0m[0m iam_instance_profile                 = "glb_test_zfw_ec2_profile_us-east-2"
+      [32m+[0m[0m id                                   = (known after apply)
+      [32m+[0m[0m instance_initiated_shutdown_behavior = (known after apply)
+      [32m+[0m[0m instance_lifecycle                   = (known after apply)
+      [32m+[0m[0m instance_state                       = (known after apply)
+      [32m+[0m[0m instance_type                        = "t3.medium"
+      [32m+[0m[0m ipv6_address_count                   = (known after apply)
+      [32m+[0m[0m ipv6_addresses                       = (known after apply)
+      [32m+[0m[0m key_name                             = "be-test-ssh-key"
+      [32m+[0m[0m monitoring                           = true
+      [32m+[0m[0m outpost_arn                          = (known after apply)
+      [32m+[0m[0m password_data                        = (known after apply)
+      [32m+[0m[0m placement_group                      = (known after apply)
+      [32m+[0m[0m placement_partition_number           = (known after apply)
+      [32m+[0m[0m primary_network_interface_id         = (known after apply)
+      [32m+[0m[0m private_dns                          = (known after apply)
+      [32m+[0m[0m private_ip                           = (known after apply)
+      [32m+[0m[0m public_dns                           = (known after apply)
+      [32m+[0m[0m public_ip                            = (known after apply)
+      [32m+[0m[0m secondary_private_ips                = (known after apply)
+      [32m+[0m[0m security_groups                      = (known after apply)
+      [32m+[0m[0m source_dest_check                    = false
+      [32m+[0m[0m spot_instance_request_id             = (known after apply)
+      [32m+[0m[0m subnet_id                            = (known after apply)
+      [32m+[0m[0m tags                                 = {
+          [32m+[0m[0m "Environment" = "dariusz"
+          [32m+[0m[0m "Name"        = "be-er-us-east-2a"
+          [32m+[0m[0m "Terraform"   = "true"
+        }
+      [32m+[0m[0m tags_all                             = {
+          [32m+[0m[0m "Environment" = "dariusz"
+          [32m+[0m[0m "Name"        = "be-er-us-east-2a"
+          [32m+[0m[0m "Terraform"   = "true"
+        }
+      [32m+[0m[0m tenancy                              = (known after apply)
+      [32m+[0m[0m user_data                            = (known after apply)
+      [32m+[0m[0m user_data_base64                     = "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"
+      [32m+[0m[0m user_data_replace_on_change          = false
+      [32m+[0m[0m volume_tags                          = {
+          [32m+[0m[0m "Name" = "be-er-us-east-2a"
+        }
+      [32m+[0m[0m vpc_security_group_ids               = (known after apply)
+
+      [32m+[0m[0m credit_specification {}
+
+      [32m+[0m[0m enclave_options {
+          [32m+[0m[0m enabled = (known after apply)
+        }
+
+      [32m+[0m[0m metadata_options {
+          [32m+[0m[0m http_endpoint               = "enabled"
+          [32m+[0m[0m http_protocol_ipv6          = "disabled"
+          [32m+[0m[0m http_put_response_hop_limit = 1
+          [32m+[0m[0m http_tokens                 = "optional"
+          [32m+[0m[0m instance_metadata_tags      = (known after apply)
+        }
+
+      [32m+[0m[0m timeouts {}
+    }
+
+[1m  # module.compute_backend[1].aws_instance.this[0][0m will be created
+[0m  [32m+[0m[0m resource "aws_instance" "this" {
+      [32m+[0m[0m ami                                  = "ami-0b30ef8bf8f331e78"
+      [32m+[0m[0m arn                                  = (known after apply)
+      [32m+[0m[0m associate_public_ip_address          = true
+      [32m+[0m[0m availability_zone                    = "us-east-2b"
+      [32m+[0m[0m cpu_core_count                       = (known after apply)
+      [32m+[0m[0m cpu_threads_per_core                 = (known after apply)
+      [32m+[0m[0m disable_api_stop                     = (known after apply)
+      [32m+[0m[0m disable_api_termination              = (known after apply)
+      [32m+[0m[0m ebs_optimized                        = (known after apply)
+      [32m+[0m[0m get_password_data                    = false
+      [32m+[0m[0m host_id                              = (known after apply)
+      [32m+[0m[0m host_resource_group_arn              = (known after apply)
+      [32m+[0m[0m iam_instance_profile                 = "glb_test_zfw_ec2_profile_us-east-2"
+      [32m+[0m[0m id                                   = (known after apply)
+      [32m+[0m[0m instance_initiated_shutdown_behavior = (known after apply)
+      [32m+[0m[0m instance_lifecycle                   = (known after apply)
+      [32m+[0m[0m instance_state                       = (known after apply)
+      [32m+[0m[0m instance_type                        = "t3.medium"
+      [32m+[0m[0m ipv6_address_count                   = (known after apply)
+      [32m+[0m[0m ipv6_addresses                       = (known after apply)
+      [32m+[0m[0m key_name                             = "be-test-ssh-key"
+      [32m+[0m[0m monitoring                           = true
+      [32m+[0m[0m outpost_arn                          = (known after apply)
+      [32m+[0m[0m password_data                        = (known after apply)
+      [32m+[0m[0m placement_group                      = (known after apply)
+      [32m+[0m[0m placement_partition_number           = (known after apply)
+      [32m+[0m[0m primary_network_interface_id         = (known after apply)
+      [32m+[0m[0m private_dns                          = (known after apply)
+      [32m+[0m[0m private_ip                           = (known after apply)
+      [32m+[0m[0m public_dns                           = (known after apply)
+      [32m+[0m[0m public_ip                            = (known after apply)
+      [32m+[0m[0m secondary_private_ips                = (known after apply)
+      [32m+[0m[0m security_groups                      = (known after apply)
+      [32m+[0m[0m source_dest_check                    = false
+      [32m+[0m[0m spot_instance_request_id             = (known after apply)
+      [32m+[0m[0m subnet_id                            = (known after apply)
+      [32m+[0m[0m tags                                 = {
+          [32m+[0m[0m "Environment" = "dariusz"
+          [32m+[0m[0m "Name"        = "be-er-us-east-2b"
+          [32m+[0m[0m "Terraform"   = "true"
+        }
+      [32m+[0m[0m tags_all                             = {
+          [32m+[0m[0m "Environment" = "dariusz"
+          [32m+[0m[0m "Name"        = "be-er-us-east-2b"
+          [32m+[0m[0m "Terraform"   = "true"
+        }
+      [32m+[0m[0m tenancy                              = (known after apply)
+      [32m+[0m[0m user_data                            = (known after apply)
+      [32m+[0m[0m user_data_base64                     = "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"
+      [32m+[0m[0m user_data_replace_on_change          = false
+      [32m+[0m[0m volume_tags                          = {
+          [32m+[0m[0m "Name" = "be-er-us-east-2b"
+        }
+      [32m+[0m[0m vpc_security_group_ids               = (known after apply)
+
+      [32m+[0m[0m credit_specification {}
+
+      [32m+[0m[0m enclave_options {
+          [32m+[0m[0m enabled = (known after apply)
+        }
+
+      [32m+[0m[0m metadata_options {
+          [32m+[0m[0m http_endpoint               = "enabled"
+          [32m+[0m[0m http_protocol_ipv6          = "disabled"
+          [32m+[0m[0m http_put_response_hop_limit = 1
+          [32m+[0m[0m http_tokens                 = "optional"
+          [32m+[0m[0m instance_metadata_tags      = (known after apply)
+        }
+
+      [32m+[0m[0m timeouts {}
+    }
+
+[1m  # module.compute_client[0].aws_instance.this[0][0m will be created
+[0m  [32m+[0m[0m resource "aws_instance" "this" {
+      [32m+[0m[0m ami                                  = "ami-0b30ef8bf8f331e78"
+      [32m+[0m[0m arn                                  = (known after apply)
+      [32m+[0m[0m associate_public_ip_address          = true
+      [32m+[0m[0m availability_zone                    = "us-east-2a"
+      [32m+[0m[0m cpu_core_count                       = (known after apply)
+      [32m+[0m[0m cpu_threads_per_core                 = (known after apply)
+      [32m+[0m[0m disable_api_stop                     = (known after apply)
+      [32m+[0m[0m disable_api_termination              = (known after apply)
+      [32m+[0m[0m ebs_optimized                        = (known after apply)
+      [32m+[0m[0m get_password_data                    = false
+      [32m+[0m[0m host_id                              = (known after apply)
+      [32m+[0m[0m host_resource_group_arn              = (known after apply)
+      [32m+[0m[0m iam_instance_profile                 = (known after apply)
+      [32m+[0m[0m id                                   = (known after apply)
+      [32m+[0m[0m instance_initiated_shutdown_behavior = (known after apply)
+      [32m+[0m[0m instance_lifecycle                   = (known after apply)
+      [32m+[0m[0m instance_state                       = (known after apply)
+      [32m+[0m[0m instance_type                        = "t3.medium"
+      [32m+[0m[0m ipv6_address_count                   = (known after apply)
+      [32m+[0m[0m ipv6_addresses                       = (known after apply)
+      [32m+[0m[0m key_name                             = "be-test-ssh-key"
+      [32m+[0m[0m monitoring                           = true
+      [32m+[0m[0m outpost_arn                          = (known after apply)
+      [32m+[0m[0m password_data                        = (known after apply)
+      [32m+[0m[0m placement_group                      = (known after apply)
+      [32m+[0m[0m placement_partition_number           = (known after apply)
+      [32m+[0m[0m primary_network_interface_id         = (known after apply)
+      [32m+[0m[0m private_dns                          = (known after apply)
+      [32m+[0m[0m private_ip                           = (known after apply)
+      [32m+[0m[0m public_dns                           = (known after apply)
+      [32m+[0m[0m public_ip                            = (known after apply)
+      [32m+[0m[0m secondary_private_ips                = (known after apply)
+      [32m+[0m[0m security_groups                      = (known after apply)
+      [32m+[0m[0m source_dest_check                    = false
+      [32m+[0m[0m spot_instance_request_id             = (known after apply)
+      [32m+[0m[0m subnet_id                            = (known after apply)
+      [32m+[0m[0m tags                                 = {
+          [32m+[0m[0m "Environment" = "dariusz"
+          [32m+[0m[0m "Name"        = "test_client-us-east-2a"
+          [32m+[0m[0m "Terraform"   = "true"
+        }
+      [32m+[0m[0m tags_all                             = {
+          [32m+[0m[0m "Environment" = "dariusz"
+          [32m+[0m[0m "Name"        = "test_client-us-east-2a"
+          [32m+[0m[0m "Terraform"   = "true"
+        }
+      [32m+[0m[0m tenancy                              = (known after apply)
+      [32m+[0m[0m user_data                            = (known after apply)
+      [32m+[0m[0m user_data_base64                     = "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"
+      [32m+[0m[0m user_data_replace_on_change          = false
+      [32m+[0m[0m volume_tags                          = {
+          [32m+[0m[0m "Name" = "test_client-us-east-2a"
+        }
+      [32m+[0m[0m vpc_security_group_ids               = (known after apply)
+
+      [32m+[0m[0m credit_specification {}
+
+      [32m+[0m[0m enclave_options {
+          [32m+[0m[0m enabled = (known after apply)
+        }
+
+      [32m+[0m[0m metadata_options {
+          [32m+[0m[0m http_endpoint               = "enabled"
+          [32m+[0m[0m http_protocol_ipv6          = "disabled"
+          [32m+[0m[0m http_put_response_hop_limit = 1
+          [32m+[0m[0m http_tokens                 = "optional"
+          [32m+[0m[0m instance_metadata_tags      = (known after apply)
+        }
+
+      [32m+[0m[0m timeouts {}
+    }
+
+[1m  # module.compute_client[1].aws_instance.this[0][0m will be created
+[0m  [32m+[0m[0m resource "aws_instance" "this" {
+      [32m+[0m[0m ami                                  = "ami-0b30ef8bf8f331e78"
+      [32m+[0m[0m arn                                  = (known after apply)
+      [32m+[0m[0m associate_public_ip_address          = true
+      [32m+[0m[0m availability_zone                    = "us-east-2b"
+      [32m+[0m[0m cpu_core_count                       = (known after apply)
+      [32m+[0m[0m cpu_threads_per_core                 = (known after apply)
+      [32m+[0m[0m disable_api_stop                     = (known after apply)
+      [32m+[0m[0m disable_api_termination              = (known after apply)
+      [32m+[0m[0m ebs_optimized                        = (known after apply)
+      [32m+[0m[0m get_password_data                    = false
+      [32m+[0m[0m host_id                              = (known after apply)
+      [32m+[0m[0m host_resource_group_arn              = (known after apply)
+      [32m+[0m[0m iam_instance_profile                 = (known after apply)
+      [32m+[0m[0m id                                   = (known after apply)
+      [32m+[0m[0m instance_initiated_shutdown_behavior = (known after apply)
+      [32m+[0m[0m instance_lifecycle                   = (known after apply)
+      [32m+[0m[0m instance_state                       = (known after apply)
+      [32m+[0m[0m instance_type                        = "t3.medium"
+      [32m+[0m[0m ipv6_address_count                   = (known after apply)
+      [32m+[0m[0m ipv6_addresses                       = (known after apply)
+      [32m+[0m[0m key_name                             = "be-test-ssh-key"
+      [32m+[0m[0m monitoring                           = true
+      [32m+[0m[0m outpost_arn                          = (known after apply)
+      [32m+[0m[0m password_data                        = (known after apply)
+      [32m+[0m[0m placement_group                      = (known after apply)
+      [32m+[0m[0m placement_partition_number           = (known after apply)
+      [32m+[0m[0m primary_network_interface_id         = (known after apply)
+      [32m+[0m[0m private_dns                          = (known after apply)
+      [32m+[0m[0m private_ip                           = (known after apply)
+      [32m+[0m[0m public_dns                           = (known after apply)
+      [32m+[0m[0m public_ip                            = (known after apply)
+      [32m+[0m[0m secondary_private_ips                = (known after apply)
+      [32m+[0m[0m security_groups                      = (known after apply)
+      [32m+[0m[0m source_dest_check                    = false
+      [32m+[0m[0m spot_instance_request_id             = (known after apply)
+      [32m+[0m[0m subnet_id                            = (known after apply)
+      [32m+[0m[0m tags                                 = {
+          [32m+[0m[0m "Environment" = "dariusz"
+          [32m+[0m[0m "Name"        = "test_client-us-east-2b"
+          [32m+[0m[0m "Terraform"   = "true"
+        }
+      [32m+[0m[0m tags_all                             = {
+          [32m+[0m[0m "Environment" = "dariusz"
+          [32m+[0m[0m "Name"        = "test_client-us-east-2b"
+          [32m+[0m[0m "Terraform"   = "true"
+        }
+      [32m+[0m[0m tenancy                              = (known after apply)
+      [32m+[0m[0m user_data                            = (known after apply)
+      [32m+[0m[0m user_data_base64                     = "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"
+      [32m+[0m[0m user_data_replace_on_change          = false
+      [32m+[0m[0m volume_tags                          = {
+          [32m+[0m[0m "Name" = "test_client-us-east-2b"
+        }
+      [32m+[0m[0m vpc_security_group_ids               = (known after apply)
+
+      [32m+[0m[0m credit_specification {}
+
+      [32m+[0m[0m enclave_options {
+          [32m+[0m[0m enabled = (known after apply)
+        }
+
+      [32m+[0m[0m metadata_options {
+          [32m+[0m[0m http_endpoint               = "enabled"
+          [32m+[0m[0m http_protocol_ipv6          = "disabled"
+          [32m+[0m[0m http_put_response_hop_limit = 1
+          [32m+[0m[0m http_tokens                 = "optional"
+          [32m+[0m[0m instance_metadata_tags      = (known after apply)
+        }
+
+      [32m+[0m[0m timeouts {}
+    }
+
+[1m  # module.gwlb1.aws_lb.glb[0m will be created
+[0m  [32m+[0m[0m resource "aws_lb" "glb" {
+      [32m+[0m[0m arn                                                          = (known after apply)
+      [32m+[0m[0m arn_suffix                                                   = (known after apply)
+      [32m+[0m[0m dns_name                                                     = (known after apply)
+      [32m+[0m[0m enable_cross_zone_load_balancing                             = true
+      [32m+[0m[0m enable_deletion_protection                                   = false
+      [32m+[0m[0m enforce_security_group_inbound_rules_on_private_link_traffic = (known after apply)
+      [32m+[0m[0m id                                                           = (known after apply)
+      [32m+[0m[0m internal                                                     = (known after apply)
+      [32m+[0m[0m ip_address_type                                              = (known after apply)
+      [32m+[0m[0m load_balancer_type                                           = "gateway"
+      [32m+[0m[0m name                                                         = "nf-lb-01"
+      [32m+[0m[0m name_prefix                                                  = (known after apply)
+      [32m+[0m[0m security_groups                                              = (known after apply)
+      [32m+[0m[0m subnets                                                      = (known after apply)
+      [32m+[0m[0m tags_all                                                     = (known after apply)
+      [32m+[0m[0m vpc_id                                                       = (known after apply)
+      [32m+[0m[0m zone_id                                                      = (known after apply)
+
+      [32m+[0m[0m subnet_mapping {
+          [32m+[0m[0m outpost_id           = (known after apply)
+          [32m+[0m[0m subnet_id            = (known after apply)
+            [90m# (3 unchanged attributes hidden)[0m[0m
+        }
+      [32m+[0m[0m subnet_mapping {
+          [32m+[0m[0m outpost_id           = (known after apply)
+          [32m+[0m[0m subnet_id            = (known after apply)
+            [90m# (3 unchanged attributes hidden)[0m[0m
+        }
+    }
+
+[1m  # module.gwlb1.aws_lb_listener.glb_fe[0m will be created
+[0m  [32m+[0m[0m resource "aws_lb_listener" "glb_fe" {
+      [32m+[0m[0m arn               = (known after apply)
+      [32m+[0m[0m id                = (known after apply)
+      [32m+[0m[0m load_balancer_arn = (known after apply)
+      [32m+[0m[0m protocol          = (known after apply)
+      [32m+[0m[0m ssl_policy        = (known after apply)
+      [32m+[0m[0m tags_all          = (known after apply)
+
+      [32m+[0m[0m default_action {
+          [32m+[0m[0m order            = (known after apply)
+          [32m+[0m[0m target_group_arn = (known after apply)
+          [32m+[0m[0m type             = "forward"
+        }
+    }
+
+[1m  # module.gwlb1.aws_lb_target_group.glb_tg[0m will be created
+[0m  [32m+[0m[0m resource "aws_lb_target_group" "glb_tg" {
+      [32m+[0m[0m arn                                = (known after apply)
+      [32m+[0m[0m arn_suffix                         = (known after apply)
+      [32m+[0m[0m connection_termination             = (known after apply)
+      [32m+[0m[0m deregistration_delay               = "300"
+      [32m+[0m[0m id                                 = (known after apply)
+      [32m+[0m[0m ip_address_type                    = (known after apply)
+      [32m+[0m[0m lambda_multi_value_headers_enabled = false
+      [32m+[0m[0m load_balancer_arns                 = (known after apply)
+      [32m+[0m[0m load_balancing_algorithm_type      = (known after apply)
+      [32m+[0m[0m load_balancing_anomaly_mitigation  = (known after apply)
+      [32m+[0m[0m load_balancing_cross_zone_enabled  = (known after apply)
+      [32m+[0m[0m name                               = "nf-lb-tg"
+      [32m+[0m[0m name_prefix                        = (known after apply)
+      [32m+[0m[0m port                               = 6081
+      [32m+[0m[0m preserve_client_ip                 = (known after apply)
+      [32m+[0m[0m protocol                           = "GENEVE"
+      [32m+[0m[0m protocol_version                   = (known after apply)
+      [32m+[0m[0m proxy_protocol_v2                  = false
+      [32m+[0m[0m slow_start                         = 0
+      [32m+[0m[0m tags_all                           = (known after apply)
+      [32m+[0m[0m target_type                        = "instance"
+      [32m+[0m[0m vpc_id                             = (known after apply)
+
+      [32m+[0m[0m health_check {
+          [32m+[0m[0m enabled             = true
+          [32m+[0m[0m healthy_threshold   = 2
+          [32m+[0m[0m interval            = 5
+          [32m+[0m[0m matcher             = "200-399"
+          [32m+[0m[0m path                = "/health-checks"
+          [32m+[0m[0m port                = "8081"
+          [32m+[0m[0m protocol            = "HTTPS"
+          [32m+[0m[0m timeout             = 2
+          [32m+[0m[0m unhealthy_threshold = 2
+        }
+    }
+
+[1m  # module.gwlb1.aws_lb_target_group_attachment.glb_tg_attach[0][0m will be created
+[0m  [32m+[0m[0m resource "aws_lb_target_group_attachment" "glb_tg_attach" {
+      [32m+[0m[0m id               = (known after apply)
+      [32m+[0m[0m target_group_arn = (known after apply)
+      [32m+[0m[0m target_id        = (known after apply)
+    }
+
+[1m  # module.gwlb1.aws_lb_target_group_attachment.glb_tg_attach[1][0m will be created
+[0m  [32m+[0m[0m resource "aws_lb_target_group_attachment" "glb_tg_attach" {
+      [32m+[0m[0m id               = (known after apply)
+      [32m+[0m[0m target_group_arn = (known after apply)
+      [32m+[0m[0m target_id        = (known after apply)
+    }
+
+[1m  # module.gwlb1.aws_route.glb_routes[0][0m will be created
+[0m  [32m+[0m[0m resource "aws_route" "glb_routes" {
+      [32m+[0m[0m destination_cidr_block = "100.127.255.254/32"
+      [32m+[0m[0m id                     = (known after apply)
+      [32m+[0m[0m instance_id            = (known after apply)
+      [32m+[0m[0m instance_owner_id      = (known after apply)
+      [32m+[0m[0m network_interface_id   = (known after apply)
+      [32m+[0m[0m origin                 = (known after apply)
+      [32m+[0m[0m route_table_id         = (known after apply)
+      [32m+[0m[0m state                  = (known after apply)
+      [32m+[0m[0m vpc_endpoint_id        = (known after apply)
+    }
+
+[1m  # module.gwlb1.aws_route.glb_routes[1][0m will be created
+[0m  [32m+[0m[0m resource "aws_route" "glb_routes" {
+      [32m+[0m[0m destination_cidr_block = "100.127.255.254/32"
+      [32m+[0m[0m id                     = (known after apply)
+      [32m+[0m[0m instance_id            = (known after apply)
+      [32m+[0m[0m instance_owner_id      = (known after apply)
+      [32m+[0m[0m network_interface_id   = (known after apply)
+      [32m+[0m[0m origin                 = (known after apply)
+      [32m+[0m[0m route_table_id         = (known after apply)
+      [32m+[0m[0m state                  = (known after apply)
+      [32m+[0m[0m vpc_endpoint_id        = (known after apply)
+    }
+
+[1m  # module.gwlb1.aws_vpc_endpoint.ep[0][0m will be created
+[0m  [32m+[0m[0m resource "aws_vpc_endpoint" "ep" {
+      [32m+[0m[0m arn                   = (known after apply)
+      [32m+[0m[0m cidr_blocks           = (known after apply)
+      [32m+[0m[0m dns_entry             = (known after apply)
+      [32m+[0m[0m id                    = (known after apply)
+      [32m+[0m[0m ip_address_type       = (known after apply)
+      [32m+[0m[0m network_interface_ids = (known after apply)
+      [32m+[0m[0m owner_id              = (known after apply)
+      [32m+[0m[0m policy                = (known after apply)
+      [32m+[0m[0m prefix_list_id        = (known after apply)
+      [32m+[0m[0m private_dns_enabled   = (known after apply)
+      [32m+[0m[0m requester_managed     = (known after apply)
+      [32m+[0m[0m route_table_ids       = (known after apply)
+      [32m+[0m[0m security_group_ids    = (known after apply)
+      [32m+[0m[0m service_name          = (known after apply)
+      [32m+[0m[0m state                 = (known after apply)
+      [32m+[0m[0m subnet_ids            = (known after apply)
+      [32m+[0m[0m tags_all              = (known after apply)
+      [32m+[0m[0m vpc_endpoint_type     = (known after apply)
+      [32m+[0m[0m vpc_id                = (known after apply)
+    }
+
+[1m  # module.gwlb1.aws_vpc_endpoint.ep[1][0m will be created
+[0m  [32m+[0m[0m resource "aws_vpc_endpoint" "ep" {
+      [32m+[0m[0m arn                   = (known after apply)
+      [32m+[0m[0m cidr_blocks           = (known after apply)
+      [32m+[0m[0m dns_entry             = (known after apply)
+      [32m+[0m[0m id                    = (known after apply)
+      [32m+[0m[0m ip_address_type       = (known after apply)
+      [32m+[0m[0m network_interface_ids = (known after apply)
+      [32m+[0m[0m owner_id              = (known after apply)
+      [32m+[0m[0m policy                = (known after apply)
+      [32m+[0m[0m prefix_list_id        = (known after apply)
+      [32m+[0m[0m private_dns_enabled   = (known after apply)
+      [32m+[0m[0m requester_managed     = (known after apply)
+      [32m+[0m[0m route_table_ids       = (known after apply)
+      [32m+[0m[0m security_group_ids    = (known after apply)
+      [32m+[0m[0m service_name          = (known after apply)
+      [32m+[0m[0m state                 = (known after apply)
+      [32m+[0m[0m subnet_ids            = (known after apply)
+      [32m+[0m[0m tags_all              = (known after apply)
+      [32m+[0m[0m vpc_endpoint_type     = (known after apply)
+      [32m+[0m[0m vpc_id                = (known after apply)
+    }
+
+[1m  # module.gwlb1.aws_vpc_endpoint_service.glb_es[0m will be created
+[0m  [32m+[0m[0m resource "aws_vpc_endpoint_service" "glb_es" {
+      [32m+[0m[0m acceptance_required            = false
+      [32m+[0m[0m allowed_principals             = [
+          [32m+[0m[0m "arn:aws:iam::aws-account-id:user/*",
+        ]
+      [32m+[0m[0m arn                            = (known after apply)
+      [32m+[0m[0m availability_zones             = (known after apply)
+      [32m+[0m[0m base_endpoint_dns_names        = (known after apply)
+      [32m+[0m[0m gateway_load_balancer_arns     = (known after apply)
+      [32m+[0m[0m id                             = (known after apply)
+      [32m+[0m[0m manages_vpc_endpoints          = (known after apply)
+      [32m+[0m[0m private_dns_name               = (known after apply)
+      [32m+[0m[0m private_dns_name_configuration = (known after apply)
+      [32m+[0m[0m service_name                   = (known after apply)
+      [32m+[0m[0m service_type                   = (known after apply)
+      [32m+[0m[0m state                          = (known after apply)
+      [32m+[0m[0m supported_ip_address_types     = (known after apply)
+      [32m+[0m[0m tags_all                       = (known after apply)
+    }
+
+[1m  # module.sg_be.aws_security_group.this_name_prefix[0][0m will be created
+[0m  [32m+[0m[0m resource "aws_security_group" "this_name_prefix" {
+      [32m+[0m[0m arn                    = (known after apply)
+      [32m+[0m[0m description            = "Security group for backend er of glb with custom ports open within VPC"
+      [32m+[0m[0m egress                 = (known after apply)
+      [32m+[0m[0m id                     = (known after apply)
+      [32m+[0m[0m ingress                = (known after apply)
+      [32m+[0m[0m name                   = (known after apply)
+      [32m+[0m[0m name_prefix            = "be-er-sg-"
+      [32m+[0m[0m owner_id               = (known after apply)
+      [32m+[0m[0m revoke_rules_on_delete = false
+      [32m+[0m[0m tags                   = {
+          [32m+[0m[0m "Environment" = "dariusz"
+          [32m+[0m[0m "Name"        = "be-er-sg"
+          [32m+[0m[0m "Terraform"   = "true"
+        }
+      [32m+[0m[0m tags_all               = {
+          [32m+[0m[0m "Environment" = "dariusz"
+          [32m+[0m[0m "Name"        = "be-er-sg"
+          [32m+[0m[0m "Terraform"   = "true"
+        }
+      [32m+[0m[0m vpc_id                 = (known after apply)
+
+      [32m+[0m[0m timeouts {
+          [32m+[0m[0m create = "10m"
+          [32m+[0m[0m delete = "15m"
+        }
+    }
+
+[1m  # module.sg_be.aws_security_group_rule.egress_with_cidr_blocks[0][0m will be created
+[0m  [32m+[0m[0m resource "aws_security_group_rule" "egress_with_cidr_blocks" {
+      [32m+[0m[0m cidr_blocks              = [
+          [32m+[0m[0m "0.0.0.0/0",
+        ]
+      [32m+[0m[0m description              = "Egress Rule"
+      [32m+[0m[0m from_port                = -1
+      [32m+[0m[0m id                       = (known after apply)
+      [32m+[0m[0m prefix_list_ids          = []
+      [32m+[0m[0m protocol                 = "-1"
+      [32m+[0m[0m security_group_id        = (known after apply)
+      [32m+[0m[0m security_group_rule_id   = (known after apply)
+      [32m+[0m[0m self                     = false
+      [32m+[0m[0m source_security_group_id = (known after apply)
+      [32m+[0m[0m to_port                  = -1
+      [32m+[0m[0m type                     = "egress"
+    }
+
+[1m  # module.sg_be.aws_security_group_rule.ingress_with_cidr_blocks[0][0m will be created
+[0m  [32m+[0m[0m resource "aws_security_group_rule" "ingress_with_cidr_blocks" {
+      [32m+[0m[0m cidr_blocks              = [
+          [32m+[0m[0m "10.0.0.0/8",
+        ]
+      [32m+[0m[0m description              = "Ingress Rule"
+      [32m+[0m[0m from_port                = -1
+      [32m+[0m[0m id                       = (known after apply)
+      [32m+[0m[0m prefix_list_ids          = []
+      [32m+[0m[0m protocol                 = "-1"
+      [32m+[0m[0m security_group_id        = (known after apply)
+      [32m+[0m[0m security_group_rule_id   = (known after apply)
+      [32m+[0m[0m self                     = false
+      [32m+[0m[0m source_security_group_id = (known after apply)
+      [32m+[0m[0m to_port                  = -1
+      [32m+[0m[0m type                     = "ingress"
+    }
+
+[1m  # module.sg_be.aws_security_group_rule.ingress_with_cidr_blocks[1][0m will be created
+[0m  [32m+[0m[0m resource "aws_security_group_rule" "ingress_with_cidr_blocks" {
+      [32m+[0m[0m cidr_blocks              = [
+          [32m+[0m[0m "0.0.0.0/0",
+        ]
+      [32m+[0m[0m description              = "Ingress Rule"
+      [32m+[0m[0m from_port                = 22
+      [32m+[0m[0m id                       = (known after apply)
+      [32m+[0m[0m prefix_list_ids          = []
+      [32m+[0m[0m protocol                 = "tcp"
+      [32m+[0m[0m security_group_id        = (known after apply)
+      [32m+[0m[0m security_group_rule_id   = (known after apply)
+      [32m+[0m[0m self                     = false
+      [32m+[0m[0m source_security_group_id = (known after apply)
+      [32m+[0m[0m to_port                  = 22
+      [32m+[0m[0m type                     = "ingress"
+    }
+
+[1m  # module.sg_client.aws_security_group.this_name_prefix[0][0m will be created
+[0m  [32m+[0m[0m resource "aws_security_group" "this_name_prefix" {
+      [32m+[0m[0m arn                    = (known after apply)
+      [32m+[0m[0m description            = "Security group for clients with custom ports open within VPC"
+      [32m+[0m[0m egress                 = (known after apply)
+      [32m+[0m[0m id                     = (known after apply)
+      [32m+[0m[0m ingress                = (known after apply)
+      [32m+[0m[0m name                   = (known after apply)
+      [32m+[0m[0m name_prefix            = "test_client-sg-"
+      [32m+[0m[0m owner_id               = (known after apply)
+      [32m+[0m[0m revoke_rules_on_delete = false
+      [32m+[0m[0m tags                   = {
+          [32m+[0m[0m "Environment" = "dariusz"
+          [32m+[0m[0m "Name"        = "test_client-sg"
+          [32m+[0m[0m "Terraform"   = "true"
+        }
+      [32m+[0m[0m tags_all               = {
+          [32m+[0m[0m "Environment" = "dariusz"
+          [32m+[0m[0m "Name"        = "test_client-sg"
+          [32m+[0m[0m "Terraform"   = "true"
+        }
+      [32m+[0m[0m vpc_id                 = (known after apply)
+
+      [32m+[0m[0m timeouts {
+          [32m+[0m[0m create = "10m"
+          [32m+[0m[0m delete = "15m"
+        }
+    }
+
+[1m  # module.sg_client.aws_security_group_rule.egress_with_cidr_blocks[0][0m will be created
+[0m  [32m+[0m[0m resource "aws_security_group_rule" "egress_with_cidr_blocks" {
+      [32m+[0m[0m cidr_blocks              = [
+          [32m+[0m[0m "0.0.0.0/0",
+        ]
+      [32m+[0m[0m description              = "Egress Rule"
+      [32m+[0m[0m from_port                = -1
+      [32m+[0m[0m id                       = (known after apply)
+      [32m+[0m[0m prefix_list_ids          = []
+      [32m+[0m[0m protocol                 = "-1"
+      [32m+[0m[0m security_group_id        = (known after apply)
+      [32m+[0m[0m security_group_rule_id   = (known after apply)
+      [32m+[0m[0m self                     = false
+      [32m+[0m[0m source_security_group_id = (known after apply)
+      [32m+[0m[0m to_port                  = -1
+      [32m+[0m[0m type                     = "egress"
+    }
+
+[1m  # module.sg_client.aws_security_group_rule.ingress_with_cidr_blocks[0][0m will be created
+[0m  [32m+[0m[0m resource "aws_security_group_rule" "ingress_with_cidr_blocks" {
+      [32m+[0m[0m cidr_blocks              = [
+          [32m+[0m[0m "10.0.0.0/8",
+        ]
+      [32m+[0m[0m description              = "Ingress Rule"
+      [32m+[0m[0m from_port                = -1
+      [32m+[0m[0m id                       = (known after apply)
+      [32m+[0m[0m prefix_list_ids          = []
+      [32m+[0m[0m protocol                 = "-1"
+      [32m+[0m[0m security_group_id        = (known after apply)
+      [32m+[0m[0m security_group_rule_id   = (known after apply)
+      [32m+[0m[0m self                     = false
+      [32m+[0m[0m source_security_group_id = (known after apply)
+      [32m+[0m[0m to_port                  = -1
+      [32m+[0m[0m type                     = "ingress"
+    }
+
+[1m  # module.sg_client.aws_security_group_rule.ingress_with_cidr_blocks[1][0m will be created
+[0m  [32m+[0m[0m resource "aws_security_group_rule" "ingress_with_cidr_blocks" {
+      [32m+[0m[0m cidr_blocks              = [
+          [32m+[0m[0m "0.0.0.0/0",
+        ]
+      [32m+[0m[0m description              = "Ingress Rule"
+      [32m+[0m[0m from_port                = 22
+      [32m+[0m[0m id                       = (known after apply)
+      [32m+[0m[0m prefix_list_ids          = []
+      [32m+[0m[0m protocol                 = "tcp"
+      [32m+[0m[0m security_group_id        = (known after apply)
+      [32m+[0m[0m security_group_rule_id   = (known after apply)
+      [32m+[0m[0m self                     = false
+      [32m+[0m[0m source_security_group_id = (known after apply)
+      [32m+[0m[0m to_port                  = 22
+      [32m+[0m[0m type                     = "ingress"
+    }
+
+[1m  # module.vpc1.aws_default_network_acl.this[0][0m will be created
+[0m  [32m+[0m[0m resource "aws_default_network_acl" "this" {
+      [32m+[0m[0m arn                    = (known after apply)
+      [32m+[0m[0m default_network_acl_id = (known after apply)
+      [32m+[0m[0m id                     = (known after apply)
+      [32m+[0m[0m owner_id               = (known after apply)
+      [32m+[0m[0m tags                   = {
+          [32m+[0m[0m "Environment" = "dariusz"
+          [32m+[0m[0m "Name"        = "nf-lb-vpc-default"
+          [32m+[0m[0m "Terraform"   = "true"
+        }
+      [32m+[0m[0m tags_all               = {
+          [32m+[0m[0m "Environment" = "dariusz"
+          [32m+[0m[0m "Name"        = "nf-lb-vpc-default"
+          [32m+[0m[0m "Terraform"   = "true"
+        }
+      [32m+[0m[0m vpc_id                 = (known after apply)
+
+      [32m+[0m[0m egress {
+          [32m+[0m[0m action          = "allow"
+          [32m+[0m[0m from_port       = 0
+          [32m+[0m[0m ipv6_cidr_block = "::/0"
+          [32m+[0m[0m protocol        = "-1"
+          [32m+[0m[0m rule_no         = 101
+          [32m+[0m[0m to_port         = 0
+            [90m# (1 unchanged attribute hidden)[0m[0m
+        }
+      [32m+[0m[0m egress {
+          [32m+[0m[0m action          = "allow"
+          [32m+[0m[0m cidr_block      = "0.0.0.0/0"
+          [32m+[0m[0m from_port       = 0
+          [32m+[0m[0m protocol        = "-1"
+          [32m+[0m[0m rule_no         = 100
+          [32m+[0m[0m to_port         = 0
+            [90m# (1 unchanged attribute hidden)[0m[0m
+        }
+
+      [32m+[0m[0m ingress {
+          [32m+[0m[0m action          = "allow"
+          [32m+[0m[0m from_port       = 0
+          [32m+[0m[0m ipv6_cidr_block = "::/0"
+          [32m+[0m[0m protocol        = "-1"
+          [32m+[0m[0m rule_no         = 101
+          [32m+[0m[0m to_port         = 0
+            [90m# (1 unchanged attribute hidden)[0m[0m
+        }
+      [32m+[0m[0m ingress {
+          [32m+[0m[0m action          = "allow"
+          [32m+[0m[0m cidr_block      = "0.0.0.0/0"
+          [32m+[0m[0m from_port       = 0
+          [32m+[0m[0m protocol        = "-1"
+          [32m+[0m[0m rule_no         = 100
+          [32m+[0m[0m to_port         = 0
+            [90m# (1 unchanged attribute hidden)[0m[0m
+        }
+    }
+
+[1m  # module.vpc1.aws_default_route_table.default[0][0m will be created
+[0m  [32m+[0m[0m resource "aws_default_route_table" "default" {
+      [32m+[0m[0m arn                    = (known after apply)
+      [32m+[0m[0m default_route_table_id = (known after apply)
+      [32m+[0m[0m id                     = (known after apply)
+      [32m+[0m[0m owner_id               = (known after apply)
+      [32m+[0m[0m route                  = (known after apply)
+      [32m+[0m[0m tags                   = {
+          [32m+[0m[0m "Environment" = "dariusz"
+          [32m+[0m[0m "Name"        = "nf-lb-vpc-default"
+          [32m+[0m[0m "Terraform"   = "true"
+        }
+      [32m+[0m[0m tags_all               = {
+          [32m+[0m[0m "Environment" = "dariusz"
+          [32m+[0m[0m "Name"        = "nf-lb-vpc-default"
+          [32m+[0m[0m "Terraform"   = "true"
+        }
+      [32m+[0m[0m vpc_id                 = (known after apply)
+
+      [32m+[0m[0m timeouts {
+          [32m+[0m[0m create = "5m"
+          [32m+[0m[0m update = "5m"
+        }
+    }
+
+[1m  # module.vpc1.aws_default_security_group.this[0][0m will be created
+[0m  [32m+[0m[0m resource "aws_default_security_group" "this" {
+      [32m+[0m[0m arn                    = (known after apply)
+      [32m+[0m[0m description            = (known after apply)
+      [32m+[0m[0m egress                 = (known after apply)
+      [32m+[0m[0m id                     = (known after apply)
+      [32m+[0m[0m ingress                = (known after apply)
+      [32m+[0m[0m name                   = (known after apply)
+      [32m+[0m[0m name_prefix            = (known after apply)
+      [32m+[0m[0m owner_id               = (known after apply)
+      [32m+[0m[0m revoke_rules_on_delete = false
+      [32m+[0m[0m tags                   = {
+          [32m+[0m[0m "Environment" = "dariusz"
+          [32m+[0m[0m "Name"        = "nf-lb-vpc-default"
+          [32m+[0m[0m "Terraform"   = "true"
+        }
+      [32m+[0m[0m tags_all               = {
+          [32m+[0m[0m "Environment" = "dariusz"
+          [32m+[0m[0m "Name"        = "nf-lb-vpc-default"
+          [32m+[0m[0m "Terraform"   = "true"
+        }
+      [32m+[0m[0m vpc_id                 = (known after apply)
+    }
+
+[1m  # module.vpc1.aws_internet_gateway.this[0][0m will be created
+[0m  [32m+[0m[0m resource "aws_internet_gateway" "this" {
+      [32m+[0m[0m arn      = (known after apply)
+      [32m+[0m[0m id       = (known after apply)
+      [32m+[0m[0m owner_id = (known after apply)
+      [32m+[0m[0m tags     = {
+          [32m+[0m[0m "Environment" = "dariusz"
+          [32m+[0m[0m "Name"        = "nf-lb-vpc"
+          [32m+[0m[0m "Terraform"   = "true"
+        }
+      [32m+[0m[0m tags_all = {
+          [32m+[0m[0m "Environment" = "dariusz"
+          [32m+[0m[0m "Name"        = "nf-lb-vpc"
+          [32m+[0m[0m "Terraform"   = "true"
+        }
+      [32m+[0m[0m vpc_id   = (known after apply)
+    }
+
+[1m  # module.vpc1.aws_route.public_internet_gateway[0][0m will be created
+[0m  [32m+[0m[0m resource "aws_route" "public_internet_gateway" {
+      [32m+[0m[0m destination_cidr_block = "0.0.0.0/0"
+      [32m+[0m[0m gateway_id             = (known after apply)
+      [32m+[0m[0m id                     = (known after apply)
+      [32m+[0m[0m instance_id            = (known after apply)
+      [32m+[0m[0m instance_owner_id      = (known after apply)
+      [32m+[0m[0m network_interface_id   = (known after apply)
+      [32m+[0m[0m origin                 = (known after apply)
+      [32m+[0m[0m route_table_id         = (known after apply)
+      [32m+[0m[0m state                  = (known after apply)
+
+      [32m+[0m[0m timeouts {
+          [32m+[0m[0m create = "5m"
+        }
+    }
+
+[1m  # module.vpc1.aws_route_table.public[0][0m will be created
+[0m  [32m+[0m[0m resource "aws_route_table" "public" {
+      [32m+[0m[0m arn              = (known after apply)
+      [32m+[0m[0m id               = (known after apply)
+      [32m+[0m[0m owner_id         = (known after apply)
+      [32m+[0m[0m propagating_vgws = (known after apply)
+      [32m+[0m[0m route            = (known after apply)
+      [32m+[0m[0m tags             = {
+          [32m+[0m[0m "Environment" = "dariusz"
+          [32m+[0m[0m "Name"        = "nf-lb-vpc-public"
+          [32m+[0m[0m "Terraform"   = "true"
+        }
+      [32m+[0m[0m tags_all         = {
+          [32m+[0m[0m "Environment" = "dariusz"
+          [32m+[0m[0m "Name"        = "nf-lb-vpc-public"
+          [32m+[0m[0m "Terraform"   = "true"
+        }
+      [32m+[0m[0m vpc_id           = (known after apply)
+    }
+
+[1m  # module.vpc1.aws_route_table_association.public[0][0m will be created
+[0m  [32m+[0m[0m resource "aws_route_table_association" "public" {
+      [32m+[0m[0m id             = (known after apply)
+      [32m+[0m[0m route_table_id = (known after apply)
+      [32m+[0m[0m subnet_id      = (known after apply)
+    }
+
+[1m  # module.vpc1.aws_route_table_association.public[1][0m will be created
+[0m  [32m+[0m[0m resource "aws_route_table_association" "public" {
+      [32m+[0m[0m id             = (known after apply)
+      [32m+[0m[0m route_table_id = (known after apply)
+      [32m+[0m[0m subnet_id      = (known after apply)
+    }
+
+[1m  # module.vpc1.aws_subnet.public[0][0m will be created
+[0m  [32m+[0m[0m resource "aws_subnet" "public" {
+      [32m+[0m[0m arn                                            = (known after apply)
+      [32m+[0m[0m assign_ipv6_address_on_creation                = false
+      [32m+[0m[0m availability_zone                              = "us-east-2a"
+      [32m+[0m[0m availability_zone_id                           = (known after apply)
+      [32m+[0m[0m cidr_block                                     = "10.40.101.0/24"
+      [32m+[0m[0m enable_dns64                                   = false
+      [32m+[0m[0m enable_resource_name_dns_a_record_on_launch    = false
+      [32m+[0m[0m enable_resource_name_dns_aaaa_record_on_launch = false
+      [32m+[0m[0m id                                             = (known after apply)
+      [32m+[0m[0m ipv6_cidr_block_association_id                 = (known after apply)
+      [32m+[0m[0m ipv6_native                                    = false
+      [32m+[0m[0m map_public_ip_on_launch                        = true
+      [32m+[0m[0m owner_id                                       = (known after apply)
+      [32m+[0m[0m private_dns_hostname_type_on_launch            = (known after apply)
+      [32m+[0m[0m tags                                           = {
+          [32m+[0m[0m "Environment" = "dariusz"
+          [32m+[0m[0m "Name"        = "nf-lb-vpc-public-us-east-2a"
+          [32m+[0m[0m "Terraform"   = "true"
+        }
+      [32m+[0m[0m tags_all                                       = {
+          [32m+[0m[0m "Environment" = "dariusz"
+          [32m+[0m[0m "Name"        = "nf-lb-vpc-public-us-east-2a"
+          [32m+[0m[0m "Terraform"   = "true"
+        }
+      [32m+[0m[0m vpc_id                                         = (known after apply)
+    }
+
+[1m  # module.vpc1.aws_subnet.public[1][0m will be created
+[0m  [32m+[0m[0m resource "aws_subnet" "public" {
+      [32m+[0m[0m arn                                            = (known after apply)
+      [32m+[0m[0m assign_ipv6_address_on_creation                = false
+      [32m+[0m[0m availability_zone                              = "us-east-2b"
+      [32m+[0m[0m availability_zone_id                           = (known after apply)
+      [32m+[0m[0m cidr_block                                     = "10.40.102.0/24"
+      [32m+[0m[0m enable_dns64                                   = false
+      [32m+[0m[0m enable_resource_name_dns_a_record_on_launch    = false
+      [32m+[0m[0m enable_resource_name_dns_aaaa_record_on_launch = false
+      [32m+[0m[0m id                                             = (known after apply)
+      [32m+[0m[0m ipv6_cidr_block_association_id                 = (known after apply)
+      [32m+[0m[0m ipv6_native                                    = false
+      [32m+[0m[0m map_public_ip_on_launch                        = true
+      [32m+[0m[0m owner_id                                       = (known after apply)
+      [32m+[0m[0m private_dns_hostname_type_on_launch            = (known after apply)
+      [32m+[0m[0m tags                                           = {
+          [32m+[0m[0m "Environment" = "dariusz"
+          [32m+[0m[0m "Name"        = "nf-lb-vpc-public-us-east-2b"
+          [32m+[0m[0m "Terraform"   = "true"
+        }
+      [32m+[0m[0m tags_all                                       = {
+          [32m+[0m[0m "Environment" = "dariusz"
+          [32m+[0m[0m "Name"        = "nf-lb-vpc-public-us-east-2b"
+          [32m+[0m[0m "Terraform"   = "true"
+        }
+      [32m+[0m[0m vpc_id                                         = (known after apply)
+    }
+
+[1m  # module.vpc1.aws_vpc.this[0][0m will be created
+[0m  [32m+[0m[0m resource "aws_vpc" "this" {
+      [32m+[0m[0m arn                                  = (known after apply)
+      [32m+[0m[0m cidr_block                           = "10.40.0.0/16"
+      [32m+[0m[0m default_network_acl_id               = (known after apply)
+      [32m+[0m[0m default_route_table_id               = (known after apply)
+      [32m+[0m[0m default_security_group_id            = (known after apply)
+      [32m+[0m[0m dhcp_options_id                      = (known after apply)
+      [32m+[0m[0m enable_dns_hostnames                 = true
+      [32m+[0m[0m enable_dns_support                   = true
+      [32m+[0m[0m enable_network_address_usage_metrics = (known after apply)
+      [32m+[0m[0m id                                   = (known after apply)
+      [32m+[0m[0m instance_tenancy                     = "default"
+      [32m+[0m[0m ipv6_association_id                  = (known after apply)
+      [32m+[0m[0m ipv6_cidr_block                      = (known after apply)
+      [32m+[0m[0m ipv6_cidr_block_network_border_group = (known after apply)
+      [32m+[0m[0m main_route_table_id                  = (known after apply)
+      [32m+[0m[0m owner_id                             = (known after apply)
+      [32m+[0m[0m tags                                 = {
+          [32m+[0m[0m "Environment" = "dariusz"
+          [32m+[0m[0m "Name"        = "nf-lb-vpc"
+          [32m+[0m[0m "Terraform"   = "true"
+        }
+      [32m+[0m[0m tags_all                             = {
+          [32m+[0m[0m "Environment" = "dariusz"
+          [32m+[0m[0m "Name"        = "nf-lb-vpc"
+          [32m+[0m[0m "Terraform"   = "true"
+        }
+    }
+
+[1m  # module.vpc1.aws_vpn_gateway.this[0][0m will be created
+[0m  [32m+[0m[0m resource "aws_vpn_gateway" "this" {
+      [32m+[0m[0m amazon_side_asn = "64512"
+      [32m+[0m[0m arn             = (known after apply)
+      [32m+[0m[0m id              = (known after apply)
+      [32m+[0m[0m tags            = {
+          [32m+[0m[0m "Environment" = "dariusz"
+          [32m+[0m[0m "Name"        = "nf-lb-vpc"
+          [32m+[0m[0m "Terraform"   = "true"
+        }
+      [32m+[0m[0m tags_all        = {
+          [32m+[0m[0m "Environment" = "dariusz"
+          [32m+[0m[0m "Name"        = "nf-lb-vpc"
+          [32m+[0m[0m "Terraform"   = "true"
+        }
+      [32m+[0m[0m vpc_id          = (known after apply)
+    }
+
+[1mPlan:[0m 43 to add, 0 to change, 0 to destroy.
+[0m
+Changes to Outputs:
+  [32m+[0m[0m backend_public_ips = [
+      [32m+[0m[0m (known after apply),
+      [32m+[0m[0m (known after apply),
+    ]
+  [32m+[0m[0m client_public_ips  = [
+      [32m+[0m[0m (known after apply),
+      [32m+[0m[0m (known after apply),
+    ]
+  [32m+[0m[0m endpoint_ids       = [
+      [32m+[0m[0m (known after apply),
+      [32m+[0m[0m (known after apply),
+    ]
+  [32m+[0m[0m route_table_ids    = [
+      [32m+[0m[0m (known after apply),
+    ]
+  [32m+[0m[0m subnets            = [
+      [32m+[0m[0m (known after apply),
+      [32m+[0m[0m (known after apply),
+    ]
+[0m[1maws_iam_role.secret_manager_zfw_ec2_role: Creating...[0m[0m
+[0m[1maws_key_pair.ssh_public_key: Creating...[0m[0m
+[0m[1maws_secretsmanager_secret.zfw_secret_pt: Creating...[0m[0m
+[0m[1mmodule.vpc1.aws_vpc.this[0]: Creating...[0m[0m
+[0m[1maws_key_pair.ssh_public_key: Creation complete after 1s [id=be-test-ssh-key][0m
+[0m[1maws_iam_role.secret_manager_zfw_ec2_role: Creation complete after 1s [id=glb_test_zfw_ec2_role_us-east-2][0m
+[0m[1maws_iam_instance_profile.secret_manager_zfw_ec2_profile: Creating...[0m[0m
+[0m[1maws_secretsmanager_secret.zfw_secret_pt: Still creating... [10s elapsed][0m[0m
+[0m[1mmodule.vpc1.aws_vpc.this[0]: Still creating... [10s elapsed][0m[0m
+[0m[1mmodule.vpc1.aws_vpc.this[0]: Creation complete after 12s [id=vpc-0bb2bcc551ea8fb09][0m
+[0m[1mmodule.vpc1.aws_default_security_group.this[0]: Creating...[0m[0m
+[0m[1mmodule.vpc1.aws_default_route_table.default[0]: Creating...[0m[0m
+[0m[1mmodule.gwlb1.aws_lb_target_group.glb_tg: Creating...[0m[0m
+[0m[1mmodule.vpc1.aws_default_network_acl.this[0]: Creating...[0m[0m
+[0m[1mmodule.vpc1.aws_subnet.public[0]: Creating...[0m[0m
+[0m[1mmodule.vpc1.aws_subnet.public[1]: Creating...[0m[0m
+[0m[1mmodule.vpc1.aws_internet_gateway.this[0]: Creating...[0m[0m
+[0m[1mmodule.sg_client.aws_security_group.this_name_prefix[0]: Creating...[0m[0m
+[0m[1mmodule.sg_be.aws_security_group.this_name_prefix[0]: Creating...[0m[0m
+[0m[1mmodule.vpc1.aws_default_route_table.default[0]: Creation complete after 0s [id=rtb-0c7e5a7e9688b270c][0m
+[0m[1mmodule.vpc1.aws_vpn_gateway.this[0]: Creating...[0m[0m
+[0m[1mmodule.vpc1.aws_internet_gateway.this[0]: Creation complete after 1s [id=igw-07878d01ec3613c34][0m
+[0m[1mmodule.vpc1.aws_route_table.public[0]: Creating...[0m[0m
+[0m[1mmodule.vpc1.aws_route_table.public[0]: Creation complete after 0s [id=rtb-08ee2ec78f16a6496][0m
+[0m[1mmodule.vpc1.aws_route.public_internet_gateway[0]: Creating...[0m[0m
+[0m[1mmodule.vpc1.aws_default_network_acl.this[0]: Creation complete after 1s [id=acl-0ec6145a1959a8540][0m
+[0m[1mmodule.gwlb1.aws_lb_target_group.glb_tg: Creation complete after 2s [id=arn:aws:elasticloadbalancing:us-east-2:925908137963:targetgroup/nf-lb-tg/00f4b8f6e376c29e35][0m
+[0m[1mmodule.vpc1.aws_default_security_group.this[0]: Creation complete after 2s [id=sg-037b175192a692f69][0m
+[0m[1mmodule.sg_client.aws_security_group.this_name_prefix[0]: Creation complete after 2s [id=sg-0b6d8bc074eda9cd5][0m
+[0m[1mmodule.sg_client.aws_security_group_rule.ingress_with_cidr_blocks[1]: Creating...[0m[0m
+[0m[1mmodule.sg_client.aws_security_group_rule.egress_with_cidr_blocks[0]: Creating...[0m[0m
+[0m[1mmodule.sg_client.aws_security_group_rule.ingress_with_cidr_blocks[0]: Creating...[0m[0m
+[0m[1mmodule.sg_be.aws_security_group.this_name_prefix[0]: Creation complete after 2s [id=sg-05d30e37ac5901cc4][0m
+[0m[1mmodule.vpc1.aws_route.public_internet_gateway[0]: Creation complete after 1s [id=r-rtb-08ee2ec78f16a64961080289494][0m
+[0m[1mmodule.sg_be.aws_security_group_rule.ingress_with_cidr_blocks[1]: Creating...[0m[0m
+[0m[1mmodule.sg_be.aws_security_group_rule.egress_with_cidr_blocks[0]: Creating...[0m[0m
+[0m[1mmodule.sg_be.aws_security_group_rule.ingress_with_cidr_blocks[0]: Creating...[0m[0m
+[0m[1mmodule.sg_client.aws_security_group_rule.ingress_with_cidr_blocks[1]: Creation complete after 1s [id=sgrule-3510464897][0m
+[0m[1mmodule.sg_be.aws_security_group_rule.ingress_with_cidr_blocks[1]: Creation complete after 1s [id=sgrule-1997544615][0m
+[0m[1mmodule.sg_be.aws_security_group_rule.egress_with_cidr_blocks[0]: Creation complete after 1s [id=sgrule-3341461625][0m
+[0m[1mmodule.sg_client.aws_security_group_rule.ingress_with_cidr_blocks[0]: Creation complete after 1s [id=sgrule-2247493305][0m
+[0m[1mmodule.sg_client.aws_security_group_rule.egress_with_cidr_blocks[0]: Creation complete after 2s [id=sgrule-374035195][0m
+[0m[1mmodule.sg_be.aws_security_group_rule.ingress_with_cidr_blocks[0]: Creation complete after 2s [id=sgrule-3509270035][0m
+[0m[1maws_secretsmanager_secret.zfw_secret_pt: Still creating... [20s elapsed][0m[0m
+[0m[1mmodule.vpc1.aws_subnet.public[0]: Still creating... [10s elapsed][0m[0m
+[0m[1mmodule.vpc1.aws_subnet.public[1]: Still creating... [10s elapsed][0m[0m
+[0m[1mmodule.vpc1.aws_vpn_gateway.this[0]: Still creating... [10s elapsed][0m[0m
+[0m[1mmodule.vpc1.aws_subnet.public[0]: Creation complete after 11s [id=subnet-066234d090594f098][0m
+[0m[1mmodule.vpc1.aws_subnet.public[1]: Creation complete after 11s [id=subnet-0fa2f65775c5f8462][0m
+[0m[1mmodule.vpc1.aws_route_table_association.public[1]: Creating...[0m[0m
+[0m[1mmodule.vpc1.aws_route_table_association.public[0]: Creating...[0m[0m
+[0m[1mmodule.gwlb1.aws_lb.glb: Creating...[0m[0m
+[0m[1mmodule.compute_client[1].aws_instance.this[0]: Creating...[0m[0m
+[0m[1mmodule.compute_client[0].aws_instance.this[0]: Creating...[0m[0m
+[0m[1mmodule.vpc1.aws_route_table_association.public[1]: Creation complete after 1s [id=rtbassoc-062137e4704ae9fa7][0m
+[0m[1mmodule.vpc1.aws_route_table_association.public[0]: Creation complete after 1s [id=rtbassoc-0ff91cd9e2aee86f2][0m
+[0m[1maws_secretsmanager_secret.zfw_secret_pt: Still creating... [30s elapsed][0m[0m
+[0m[1mmodule.vpc1.aws_vpn_gateway.this[0]: Still creating... [20s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_lb.glb: Still creating... [10s elapsed][0m[0m
+[0m[1mmodule.compute_client[1].aws_instance.this[0]: Still creating... [11s elapsed][0m[0m
+[0m[1mmodule.compute_client[0].aws_instance.this[0]: Still creating... [10s elapsed][0m[0m
+[0m[1mmodule.compute_client[1].aws_instance.this[0]: Creation complete after 14s [id=i-050d6c447bda931e2][0m
+[0m[1mmodule.compute_client[0].aws_instance.this[0]: Creation complete after 13s [id=i-071434e2bf2f6b021][0m
+[0m[1maws_secretsmanager_secret.zfw_secret_pt: Still creating... [40s elapsed][0m[0m
+[0m[1mmodule.vpc1.aws_vpn_gateway.this[0]: Still creating... [30s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_lb.glb: Still creating... [20s elapsed][0m[0m
+[0m[1mmodule.vpc1.aws_vpn_gateway.this[0]: Creation complete after 34s [id=vgw-04c9f68b00d7fcc11][0m
+[0m[1maws_secretsmanager_secret.zfw_secret_pt: Still creating... [50s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_lb.glb: Still creating... [30s elapsed][0m[0m
+[0m[1maws_secretsmanager_secret.zfw_secret_pt: Still creating... [1m0s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_lb.glb: Still creating... [40s elapsed][0m[0m
+[0m[1maws_secretsmanager_secret.zfw_secret_pt: Still creating... [1m10s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_lb.glb: Still creating... [50s elapsed][0m[0m
+[0m[1maws_secretsmanager_secret.zfw_secret_pt: Still creating... [1m20s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_lb.glb: Still creating... [1m0s elapsed][0m[0m
+[0m[1maws_secretsmanager_secret.zfw_secret_pt: Still creating... [1m30s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_lb.glb: Still creating... [1m10s elapsed][0m[0m
+[0m[1maws_secretsmanager_secret.zfw_secret_pt: Still creating... [1m40s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_lb.glb: Still creating... [1m21s elapsed][0m[0m
+[0m[1maws_secretsmanager_secret.zfw_secret_pt: Still creating... [1m50s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_lb.glb: Still creating... [1m30s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_lb.glb: Still creating... [1m41s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_lb.glb: Still creating... [1m51s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_lb.glb: Still creating... [2m1s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_lb.glb: Still creating... [2m11s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_lb.glb: Still creating... [2m21s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_lb.glb: Creation complete after 2m23s [id=arn:aws:elasticloadbalancing:us-east-2:925908137963:loadbalancer/gwy/nf-lb-01/99639daeb83e4dfc][0m
+[0m[1mmodule.gwlb1.aws_vpc_endpoint_service.glb_es: Creating...[0m[0m
+[0m[1mmodule.gwlb1.aws_lb_listener.glb_fe: Creating...[0m[0m
+[0m[1mmodule.gwlb1.aws_lb_listener.glb_fe: Creation complete after 0s [id=arn:aws:elasticloadbalancing:us-east-2:925908137963:listener/gwy/nf-lb-01/99639daeb83e4dfc/3aa6b2263a0f2be2][0m
+[0m[1mmodule.gwlb1.aws_vpc_endpoint_service.glb_es: Creation complete after 6s [id=vpce-svc-05eb2c1a7bb8cd5fd][0m
+[0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[0]: Creating...[0m[0m
+[0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[1]: Creating...[0m[0m
+[0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[1]: Still creating... [10s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[0]: Still creating... [10s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[0]: Still creating... [20s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[1]: Still creating... [20s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[1]: Still creating... [30s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[0]: Still creating... [30s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[0]: Still creating... [40s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[1]: Still creating... [40s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[1]: Still creating... [50s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[0]: Still creating... [50s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[0]: Still creating... [1m0s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[1]: Still creating... [1m0s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[1]: Still creating... [1m10s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[0]: Still creating... [1m10s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[0]: Still creating... [1m20s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[1]: Still creating... [1m20s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[1]: Still creating... [1m30s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[0]: Still creating... [1m30s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[0]: Still creating... [1m40s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[1]: Still creating... [1m40s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[1]: Still creating... [1m50s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[0]: Still creating... [1m50s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[1]: Creation complete after 1m51s [id=vpce-04df44a95ad68a82c][0m
+[0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[0]: Creation complete after 1m52s [id=vpce-0920c01cc2a98f628][0m
+[0m[1mmodule.gwlb1.aws_route.glb_routes[1]: Creating...[0m[0m
+[0m[1mmodule.gwlb1.aws_route.glb_routes[0]: Creating...[0m[0m
+[0m[1mmodule.gwlb1.aws_route.glb_routes[1]: Creation complete after 1s [id=r-rtb-0c7e5a7e9688b270c3117404284][0m
+[0m[1mmodule.gwlb1.aws_route.glb_routes[0]: Creation complete after 1s [id=r-rtb-08ee2ec78f16a64963117404284][0m
