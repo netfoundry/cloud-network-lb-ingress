@@ -1,5 +1,6 @@
 variable "er_map_be" {
   type = list(object({
+    name          = string
     edgeRouterKey = string
     dnsSvcIpRange = string
     zone          = string
@@ -11,9 +12,6 @@ variable "region" {
   default = "us-east-2"
 }
 
-variable "instance_be_prefix" {
-  default = "be-er"
-}
 variable "instance_client_prefix" {
   default = "test_client"
 }
@@ -48,4 +46,8 @@ variable "test_initital_delay" {
 
 variable "test_iterate_count" {
   default = 200
+}
+
+variable "s3_bucket_key" {
+  default = "."
 }

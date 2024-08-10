@@ -30,6 +30,7 @@ get_nf_er_reg_keys () {
         --header "Authorization: $token_type $token"`
     export ER_KEY=`jq -r .registrationKey <<< "$ER_KEY_JSON"` 
     jq ".er_map_be[$COUNT].edgeRouterKey = \"$ER_KEY\"" input_vars.tfvars.json > "tmp" && mv "tmp" input_vars.tfvars.json
+    jq ".er_map_be[$COUNT].name = \"$ER\"" input_vars.tfvars.json > "tmp" && mv "tmp" input_vars.tfvars.json
     ER_IDENT_RESP=`curl --silent --location --request GET "https://gateway.production.netfoundry.io/core/v2/endpoints?name=$ER" \
         --header "Content-Type: application/json" \
         --header "Authorization: $token_type $token"`
@@ -73,71 +74,92 @@ get_nf_token () {
 run () {
 
     get_nf_token
-    
-    terraform init
+    terraform init -backend-config=backend.tfvars.json
+    x=0
+    for region in "${REGIONS[@]}"
+    do
+        y=0
+        export AWS_REGION=$region
+        export ATTRIBUTE="${ATTRIBUTES[$x]}"
+        terraform workspace new $AWS_REGION
+        for router in "${ROUTERS[@]}"
+        do
+            export COUNT=$y
+            export ER="$router-$region"
+            get_nf_er_reg_keys
+            let "y++"
+        done
+        terraform apply -var-file input_vars.tfvars.json -var region=$AWS_REGION -auto-approve
+        let "x++"
+    done
 
-    export AWS_REGION='us-west-2'
-    terraform workspace new $AWS_REGION
-    export ATTRIBUTE="bind-services"
-    # router1
-    export ER=$REGION2_ER1
-    export COUNT=0
-    get_nf_er_reg_keys
-    # router2
-    export ER=$REGION2_ER2
-    export COUNT=1
-    get_nf_er_reg_keys
-    terraform apply -var-file input_vars.tfvars.json -var region=$AWS_REGION -auto-approve
+    # export AWS_REGION='us-west-2'
+    # terraform workspace new $AWS_REGION
+    # export ATTRIBUTE="bind-services"
+    # # router1
+    # export ER=$REGION2_ER1
+    # export COUNT=0
+    # get_nf_er_reg_keys
+    # # router2
+    # export ER=$REGION2_ER2
+    # export COUNT=1
+    # get_nf_er_reg_keys
+    # terraform apply -var-file input_vars.tfvars.json -var region=$AWS_REGION -auto-approve
 
-    export AWS_REGION='us-east-2'
-    terraform workspace new $AWS_REGION
-    export ATTRIBUTE="novis"
-    # router1
-    export ER=$REGION1_ER1
-    export COUNT=0
-    get_nf_er_reg_keys
-    # router2
-    export ER=$REGION1_ER2
-    export COUNT=1
-    get_nf_er_reg_keys
-    terraform apply -var-file input_vars.tfvars.json -var region=$AWS_REGION -auto-approve
-    
-}
-
-env_vars () {
-
-    export NF_API_CREDENTIALS_PATH="$HOME/.netfoundry/credentials.json"
-    if [ -z $NF_NETWORK_NAME ]; then export NF_NETWORK_NAME="dariuszdev"; fi
-    if [ -z $REGION1_ER1 ] && [ -z $REGION1_ER2 ] && [ -z $REGION2_ER1 ] && [ -z $REGION2_ER2 ]; then
-        echo " NF Environmental Var ER Names not set, it will use the defaults"
-        export REGION1_ER1="be-er01-useast2"
-        export REGION1_ER2="be-er02-useast2"
-        export REGION2_ER1="be-er01-uswest2"
-        export REGION2_ER2="be-er02-uswest2"
-    fi
+    # export AWS_REGION='us-east-2'
+    # terraform workspace new $AWS_REGION
+    # export ATTRIBUTE="novis"
+    # # router1
+    # export ER=$REGION1_ER1
+    # export COUNT=0
+    # get_nf_er_reg_keys
+    # # router2
+    # export ER=$REGION1_ER2
+    # export COUNT=1
+    # get_nf_er_reg_keys
+    # terraform apply -var-file input_vars.tfvars.json -var region=$AWS_REGION -auto-approve
     
 }
 
 cleanup () {
 
-    declare -a ER_LIST=("$REGION1_ER1" "$REGION1_ER2" "$REGION2_ER1" "$REGION2_ER2")
     get_nf_token
-    for ER in "${ER_LIST[@]}"
-    do 
-        delete_nf_er
+    for region in "${REGIONS[@]}"
+    do
+        export AWS_REGION=$region
+        for router in "${ROUTERS[@]}"
+        do 
+            export ER="$router-$region"
+            delete_nf_er
+        done
+        terraform workspace select $AWS_REGION
+        terraform apply -destroy -var-file input_vars.tfvars.json -var region=$AWS_REGION -auto-approve
     done
 
-    export AWS_REGION='us-east-2'
-    terraform workspace select $AWS_REGION
-    terraform apply -destroy -var-file input_vars.tfvars.json -var region=$AWS_REGION -auto-approve
-    export AWS_REGION='us-west-2'
-    terraform workspace select $AWS_REGION
-    terraform apply -destroy -var-file input_vars.tfvars.json -var region=$AWS_REGION -auto-approve
     terraform workspace select default
+    sleep 300
     for workspace in $(terraform workspace list | grep -v default)
     do
         terraform workspace delete $workspace
     done
+
+}
+
+env_vars () {
+
+    export NF_API_CREDENTIALS_PATH="$HOME/.netfoundry/credentials.json"
+    export REGIONS=(us-west-2 us-east-2)
+    export ATTRIBUTES=(bind-services novis)
+    ROUTERS=()
+    if [ -z $NF_NETWORK_NAME ]; then export NF_NETWORK_NAME="dariuszdev"; fi
+    if [ -z $ROUTER_PREFIX ]; then export ROUTER_PREFIX="be-er"; fi
+    if [ -z $ROUTER_COUNT ]; then export ROUTER_COUNT=2; fi
+
+    for (( c=1; c<=$ROUTER_COUNT; c++ ))
+    do
+        ROUTERS+=("$ROUTER_PREFIX-$c")
+    done
+    export ROUTERS
 
 }
 

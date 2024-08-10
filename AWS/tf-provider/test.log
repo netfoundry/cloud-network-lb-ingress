@@ -1,14 +1,15 @@
- NF Environmental Var ER Names not set, it will use the defaults
  NF Environmental Var Creds not set, it will use the NF Creds File in home directory
 
 [0m[1mInitializing the backend...[0m
 [0m[1mInitializing modules...[0m
 
 [0m[1mInitializing provider plugins...[0m
-- Reusing previous version of hashicorp/template from the dependency lock file
+- Reusing previous version of hashicorp/random from the dependency lock file
 - Reusing previous version of hashicorp/aws from the dependency lock file
+- Reusing previous version of hashicorp/template from the dependency lock file
+- Using previously-installed hashicorp/random v3.6.2
+- Using previously-installed hashicorp/aws v5.62.0
 - Using previously-installed hashicorp/template v2.2.0
-- Using previously-installed hashicorp/aws v5.59.0
 
 [0m[1m[32mTerraform has been successfully initialized![0m[32m[0m
 [0m[32m
@@ -24,27 +25,65 @@ commands will detect it and remind you to do so if necessary.[0m
 You're now on a new, empty workspace. Workspaces isolate their state,
 so if you run "terraform plan" Terraform will not see any existing state
 for this configuration.[0m
-{"id":"a3f6dc68-cade-476a-b97a-b7d30fb5607d","ownerIdentityId":"09d7c14a-a1ee-4552-a0fd-63c236648b00","createdBy":"09d7c14a-a1ee-4552-a0fd-63c236648b00","createdAt":"2024-08-09T13:32:59.537297Z","updatedAt":"2024-08-09T13:32:59.537297Z","deletedBy":null,"deletedAt":null,"networkId":"3d22b880-31df-4b5d-949f-e34fec3cd068","zitiId":"CZb2UKzVxB","name":"be-er01-uswest2","typeId":"Router","appId":null,"appVersion":null,"branch":null,"revision":null,"type":null,"version":null,"arch":null,"os":null,"osRelease":null,"osVersion":null,"externalId":null,"authPolicyId":"8cce46f6-bfb4-4688-9486-fbc8a78de1c6","disabled":false,"disabledAt":null,"disabledUntil":null,"hasApiSession":false,"hasEdgeRouterConnection":false,"lastOnlineAt":null,"syncId":null,"syncResourceId":null,"attributes":["#bind-services"],"jwtExpiresAt":null,"mfaEnabled":false,"jwt":null,"online":false,"managedBy":"Router","_links":{"self":{"href":"https://gateway.production.netfoundry.io/core/v2/endpoints/a3f6dc68-cade-476a-b97a-b7d30fb5607d","title":"be-er01-uswest2"},"network":{"href":"https://gateway.production.netfoundry.io/core/v2/networks/3d22b880-31df-4b5d-949f-e34fec3cd068","title":"dariuszdev","profile":"parent"},"auth-policy":{"href":"https://gateway.production.netfoundry.io/core/v2/auth-policies/8cce46f6-bfb4-4688-9486-fbc8a78de1c6","title":"Default"}}}{"id":"21412f2d-eb63-483d-baa7-033a9ff3b21a","ownerIdentityId":"09d7c14a-a1ee-4552-a0fd-63c236648b00","createdBy":"09d7c14a-a1ee-4552-a0fd-63c236648b00","createdAt":"2024-08-09T13:33:12.364475Z","updatedAt":"2024-08-09T13:33:12.364475Z","deletedBy":null,"deletedAt":null,"networkId":"3d22b880-31df-4b5d-949f-e34fec3cd068","zitiId":"o5MiqhLVx","name":"be-er02-uswest2","typeId":"Router","appId":null,"appVersion":null,"branch":null,"revision":null,"type":null,"version":null,"arch":null,"os":null,"osRelease":null,"osVersion":null,"externalId":null,"authPolicyId":"8cce46f6-bfb4-4688-9486-fbc8a78de1c6","disabled":false,"disabledAt":null,"disabledUntil":null,"hasApiSession":false,"hasEdgeRouterConnection":false,"lastOnlineAt":null,"syncId":null,"syncResourceId":null,"attributes":["#bind-services"],"jwtExpiresAt":null,"mfaEnabled":false,"jwt":null,"online":false,"managedBy":"Router","_links":{"auth-policy":{"href":"https://gateway.production.netfoundry.io/core/v2/auth-policies/8cce46f6-bfb4-4688-9486-fbc8a78de1c6","title":"Default"},"self":{"href":"https://gateway.production.netfoundry.io/core/v2/endpoints/21412f2d-eb63-483d-baa7-033a9ff3b21a","title":"be-er02-uswest2"},"network":{"href":"https://gateway.production.netfoundry.io/core/v2/networks/3d22b880-31df-4b5d-949f-e34fec3cd068","title":"dariuszdev","profile":"parent"}}}[0m[1mdata.template_cloudinit_config.config-client[0]: Reading...[0m[0m
-[0m[1mdata.template_cloudinit_config.config-be[0]: Reading...[0m[0m
-[0m[1mdata.template_cloudinit_config.config-client[1]: Reading...[0m[0m
-[0m[1mdata.template_cloudinit_config.config-be[1]: Reading...[0m[0m
+{"id":"07877502-4ce3-4721-99bf-e01f180abf82","ownerIdentityId":"09d7c14a-a1ee-4552-a0fd-63c236648b00","createdBy":"09d7c14a-a1ee-4552-a0fd-63c236648b00","createdAt":"2024-08-10T18:35:46.571705Z","updatedAt":"2024-08-10T18:35:46.571705Z","deletedBy":null,"deletedAt":null,"networkId":"3d22b880-31df-4b5d-949f-e34fec3cd068","zitiId":"9WplLESFq","name":"be-er-1-us-west-2","typeId":"Router","appId":null,"appVersion":null,"branch":null,"revision":null,"type":null,"version":null,"arch":null,"os":null,"osRelease":null,"osVersion":null,"externalId":null,"authPolicyId":"8cce46f6-bfb4-4688-9486-fbc8a78de1c6","disabled":false,"disabledAt":null,"disabledUntil":null,"hasApiSession":false,"hasEdgeRouterConnection":false,"lastOnlineAt":null,"syncId":null,"syncResourceId":null,"attributes":["#bind-services"],"jwtExpiresAt":null,"mfaEnabled":false,"jwt":null,"online":false,"managedBy":"Router","_links":{"self":{"href":"https://gateway.production.netfoundry.io/core/v2/endpoints/07877502-4ce3-4721-99bf-e01f180abf82","title":"be-er-1-us-west-2"},"network":{"href":"https://gateway.production.netfoundry.io/core/v2/networks/3d22b880-31df-4b5d-949f-e34fec3cd068","title":"dariuszdev","profile":"parent"},"auth-policy":{"href":"https://gateway.production.netfoundry.io/core/v2/auth-policies/8cce46f6-bfb4-4688-9486-fbc8a78de1c6","title":"Default"}}}{"id":"0dde511d-a1d6-4268-b161-4b55c600f489","ownerIdentityId":"09d7c14a-a1ee-4552-a0fd-63c236648b00","createdBy":"09d7c14a-a1ee-4552-a0fd-63c236648b00","createdAt":"2024-08-10T18:35:59.365463Z","updatedAt":"2024-08-10T18:35:59.365463Z","deletedBy":null,"deletedAt":null,"networkId":"3d22b880-31df-4b5d-949f-e34fec3cd068","zitiId":"xCHRLESFqE","name":"be-er-2-us-west-2","typeId":"Router","appId":null,"appVersion":null,"branch":null,"revision":null,"type":null,"version":null,"arch":null,"os":null,"osRelease":null,"osVersion":null,"externalId":null,"authPolicyId":"8cce46f6-bfb4-4688-9486-fbc8a78de1c6","disabled":false,"disabledAt":null,"disabledUntil":null,"hasApiSession":false,"hasEdgeRouterConnection":false,"lastOnlineAt":null,"syncId":null,"syncResourceId":null,"attributes":["#bind-services"],"jwtExpiresAt":null,"mfaEnabled":false,"jwt":null,"online":false,"managedBy":"Router","_links":{"auth-policy":{"href":"https://gateway.production.netfoundry.io/core/v2/auth-policies/8cce46f6-bfb4-4688-9486-fbc8a78de1c6","title":"Default"},"self":{"href":"https://gateway.production.netfoundry.io/core/v2/endpoints/0dde511d-a1d6-4268-b161-4b55c600f489","title":"be-er-2-us-west-2"},"network":{"href":"https://gateway.production.netfoundry.io/core/v2/networks/3d22b880-31df-4b5d-949f-e34fec3cd068","title":"dariuszdev","profile":"parent"}}}[0m[1mdata.template_cloudinit_config.config-client[1]: Reading...[0m[0m
+[0m[1mdata.template_cloudinit_config.config-client[0]: Reading...[0m[0m
 [0m[1mdata.template_cloudinit_config.config-client[0]: Read complete after 0s [id=2171264367][0m
-[0m[1mdata.template_cloudinit_config.config-be[0]: Read complete after 0s [id=2569999398][0m
-[0m[1mdata.template_cloudinit_config.config-be[1]: Read complete after 0s [id=1560948209][0m
 [0m[1mdata.template_cloudinit_config.config-client[1]: Read complete after 0s [id=2171264367][0m
 
 Terraform used the selected providers to generate the following execution
 plan. Resource actions are indicated with the following symbols:
   [32m+[0m create[0m
+ [36m<=[0m read (data resources)[0m
 
 Terraform will perform the following actions:
 
-[1m  # aws_iam_instance_profile.secret_manager_zfw_ec2_profile[0m will be created
+[1m  # data.template_cloudinit_config.config-be[0][0m will be read during apply
+  # (config refers to values not yet known)
+[0m [36m<=[0m[0m data "template_cloudinit_config" "config-be" {
+      [32m+[0m[0m base64_encode = true
+      [32m+[0m[0m gzip          = true
+      [32m+[0m[0m id            = (known after apply)
+      [32m+[0m[0m rendered      = (known after apply)
+
+      [32m+[0m[0m part {
+          [32m+[0m[0m content      = (known after apply)
+          [32m+[0m[0m content_type = "text/cloud-config"
+        }
+    }
+
+[1m  # data.template_cloudinit_config.config-be[1][0m will be read during apply
+  # (config refers to values not yet known)
+[0m [36m<=[0m[0m data "template_cloudinit_config" "config-be" {
+      [32m+[0m[0m base64_encode = true
+      [32m+[0m[0m gzip          = true
+      [32m+[0m[0m id            = (known after apply)
+      [32m+[0m[0m rendered      = (known after apply)
+
+      [32m+[0m[0m part {
+          [32m+[0m[0m content      = (known after apply)
+          [32m+[0m[0m content_type = "text/cloud-config"
+        }
+    }
+
+[1m  # aws_iam_instance_profile.secret_manager_zfw_ec2_profile[0][0m will be created
 [0m  [32m+[0m[0m resource "aws_iam_instance_profile" "secret_manager_zfw_ec2_profile" {
       [32m+[0m[0m arn         = (known after apply)
       [32m+[0m[0m create_date = (known after apply)
       [32m+[0m[0m id          = (known after apply)
-      [32m+[0m[0m name        = "glb_test_zfw_ec2_profile_us-west-2"
+      [32m+[0m[0m name        = "be-er-1-us-west-2_profile_us-west-2"
+      [32m+[0m[0m name_prefix = (known after apply)
+      [32m+[0m[0m path        = "/"
+      [32m+[0m[0m role        = "glb_test_zfw_ec2_role_us-west-2"
+      [32m+[0m[0m tags_all    = (known after apply)
+      [32m+[0m[0m unique_id   = (known after apply)
+    }
+
+[1m  # aws_iam_instance_profile.secret_manager_zfw_ec2_profile[1][0m will be created
+[0m  [32m+[0m[0m resource "aws_iam_instance_profile" "secret_manager_zfw_ec2_profile" {
+      [32m+[0m[0m arn         = (known after apply)
+      [32m+[0m[0m create_date = (known after apply)
+      [32m+[0m[0m id          = (known after apply)
+      [32m+[0m[0m name        = "be-er-2-us-west-2_profile_us-west-2"
       [32m+[0m[0m name_prefix = (known after apply)
       [32m+[0m[0m path        = "/"
       [32m+[0m[0m role        = "glb_test_zfw_ec2_role_us-west-2"
@@ -145,7 +184,7 @@ Terraform will perform the following actions:
       [32m+[0m[0m arn                            = (known after apply)
       [32m+[0m[0m force_overwrite_replica_secret = false
       [32m+[0m[0m id                             = (known after apply)
-      [32m+[0m[0m name                           = "glb_test_zfw_repo"
+      [32m+[0m[0m name                           = (known after apply)
       [32m+[0m[0m name_prefix                    = (known after apply)
       [32m+[0m[0m policy                         = (known after apply)
       [32m+[0m[0m recovery_window_in_days        = 0
@@ -162,6 +201,22 @@ Terraform will perform the following actions:
       [32m+[0m[0m version_stages = (known after apply)
     }
 
+[1m  # random_string.random_secret_name[0m will be created
+[0m  [32m+[0m[0m resource "random_string" "random_secret_name" {
+      [32m+[0m[0m id          = (known after apply)
+      [32m+[0m[0m length      = 20
+      [32m+[0m[0m lower       = true
+      [32m+[0m[0m min_lower   = 0
+      [32m+[0m[0m min_numeric = 0
+      [32m+[0m[0m min_special = 0
+      [32m+[0m[0m min_upper   = 0
+      [32m+[0m[0m number      = false
+      [32m+[0m[0m numeric     = false
+      [32m+[0m[0m result      = (known after apply)
+      [32m+[0m[0m special     = false
+      [32m+[0m[0m upper       = false
+    }
+
 [1m  # module.compute_backend[0].aws_instance.this[0][0m will be created
 [0m  [32m+[0m[0m resource "aws_instance" "this" {
       [32m+[0m[0m ami                                  = "ami-0333611f8a06d64d0"
@@ -176,7 +231,7 @@ Terraform will perform the following actions:
       [32m+[0m[0m get_password_data                    = false
       [32m+[0m[0m host_id                              = (known after apply)
       [32m+[0m[0m host_resource_group_arn              = (known after apply)
-      [32m+[0m[0m iam_instance_profile                 = "glb_test_zfw_ec2_profile_us-west-2"
+      [32m+[0m[0m iam_instance_profile                 = "be-er-1-us-west-2_profile_us-west-2"
       [32m+[0m[0m id                                   = (known after apply)
       [32m+[0m[0m instance_initiated_shutdown_behavior = (known after apply)
       [32m+[0m[0m instance_lifecycle                   = (known after apply)
@@ -202,20 +257,20 @@ Terraform will perform the following actions:
       [32m+[0m[0m subnet_id                            = (known after apply)
       [32m+[0m[0m tags                                 = {
           [32m+[0m[0m "Environment" = "dariusz"
-          [32m+[0m[0m "Name"        = "be-er-us-west-2a"
+          [32m+[0m[0m "Name"        = "be-er-1-us-west-2"
           [32m+[0m[0m "Terraform"   = "true"
         }
       [32m+[0m[0m tags_all                             = {
           [32m+[0m[0m "Environment" = "dariusz"
-          [32m+[0m[0m "Name"        = "be-er-us-west-2a"
+          [32m+[0m[0m "Name"        = "be-er-1-us-west-2"
           [32m+[0m[0m "Terraform"   = "true"
         }
       [32m+[0m[0m tenancy                              = (known after apply)
       [32m+[0m[0m user_data                            = (known after apply)
-      [32m+[0m[0m user_data_base64                     = "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"
+      [32m+[0m[0m user_data_base64                     = (known after apply)
       [32m+[0m[0m user_data_replace_on_change          = false
       [32m+[0m[0m volume_tags                          = {
-          [32m+[0m[0m "Name" = "be-er-us-west-2a"
+          [32m+[0m[0m "Name" = "be-er-1-us-west-2"
         }
       [32m+[0m[0m vpc_security_group_ids               = (known after apply)
 
@@ -250,7 +305,7 @@ Terraform will perform the following actions:
       [32m+[0m[0m get_password_data                    = false
       [32m+[0m[0m host_id                              = (known after apply)
       [32m+[0m[0m host_resource_group_arn              = (known after apply)
-      [32m+[0m[0m iam_instance_profile                 = "glb_test_zfw_ec2_profile_us-west-2"
+      [32m+[0m[0m iam_instance_profile                 = "be-er-2-us-west-2_profile_us-west-2"
       [32m+[0m[0m id                                   = (known after apply)
       [32m+[0m[0m instance_initiated_shutdown_behavior = (known after apply)
       [32m+[0m[0m instance_lifecycle                   = (known after apply)
@@ -276,20 +331,20 @@ Terraform will perform the following actions:
       [32m+[0m[0m subnet_id                            = (known after apply)
       [32m+[0m[0m tags                                 = {
           [32m+[0m[0m "Environment" = "dariusz"
-          [32m+[0m[0m "Name"        = "be-er-us-west-2b"
+          [32m+[0m[0m "Name"        = "be-er-2-us-west-2"
           [32m+[0m[0m "Terraform"   = "true"
         }
       [32m+[0m[0m tags_all                             = {
           [32m+[0m[0m "Environment" = "dariusz"
-          [32m+[0m[0m "Name"        = "be-er-us-west-2b"
+          [32m+[0m[0m "Name"        = "be-er-2-us-west-2"
           [32m+[0m[0m "Terraform"   = "true"
         }
       [32m+[0m[0m tenancy                              = (known after apply)
       [32m+[0m[0m user_data                            = (known after apply)
-      [32m+[0m[0m user_data_base64                     = "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"
+      [32m+[0m[0m user_data_base64                     = (known after apply)
       [32m+[0m[0m user_data_replace_on_change          = false
       [32m+[0m[0m volume_tags                          = {
-          [32m+[0m[0m "Name" = "be-er-us-west-2b"
+          [32m+[0m[0m "Name" = "be-er-2-us-west-2"
         }
       [32m+[0m[0m vpc_security_group_ids               = (known after apply)
 
@@ -651,7 +706,7 @@ Terraform will perform the following actions:
       [32m+[0m[0m tags_all                       = (known after apply)
     }
 
-[1m  # module.sg_be.aws_security_group.this_name_prefix[0][0m will be created
+[1m  # module.sg_be[0].aws_security_group.this_name_prefix[0][0m will be created
 [0m  [32m+[0m[0m resource "aws_security_group" "this_name_prefix" {
       [32m+[0m[0m arn                    = (known after apply)
       [32m+[0m[0m description            = "Security group for backend er of glb with custom ports open within VPC"
@@ -659,17 +714,17 @@ Terraform will perform the following actions:
       [32m+[0m[0m id                     = (known after apply)
       [32m+[0m[0m ingress                = (known after apply)
       [32m+[0m[0m name                   = (known after apply)
-      [32m+[0m[0m name_prefix            = "be-er-sg-"
+      [32m+[0m[0m name_prefix            = "be-er-1-us-west-2-sg-"
       [32m+[0m[0m owner_id               = (known after apply)
       [32m+[0m[0m revoke_rules_on_delete = false
       [32m+[0m[0m tags                   = {
           [32m+[0m[0m "Environment" = "dariusz"
-          [32m+[0m[0m "Name"        = "be-er-sg"
+          [32m+[0m[0m "Name"        = "be-er-1-us-west-2-sg"
           [32m+[0m[0m "Terraform"   = "true"
         }
       [32m+[0m[0m tags_all               = {
           [32m+[0m[0m "Environment" = "dariusz"
-          [32m+[0m[0m "Name"        = "be-er-sg"
+          [32m+[0m[0m "Name"        = "be-er-1-us-west-2-sg"
           [32m+[0m[0m "Terraform"   = "true"
         }
       [32m+[0m[0m vpc_id                 = (known after apply)
@@ -680,7 +735,7 @@ Terraform will perform the following actions:
         }
     }
 
-[1m  # module.sg_be.aws_security_group_rule.egress_with_cidr_blocks[0][0m will be created
+[1m  # module.sg_be[0].aws_security_group_rule.egress_with_cidr_blocks[0][0m will be created
 [0m  [32m+[0m[0m resource "aws_security_group_rule" "egress_with_cidr_blocks" {
       [32m+[0m[0m cidr_blocks              = [
           [32m+[0m[0m "0.0.0.0/0",
@@ -698,7 +753,7 @@ Terraform will perform the following actions:
       [32m+[0m[0m type                     = "egress"
     }
 
-[1m  # module.sg_be.aws_security_group_rule.ingress_with_cidr_blocks[0][0m will be created
+[1m  # module.sg_be[0].aws_security_group_rule.ingress_with_cidr_blocks[0][0m will be created
 [0m  [32m+[0m[0m resource "aws_security_group_rule" "ingress_with_cidr_blocks" {
       [32m+[0m[0m cidr_blocks              = [
           [32m+[0m[0m "10.0.0.0/8",
@@ -716,7 +771,90 @@ Terraform will perform the following actions:
       [32m+[0m[0m type                     = "ingress"
     }
 
-[1m  # module.sg_be.aws_security_group_rule.ingress_with_cidr_blocks[1][0m will be created
+[1m  # module.sg_be[0].aws_security_group_rule.ingress_with_cidr_blocks[1][0m will be created
+[0m  [32m+[0m[0m resource "aws_security_group_rule" "ingress_with_cidr_blocks" {
+      [32m+[0m[0m cidr_blocks              = [
+          [32m+[0m[0m "0.0.0.0/0",
+        ]
+      [32m+[0m[0m description              = "Ingress Rule"
+      [32m+[0m[0m from_port                = 22
+      [32m+[0m[0m id                       = (known after apply)
+      [32m+[0m[0m prefix_list_ids          = []
+      [32m+[0m[0m protocol                 = "tcp"
+      [32m+[0m[0m security_group_id        = (known after apply)
+      [32m+[0m[0m security_group_rule_id   = (known after apply)
+      [32m+[0m[0m self                     = false
+      [32m+[0m[0m source_security_group_id = (known after apply)
+      [32m+[0m[0m to_port                  = 22
+      [32m+[0m[0m type                     = "ingress"
+    }
+
+[1m  # module.sg_be[1].aws_security_group.this_name_prefix[0][0m will be created
+[0m  [32m+[0m[0m resource "aws_security_group" "this_name_prefix" {
+      [32m+[0m[0m arn                    = (known after apply)
+      [32m+[0m[0m description            = "Security group for backend er of glb with custom ports open within VPC"
+      [32m+[0m[0m egress                 = (known after apply)
+      [32m+[0m[0m id                     = (known after apply)
+      [32m+[0m[0m ingress                = (known after apply)
+      [32m+[0m[0m name                   = (known after apply)
+      [32m+[0m[0m name_prefix            = "be-er-2-us-west-2-sg-"
+      [32m+[0m[0m owner_id               = (known after apply)
+      [32m+[0m[0m revoke_rules_on_delete = false
+      [32m+[0m[0m tags                   = {
+          [32m+[0m[0m "Environment" = "dariusz"
+          [32m+[0m[0m "Name"        = "be-er-2-us-west-2-sg"
+          [32m+[0m[0m "Terraform"   = "true"
+        }
+      [32m+[0m[0m tags_all               = {
+          [32m+[0m[0m "Environment" = "dariusz"
+          [32m+[0m[0m "Name"        = "be-er-2-us-west-2-sg"
+          [32m+[0m[0m "Terraform"   = "true"
+        }
+      [32m+[0m[0m vpc_id                 = (known after apply)
+
+      [32m+[0m[0m timeouts {
+          [32m+[0m[0m create = "10m"
+          [32m+[0m[0m delete = "15m"
+        }
+    }
+
+[1m  # module.sg_be[1].aws_security_group_rule.egress_with_cidr_blocks[0][0m will be created
+[0m  [32m+[0m[0m resource "aws_security_group_rule" "egress_with_cidr_blocks" {
+      [32m+[0m[0m cidr_blocks              = [
+          [32m+[0m[0m "0.0.0.0/0",
+        ]
+      [32m+[0m[0m description              = "Egress Rule"
+      [32m+[0m[0m from_port                = -1
+      [32m+[0m[0m id                       = (known after apply)
+      [32m+[0m[0m prefix_list_ids          = []
+      [32m+[0m[0m protocol                 = "-1"
+      [32m+[0m[0m security_group_id        = (known after apply)
+      [32m+[0m[0m security_group_rule_id   = (known after apply)
+      [32m+[0m[0m self                     = false
+      [32m+[0m[0m source_security_group_id = (known after apply)
+      [32m+[0m[0m to_port                  = -1
+      [32m+[0m[0m type                     = "egress"
+    }
+
+[1m  # module.sg_be[1].aws_security_group_rule.ingress_with_cidr_blocks[0][0m will be created
+[0m  [32m+[0m[0m resource "aws_security_group_rule" "ingress_with_cidr_blocks" {
+      [32m+[0m[0m cidr_blocks              = [
+          [32m+[0m[0m "10.0.0.0/8",
+        ]
+      [32m+[0m[0m description              = "Ingress Rule"
+      [32m+[0m[0m from_port                = -1
+      [32m+[0m[0m id                       = (known after apply)
+      [32m+[0m[0m prefix_list_ids          = []
+      [32m+[0m[0m protocol                 = "-1"
+      [32m+[0m[0m security_group_id        = (known after apply)
+      [32m+[0m[0m security_group_rule_id   = (known after apply)
+      [32m+[0m[0m self                     = false
+      [32m+[0m[0m source_security_group_id = (known after apply)
+      [32m+[0m[0m to_port                  = -1
+      [32m+[0m[0m type                     = "ingress"
+    }
+
+[1m  # module.sg_be[1].aws_security_group_rule.ingress_with_cidr_blocks[1][0m will be created
 [0m  [32m+[0m[0m resource "aws_security_group_rule" "ingress_with_cidr_blocks" {
       [32m+[0m[0m cidr_blocks              = [
           [32m+[0m[0m "0.0.0.0/0",
@@ -1098,7 +1236,7 @@ Terraform will perform the following actions:
       [32m+[0m[0m vpc_id          = (known after apply)
     }
 
-[1mPlan:[0m 43 to add, 0 to change, 0 to destroy.
+[1mPlan:[0m 49 to add, 0 to change, 0 to destroy.
 [0m
 Changes to Outputs:
   [32m+[0m[0m backend_public_ips = [
@@ -1120,150 +1258,241 @@ Changes to Outputs:
       [32m+[0m[0m (known after apply),
       [32m+[0m[0m (known after apply),
     ]
-[0m[1maws_iam_role.secret_manager_zfw_ec2_role: Creating...[0m[0m
+[0m[1mrandom_string.random_secret_name: Creating...[0m[0m
+[0m[1mrandom_string.random_secret_name: Creation complete after 0s [id=tfrkajwhhawcfptimoav][0m
+[0m[1mdata.template_cloudinit_config.config-be[0]: Reading...[0m[0m
+[0m[1mdata.template_cloudinit_config.config-be[0]: Read complete after 0s [id=1326914152][0m
+[0m[1mdata.template_cloudinit_config.config-be[1]: Reading...[0m[0m
+[0m[1mdata.template_cloudinit_config.config-be[1]: Read complete after 0s [id=1182857392][0m
 [0m[1maws_secretsmanager_secret.zfw_secret_pt: Creating...[0m[0m
 [0m[1maws_key_pair.ssh_public_key: Creating...[0m[0m
 [0m[1mmodule.vpc1.aws_vpc.this[0]: Creating...[0m[0m
-[0m[1maws_iam_role.secret_manager_zfw_ec2_role: Creation complete after 0s [id=glb_test_zfw_ec2_role_us-west-2][0m
-[0m[1maws_iam_instance_profile.secret_manager_zfw_ec2_profile: Creating...[0m[0m
+[0m[1maws_iam_role.secret_manager_zfw_ec2_role: Creating...[0m[0m
+[0m[1maws_iam_role.secret_manager_zfw_ec2_role: Creation complete after 1s [id=glb_test_zfw_ec2_role_us-west-2][0m
+[0m[1maws_iam_instance_profile.secret_manager_zfw_ec2_profile[1]: Creating...[0m[0m
+[0m[1maws_iam_instance_profile.secret_manager_zfw_ec2_profile[0]: Creating...[0m[0m
+[0m[1maws_secretsmanager_secret.zfw_secret_pt: Creation complete after 1s [id=arn:aws:secretsmanager:us-west-2:925908137963:secret:tfrkajwhhawcfptimoav-6BJBJ3][0m
+[0m[1maws_secretsmanager_secret_version.zfw_secret_pt: Creating...[0m[0m
 [0m[1maws_key_pair.ssh_public_key: Creation complete after 1s [id=be-test-ssh-key][0m
-[0m[1maws_secretsmanager_secret.zfw_secret_pt: Still creating... [10s elapsed][0m[0m
+[0m[1maws_secretsmanager_secret_version.zfw_secret_pt: Creation complete after 0s [id=arn:aws:secretsmanager:us-west-2:925908137963:secret:tfrkajwhhawcfptimoav-6BJBJ3|terraform-20240810183618874700000002][0m
+[0m[1maws_iam_instance_profile.secret_manager_zfw_ec2_profile[1]: Creation complete after 0s [id=be-er-2-us-west-2_profile_us-west-2][0m
+[0m[1maws_iam_policy.secret_manager_zfw_policy: Creating...[0m[0m
+[0m[1maws_iam_instance_profile.secret_manager_zfw_ec2_profile[0]: Creation complete after 0s [id=be-er-1-us-west-2_profile_us-west-2][0m
+[0m[1maws_iam_policy.secret_manager_zfw_policy: Creation complete after 0s [id=arn:aws:iam::925908137963:policy/glb_test_zfw_secret_read_policy_us-west-2][0m
+[0m[1maws_iam_role_policy_attachment.secret_manager_zfw_policy_attachment: Creating...[0m[0m
+[0m[1maws_iam_role_policy_attachment.secret_manager_zfw_policy_attachment: Creation complete after 1s [id=glb_test_zfw_ec2_role_us-west-2-20240810183619590800000003][0m
 [0m[1mmodule.vpc1.aws_vpc.this[0]: Still creating... [10s elapsed][0m[0m
-[0m[1mmodule.vpc1.aws_vpc.this[0]: Creation complete after 13s [id=vpc-05bab091ee8feb07d][0m
-[0m[1mmodule.vpc1.aws_route_table.public[0]: Creating...[0m[0m
-[0m[1mmodule.vpc1.aws_subnet.public[1]: Creating...[0m[0m
-[0m[1mmodule.vpc1.aws_vpn_gateway.this[0]: Creating...[0m[0m
-[0m[1mmodule.vpc1.aws_subnet.public[0]: Creating...[0m[0m
-[0m[1mmodule.vpc1.aws_default_route_table.default[0]: Creating...[0m[0m
+[0m[1mmodule.vpc1.aws_vpc.this[0]: Creation complete after 13s [id=vpc-0133c8ce1ca7e843a][0m
 [0m[1mmodule.vpc1.aws_default_security_group.this[0]: Creating...[0m[0m
+[0m[1mmodule.sg_be[1].aws_security_group.this_name_prefix[0]: Creating...[0m[0m
+[0m[1mmodule.vpc1.aws_subnet.public[0]: Creating...[0m[0m
 [0m[1mmodule.vpc1.aws_internet_gateway.this[0]: Creating...[0m[0m
-[0m[1mmodule.gwlb1.aws_lb_target_group.glb_tg: Creating...[0m[0m
+[0m[1mmodule.sg_be[0].aws_security_group.this_name_prefix[0]: Creating...[0m[0m
+[0m[1mmodule.vpc1.aws_subnet.public[1]: Creating...[0m[0m
+[0m[1mmodule.vpc1.aws_route_table.public[0]: Creating...[0m[0m
+[0m[1mmodule.vpc1.aws_default_route_table.default[0]: Creating...[0m[0m
+[0m[1mmodule.vpc1.aws_vpn_gateway.this[0]: Creating...[0m[0m
 [0m[1mmodule.vpc1.aws_default_network_acl.this[0]: Creating...[0m[0m
-[0m[1mmodule.vpc1.aws_default_route_table.default[0]: Creation complete after 0s [id=rtb-0333217190bc08ae5][0m
+[0m[1mmodule.vpc1.aws_internet_gateway.this[0]: Creation complete after 1s [id=igw-024e9e9de8efc1e43][0m
+[0m[1mmodule.vpc1.aws_default_route_table.default[0]: Creation complete after 1s [id=rtb-069199e9112eed3eb][0m
+[0m[1mmodule.gwlb1.aws_lb_target_group.glb_tg: Creating...[0m[0m
 [0m[1mmodule.sg_client.aws_security_group.this_name_prefix[0]: Creating...[0m[0m
-[0m[1mmodule.vpc1.aws_route_table.public[0]: Creation complete after 1s [id=rtb-0e9ced6c51b6e849e][0m
-[0m[1mmodule.sg_be.aws_security_group.this_name_prefix[0]: Creating...[0m[0m
-[0m[1mmodule.vpc1.aws_internet_gateway.this[0]: Creation complete after 1s [id=igw-0f25c952b3c904e90][0m
+[0m[1mmodule.vpc1.aws_route_table.public[0]: Creation complete after 1s [id=rtb-0c8c702472a66097a][0m
 [0m[1mmodule.vpc1.aws_route.public_internet_gateway[0]: Creating...[0m[0m
-[0m[1mmodule.gwlb1.aws_lb_target_group.glb_tg: Creation complete after 2s [id=arn:aws:elasticloadbalancing:us-west-2:925908137963:targetgroup/nf-lb-tg/002ae649aec8e83e2d][0m
-[0m[1mmodule.vpc1.aws_default_network_acl.this[0]: Creation complete after 2s [id=acl-018476d87f37cd06f][0m
-[0m[1mmodule.vpc1.aws_route.public_internet_gateway[0]: Creation complete after 1s [id=r-rtb-0e9ced6c51b6e849e1080289494][0m
-[0m[1mmodule.vpc1.aws_default_security_group.this[0]: Creation complete after 2s [id=sg-055942f3cf382b299][0m
-[0m[1mmodule.sg_client.aws_security_group.this_name_prefix[0]: Creation complete after 3s [id=sg-06c4f3c12e4595962][0m
-[0m[1mmodule.sg_client.aws_security_group_rule.ingress_with_cidr_blocks[0]: Creating...[0m[0m
+[0m[1mmodule.vpc1.aws_default_security_group.this[0]: Creation complete after 2s [id=sg-09fed8f5ae40abddb][0m
+[0m[1mmodule.vpc1.aws_default_network_acl.this[0]: Creation complete after 2s [id=acl-0e1609c394015e054][0m
+[0m[1mmodule.vpc1.aws_route.public_internet_gateway[0]: Creation complete after 1s [id=r-rtb-0c8c702472a66097a1080289494][0m
+[0m[1mmodule.sg_be[1].aws_security_group.this_name_prefix[0]: Creation complete after 2s [id=sg-072e42940d99a996a][0m
+[0m[1mmodule.sg_be[0].aws_security_group.this_name_prefix[0]: Creation complete after 2s [id=sg-0178fb2fa899a45b0][0m
+[0m[1mmodule.sg_be[0].aws_security_group_rule.ingress_with_cidr_blocks[1]: Creating...[0m[0m
+[0m[1mmodule.sg_be[0].aws_security_group_rule.ingress_with_cidr_blocks[0]: Creating...[0m[0m
+[0m[1mmodule.sg_be[0].aws_security_group_rule.egress_with_cidr_blocks[0]: Creating...[0m[0m
+[0m[1mmodule.sg_be[1].aws_security_group_rule.egress_with_cidr_blocks[0]: Creating...[0m[0m
+[0m[1mmodule.sg_be[1].aws_security_group_rule.ingress_with_cidr_blocks[0]: Creating...[0m[0m
+[0m[1mmodule.gwlb1.aws_lb_target_group.glb_tg: Creation complete after 2s [id=arn:aws:elasticloadbalancing:us-west-2:925908137963:targetgroup/nf-lb-tg/0071c1060b41b94fb6][0m
+[0m[1mmodule.sg_be[1].aws_security_group_rule.ingress_with_cidr_blocks[1]: Creating...[0m[0m
+[0m[1mmodule.sg_client.aws_security_group.this_name_prefix[0]: Creation complete after 2s [id=sg-0f390fc4107bf6611][0m
 [0m[1mmodule.sg_client.aws_security_group_rule.egress_with_cidr_blocks[0]: Creating...[0m[0m
+[0m[1mmodule.sg_be[0].aws_security_group_rule.egress_with_cidr_blocks[0]: Creation complete after 1s [id=sgrule-2707562964][0m
+[0m[1mmodule.sg_be[1].aws_security_group_rule.ingress_with_cidr_blocks[0]: Creation complete after 1s [id=sgrule-3468074547][0m
+[0m[1mmodule.sg_client.aws_security_group_rule.ingress_with_cidr_blocks[0]: Creating...[0m[0m
 [0m[1mmodule.sg_client.aws_security_group_rule.ingress_with_cidr_blocks[1]: Creating...[0m[0m
-[0m[1mmodule.sg_be.aws_security_group.this_name_prefix[0]: Creation complete after 2s [id=sg-0f1b91df895d79c7c][0m
-[0m[1mmodule.sg_be.aws_security_group_rule.egress_with_cidr_blocks[0]: Creating...[0m[0m
-[0m[1mmodule.sg_be.aws_security_group_rule.ingress_with_cidr_blocks[1]: Creating...[0m[0m
-[0m[1mmodule.sg_be.aws_security_group_rule.ingress_with_cidr_blocks[0]: Creating...[0m[0m
-[0m[1mmodule.sg_client.aws_security_group_rule.egress_with_cidr_blocks[0]: Creation complete after 0s [id=sgrule-3009593699][0m
-[0m[1mmodule.sg_be.aws_security_group_rule.egress_with_cidr_blocks[0]: Creation complete after 1s [id=sgrule-3016639095][0m
-[0m[1mmodule.sg_client.aws_security_group_rule.ingress_with_cidr_blocks[1]: Creation complete after 1s [id=sgrule-1797060220][0m
-[0m[1mmodule.sg_be.aws_security_group_rule.ingress_with_cidr_blocks[0]: Creation complete after 2s [id=sgrule-259482655][0m
-[0m[1mmodule.sg_client.aws_security_group_rule.ingress_with_cidr_blocks[0]: Creation complete after 2s [id=sgrule-1432904060][0m
-[0m[1mmodule.sg_be.aws_security_group_rule.ingress_with_cidr_blocks[1]: Creation complete after 2s [id=sgrule-1154345047][0m
-[0m[1maws_secretsmanager_secret.zfw_secret_pt: Still creating... [20s elapsed][0m[0m
+[0m[1mmodule.sg_client.aws_security_group_rule.egress_with_cidr_blocks[0]: Creation complete after 1s [id=sgrule-3005834504][0m
+[0m[1mmodule.sg_be[1].aws_security_group_rule.egress_with_cidr_blocks[0]: Creation complete after 2s [id=sgrule-1588266135][0m
+[0m[1mmodule.sg_be[0].aws_security_group_rule.ingress_with_cidr_blocks[0]: Creation complete after 2s [id=sgrule-1592174971][0m
+[0m[1mmodule.sg_be[1].aws_security_group_rule.ingress_with_cidr_blocks[1]: Creation complete after 2s [id=sgrule-1757090034][0m
+[0m[1mmodule.sg_be[0].aws_security_group_rule.ingress_with_cidr_blocks[1]: Creation complete after 3s [id=sgrule-2930723639][0m
+[0m[1mmodule.sg_client.aws_security_group_rule.ingress_with_cidr_blocks[0]: Creation complete after 2s [id=sgrule-47887530][0m
+[0m[1mmodule.sg_client.aws_security_group_rule.ingress_with_cidr_blocks[1]: Creation complete after 2s [id=sgrule-820397891][0m
+[0m[1mmodule.vpc1.aws_subnet.public[0]: Still creating... [10s elapsed][0m[0m
 [0m[1mmodule.vpc1.aws_subnet.public[1]: Still creating... [10s elapsed][0m[0m
 [0m[1mmodule.vpc1.aws_vpn_gateway.this[0]: Still creating... [10s elapsed][0m[0m
-[0m[1mmodule.vpc1.aws_subnet.public[0]: Still creating... [10s elapsed][0m[0m
-[0m[1mmodule.vpc1.aws_subnet.public[1]: Creation complete after 11s [id=subnet-0c1dc4dc8c57c8a00][0m
-[0m[1mmodule.vpc1.aws_subnet.public[0]: Creation complete after 11s [id=subnet-0e1a7aa54c6e25e46][0m
+[0m[1mmodule.vpc1.aws_subnet.public[1]: Creation complete after 12s [id=subnet-05bede58868061e02][0m
+[0m[1mmodule.vpc1.aws_subnet.public[0]: Creation complete after 12s [id=subnet-0f791c2d58107868c][0m
 [0m[1mmodule.vpc1.aws_route_table_association.public[1]: Creating...[0m[0m
 [0m[1mmodule.vpc1.aws_route_table_association.public[0]: Creating...[0m[0m
 [0m[1mmodule.gwlb1.aws_lb.glb: Creating...[0m[0m
 [0m[1mmodule.compute_client[0].aws_instance.this[0]: Creating...[0m[0m
+[0m[1mmodule.compute_backend[0].aws_instance.this[0]: Creating...[0m[0m
+[0m[1mmodule.compute_backend[1].aws_instance.this[0]: Creating...[0m[0m
 [0m[1mmodule.compute_client[1].aws_instance.this[0]: Creating...[0m[0m
-[0m[1mmodule.vpc1.aws_route_table_association.public[1]: Creation complete after 1s [id=rtbassoc-0a3202fca64de4b0c][0m
-[0m[1mmodule.vpc1.aws_route_table_association.public[0]: Creation complete after 1s [id=rtbassoc-064fd7fe3dd466433][0m
-[0m[1maws_secretsmanager_secret.zfw_secret_pt: Still creating... [30s elapsed][0m[0m
+[0m[1mmodule.vpc1.aws_route_table_association.public[0]: Creation complete after 1s [id=rtbassoc-04d541edfc4538228][0m
+[0m[1mmodule.vpc1.aws_route_table_association.public[1]: Creation complete after 1s [id=rtbassoc-02f84dc95ceceb6df][0m
 [0m[1mmodule.vpc1.aws_vpn_gateway.this[0]: Still creating... [20s elapsed][0m[0m
 [0m[1mmodule.gwlb1.aws_lb.glb: Still creating... [10s elapsed][0m[0m
 [0m[1mmodule.compute_client[0].aws_instance.this[0]: Still creating... [10s elapsed][0m[0m
+[0m[1mmodule.compute_backend[0].aws_instance.this[0]: Still creating... [10s elapsed][0m[0m
+[0m[1mmodule.compute_backend[1].aws_instance.this[0]: Still creating... [10s elapsed][0m[0m
 [0m[1mmodule.compute_client[1].aws_instance.this[0]: Still creating... [10s elapsed][0m[0m
-[0m[1mmodule.compute_client[0].aws_instance.this[0]: Creation complete after 14s [id=i-08967a930eaa2c8d8][0m
-[0m[1mmodule.compute_client[1].aws_instance.this[0]: Creation complete after 14s [id=i-0cdc7584c72e6e4ea][0m
-[0m[1maws_secretsmanager_secret.zfw_secret_pt: Still creating... [40s elapsed][0m[0m
+[0m[1mmodule.compute_backend[0].aws_instance.this[0]: Creation complete after 14s [id=i-04856c0933899ba53][0m
+[0m[1mmodule.compute_client[0].aws_instance.this[0]: Creation complete after 15s [id=i-02643779548d51974][0m
+[0m[1mmodule.compute_client[1].aws_instance.this[0]: Creation complete after 15s [id=i-06eec35c6df92da48][0m
+[0m[1mmodule.compute_backend[1].aws_instance.this[0]: Creation complete after 15s [id=i-0df2976d721f24276][0m
+[0m[1mmodule.gwlb1.aws_lb_target_group_attachment.glb_tg_attach[1]: Creating...[0m[0m
+[0m[1mmodule.gwlb1.aws_lb_target_group_attachment.glb_tg_attach[0]: Creating...[0m[0m
+[0m[1maws_route.be_resolver_routes[0]: Creating...[0m[0m
+[0m[1maws_route.be_resolver_routes[1]: Creating...[0m[0m
+[0m[1mmodule.gwlb1.aws_lb_target_group_attachment.glb_tg_attach[0]: Creation complete after 0s [id=arn:aws:elasticloadbalancing:us-west-2:925908137963:targetgroup/nf-lb-tg/0071c1060b41b94fb6-2024081018365787960000000c][0m
+[0m[1mmodule.gwlb1.aws_lb_target_group_attachment.glb_tg_attach[1]: Creation complete after 0s [id=arn:aws:elasticloadbalancing:us-west-2:925908137963:targetgroup/nf-lb-tg/0071c1060b41b94fb6-2024081018365822480000000d][0m
+[0m[1maws_route.be_resolver_routes[0]: Creation complete after 1s [id=r-rtb-0c8c702472a66097a3143537501][0m
+[0m[1maws_route.be_resolver_routes[1]: Creation complete after 1s [id=r-rtb-0c8c702472a66097a1783271065][0m
 [0m[1mmodule.vpc1.aws_vpn_gateway.this[0]: Still creating... [30s elapsed][0m[0m
 [0m[1mmodule.gwlb1.aws_lb.glb: Still creating... [20s elapsed][0m[0m
-[0m[1mmodule.vpc1.aws_vpn_gateway.this[0]: Creation complete after 35s [id=vgw-0d6546992cf692f87][0m
-[0m[1maws_secretsmanager_secret.zfw_secret_pt: Still creating... [50s elapsed][0m[0m
+[0m[1mmodule.vpc1.aws_vpn_gateway.this[0]: Still creating... [40s elapsed][0m[0m
 [0m[1mmodule.gwlb1.aws_lb.glb: Still creating... [30s elapsed][0m[0m
-[0m[1maws_secretsmanager_secret.zfw_secret_pt: Still creating... [1m0s elapsed][0m[0m
+[0m[1mmodule.vpc1.aws_vpn_gateway.this[0]: Creation complete after 45s [id=vgw-092ec85d7bee4c9c9][0m
 [0m[1mmodule.gwlb1.aws_lb.glb: Still creating... [40s elapsed][0m[0m
-[0m[1maws_secretsmanager_secret.zfw_secret_pt: Still creating... [1m10s elapsed][0m[0m
 [0m[1mmodule.gwlb1.aws_lb.glb: Still creating... [50s elapsed][0m[0m
-[0m[1maws_secretsmanager_secret.zfw_secret_pt: Still creating... [1m20s elapsed][0m[0m
-[0m[1mmodule.gwlb1.aws_lb.glb: Still creating... [1m1s elapsed][0m[0m
-[0m[1maws_secretsmanager_secret.zfw_secret_pt: Still creating... [1m30s elapsed][0m[0m
-[0m[1mmodule.gwlb1.aws_lb.glb: Still creating... [1m11s elapsed][0m[0m
-[0m[1maws_secretsmanager_secret.zfw_secret_pt: Still creating... [1m40s elapsed][0m[0m
-[0m[1mmodule.gwlb1.aws_lb.glb: Still creating... [1m21s elapsed][0m[0m
-[0m[1maws_secretsmanager_secret.zfw_secret_pt: Still creating... [1m50s elapsed][0m[0m
-[0m[1mmodule.gwlb1.aws_lb.glb: Still creating... [1m31s elapsed][0m[0m
-[0m[1mmodule.gwlb1.aws_lb.glb: Still creating... [1m41s elapsed][0m[0m
-[0m[1mmodule.gwlb1.aws_lb.glb: Still creating... [1m51s elapsed][0m[0m
-[0m[1mmodule.gwlb1.aws_lb.glb: Still creating... [2m1s elapsed][0m[0m
-[0m[1mmodule.gwlb1.aws_lb.glb: Still creating... [2m11s elapsed][0m[0m
-[0m[1mmodule.gwlb1.aws_lb.glb: Still creating... [2m21s elapsed][0m[0m
-[0m[1mmodule.gwlb1.aws_lb.glb: Creation complete after 2m24s [id=arn:aws:elasticloadbalancing:us-west-2:925908137963:loadbalancer/gwy/nf-lb-01/5f67812409257bcb][0m
+[0m[1mmodule.gwlb1.aws_lb.glb: Still creating... [1m0s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_lb.glb: Still creating... [1m10s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_lb.glb: Still creating... [1m20s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_lb.glb: Still creating... [1m30s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_lb.glb: Still creating... [1m40s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_lb.glb: Still creating... [1m50s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_lb.glb: Still creating... [2m0s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_lb.glb: Still creating... [2m10s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_lb.glb: Still creating... [2m20s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_lb.glb: Still creating... [2m30s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_lb.glb: Creation complete after 2m33s [id=arn:aws:elasticloadbalancing:us-west-2:925908137963:loadbalancer/gwy/nf-lb-01/de265818aabd210d][0m
 [0m[1mmodule.gwlb1.aws_vpc_endpoint_service.glb_es: Creating...[0m[0m
 [0m[1mmodule.gwlb1.aws_lb_listener.glb_fe: Creating...[0m[0m
-[0m[1mmodule.gwlb1.aws_lb_listener.glb_fe: Creation complete after 0s [id=arn:aws:elasticloadbalancing:us-west-2:925908137963:listener/gwy/nf-lb-01/5f67812409257bcb/49d33abce13cda12][0m
-[0m[1mmodule.gwlb1.aws_vpc_endpoint_service.glb_es: Creation complete after 6s [id=vpce-svc-04ae2d240e48fe008][0m
+[0m[1mmodule.gwlb1.aws_lb_listener.glb_fe: Creation complete after 0s [id=arn:aws:elasticloadbalancing:us-west-2:925908137963:listener/gwy/nf-lb-01/de265818aabd210d/584d389cda38f53c][0m
+[0m[1mmodule.gwlb1.aws_vpc_endpoint_service.glb_es: Creation complete after 6s [id=vpce-svc-0571a0cf4044dea06][0m
 [0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[0]: Creating...[0m[0m
 [0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[1]: Creating...[0m[0m
 [0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[1]: Still creating... [10s elapsed][0m[0m
 [0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[0]: Still creating... [10s elapsed][0m[0m
 [0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[0]: Still creating... [20s elapsed][0m[0m
 [0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[1]: Still creating... [20s elapsed][0m[0m
-[0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[1]: Still creating... [30s elapsed][0m[0m
 [0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[0]: Still creating... [30s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[1]: Still creating... [30s elapsed][0m[0m
 [0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[1]: Still creating... [40s elapsed][0m[0m
 [0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[0]: Still creating... [40s elapsed][0m[0m
 [0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[0]: Still creating... [50s elapsed][0m[0m
 [0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[1]: Still creating... [50s elapsed][0m[0m
-[0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[1]: Still creating... [1m0s elapsed][0m[0m
 [0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[0]: Still creating... [1m0s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[1]: Still creating... [1m0s elapsed][0m[0m
 [0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[0]: Still creating... [1m10s elapsed][0m[0m
 [0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[1]: Still creating... [1m10s elapsed][0m[0m
-[0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[0]: Still creating... [1m20s elapsed][0m[0m
 [0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[1]: Still creating... [1m20s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[0]: Still creating... [1m20s elapsed][0m[0m
 [0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[1]: Still creating... [1m30s elapsed][0m[0m
 [0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[0]: Still creating... [1m30s elapsed][0m[0m
-[0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[0]: Creation complete after 1m33s [id=vpce-03365ab15355e57b5][0m
+[0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[0]: Creation complete after 1m33s [id=vpce-04c5c8f7e0d93744b][0m
 [0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[1]: Still creating... [1m40s elapsed][0m[0m
-[0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[1]: Creation complete after 1m44s [id=vpce-00da7b02768604e28][0m
-[0m[1mmodule.gwlb1.aws_route.glb_routes[0]: Creating...[0m[0m
+[0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[1]: Creation complete after 1m43s [id=vpce-083644133bdd5c0ed][0m
 [0m[1mmodule.gwlb1.aws_route.glb_routes[1]: Creating...[0m[0m
-[0m[1mmodule.gwlb1.aws_route.glb_routes[1]: Creation complete after 1s [id=r-rtb-0333217190bc08ae53117404284][0m
-[0m[1mmodule.gwlb1.aws_route.glb_routes[0]: Creation complete after 1s [id=r-rtb-0e9ced6c51b6e849e3117404284][0m
+[0m[1mmodule.gwlb1.aws_route.glb_routes[0]: Creating...[0m[0m
+[0m[1mmodule.gwlb1.aws_route.glb_routes[0]: Creation complete after 1s [id=r-rtb-0c8c702472a66097a3117404284][0m
+[0m[1mmodule.gwlb1.aws_route.glb_routes[1]: Creation complete after 1s [id=r-rtb-069199e9112eed3eb3117404284][0m
+[0m[1m[32m
+Apply complete! Resources: 49 added, 0 changed, 0 destroyed.
+[0m[0m[1m[32m
+Outputs:
+
+[0mbackend_public_ips = [
+  "35.92.225.246",
+  "35.88.136.235",
+]
+client_public_ips = [
+  "34.211.103.5",
+  "52.13.1.81",
+]
+endpoint_ids = [
+  "vpce-04c5c8f7e0d93744b",
+  "vpce-083644133bdd5c0ed",
+]
+route_table_ids = [
+  "rtb-0c8c702472a66097a",
+]
+subnets = [
+  "subnet-0f791c2d58107868c",
+  "subnet-05bede58868061e02",
+]
 [0m[32m[1mCreated and switched to workspace "us-east-2"![0m[32m
 
 You're now on a new, empty workspace. Workspaces isolate their state,
 so if you run "terraform plan" Terraform will not see any existing state
 for this configuration.[0m
-{"id":"154f8e6f-0ad2-4f3a-8311-0eddef738349","ownerIdentityId":"09d7c14a-a1ee-4552-a0fd-63c236648b00","createdBy":"09d7c14a-a1ee-4552-a0fd-63c236648b00","createdAt":"2024-08-09T13:38:13.522754Z","updatedAt":"2024-08-09T13:38:13.522754Z","deletedBy":null,"deletedAt":null,"networkId":"3d22b880-31df-4b5d-949f-e34fec3cd068","zitiId":"yrVB4hLeM","name":"be-er01-useast2","typeId":"Router","appId":null,"appVersion":null,"branch":null,"revision":null,"type":null,"version":null,"arch":null,"os":null,"osRelease":null,"osVersion":null,"externalId":null,"authPolicyId":"8cce46f6-bfb4-4688-9486-fbc8a78de1c6","disabled":false,"disabledAt":null,"disabledUntil":null,"hasApiSession":false,"hasEdgeRouterConnection":false,"lastOnlineAt":null,"syncId":null,"syncResourceId":null,"attributes":["#novis"],"jwtExpiresAt":null,"mfaEnabled":false,"jwt":null,"online":false,"managedBy":"Router","_links":{"self":{"href":"https://gateway.production.netfoundry.io/core/v2/endpoints/154f8e6f-0ad2-4f3a-8311-0eddef738349","title":"be-er01-useast2"},"network":{"href":"https://gateway.production.netfoundry.io/core/v2/networks/3d22b880-31df-4b5d-949f-e34fec3cd068","title":"dariuszdev","profile":"parent"},"auth-policy":{"href":"https://gateway.production.netfoundry.io/core/v2/auth-policies/8cce46f6-bfb4-4688-9486-fbc8a78de1c6","title":"Default"}}}{"id":"85cc5af9-5d59-4e46-9af1-8a19bd769ada","ownerIdentityId":"09d7c14a-a1ee-4552-a0fd-63c236648b00","createdBy":"09d7c14a-a1ee-4552-a0fd-63c236648b00","createdAt":"2024-08-09T13:38:26.283901Z","updatedAt":"2024-08-09T13:38:26.283901Z","deletedBy":null,"deletedAt":null,"networkId":"3d22b880-31df-4b5d-949f-e34fec3cd068","zitiId":"IGlFsKzexB","name":"be-er02-useast2","typeId":"Router","appId":null,"appVersion":null,"branch":null,"revision":null,"type":null,"version":null,"arch":null,"os":null,"osRelease":null,"osVersion":null,"externalId":null,"authPolicyId":"8cce46f6-bfb4-4688-9486-fbc8a78de1c6","disabled":false,"disabledAt":null,"disabledUntil":null,"hasApiSession":false,"hasEdgeRouterConnection":false,"lastOnlineAt":null,"syncId":null,"syncResourceId":null,"attributes":["#novis"],"jwtExpiresAt":null,"mfaEnabled":false,"jwt":null,"online":false,"managedBy":"Router","_links":{"self":{"href":"https://gateway.production.netfoundry.io/core/v2/endpoints/85cc5af9-5d59-4e46-9af1-8a19bd769ada","title":"be-er02-useast2"},"network":{"href":"https://gateway.production.netfoundry.io/core/v2/networks/3d22b880-31df-4b5d-949f-e34fec3cd068","title":"dariuszdev","profile":"parent"},"auth-policy":{"href":"https://gateway.production.netfoundry.io/core/v2/auth-policies/8cce46f6-bfb4-4688-9486-fbc8a78de1c6","title":"Default"}}}[0m[1mdata.template_cloudinit_config.config-be[1]: Reading...[0m[0m
-[0m[1mdata.template_cloudinit_config.config-client[1]: Reading...[0m[0m
-[0m[1mdata.template_cloudinit_config.config-be[0]: Reading...[0m[0m
-[0m[1mdata.template_cloudinit_config.config-client[1]: Read complete after 0s [id=2171264367][0m
-[0m[1mdata.template_cloudinit_config.config-be[1]: Read complete after 0s [id=4165761949][0m
-[0m[1mdata.template_cloudinit_config.config-be[0]: Read complete after 0s [id=4101748531][0m
+{"id":"388d4b48-eb14-4f2f-b572-c70f0667ae6f","ownerIdentityId":"09d7c14a-a1ee-4552-a0fd-63c236648b00","createdBy":"09d7c14a-a1ee-4552-a0fd-63c236648b00","createdAt":"2024-08-10T18:41:17.756233Z","updatedAt":"2024-08-10T18:41:17.756233Z","deletedBy":null,"deletedAt":null,"networkId":"3d22b880-31df-4b5d-949f-e34fec3cd068","zitiId":"SGtbsnAFq","name":"be-er-1-us-east-2","typeId":"Router","appId":null,"appVersion":null,"branch":null,"revision":null,"type":null,"version":null,"arch":null,"os":null,"osRelease":null,"osVersion":null,"externalId":null,"authPolicyId":"8cce46f6-bfb4-4688-9486-fbc8a78de1c6","disabled":false,"disabledAt":null,"disabledUntil":null,"hasApiSession":false,"hasEdgeRouterConnection":false,"lastOnlineAt":null,"syncId":null,"syncResourceId":null,"attributes":["#novis"],"jwtExpiresAt":null,"mfaEnabled":false,"jwt":null,"online":false,"managedBy":"Router","_links":{"auth-policy":{"href":"https://gateway.production.netfoundry.io/core/v2/auth-policies/8cce46f6-bfb4-4688-9486-fbc8a78de1c6","title":"Default"},"self":{"href":"https://gateway.production.netfoundry.io/core/v2/endpoints/388d4b48-eb14-4f2f-b572-c70f0667ae6f","title":"be-er-1-us-east-2"},"network":{"href":"https://gateway.production.netfoundry.io/core/v2/networks/3d22b880-31df-4b5d-949f-e34fec3cd068","title":"dariuszdev","profile":"parent"}}}{"id":"bee3cc2c-bcdd-4f69-9fbb-2d8d2bc1096c","ownerIdentityId":"09d7c14a-a1ee-4552-a0fd-63c236648b00","createdBy":"09d7c14a-a1ee-4552-a0fd-63c236648b00","createdAt":"2024-08-10T18:41:25.226761Z","updatedAt":"2024-08-10T18:41:25.226761Z","deletedBy":null,"deletedAt":null,"networkId":"3d22b880-31df-4b5d-949f-e34fec3cd068","zitiId":"p9wrsnAFqE","name":"be-er-2-us-east-2","typeId":"Router","appId":null,"appVersion":null,"branch":null,"revision":null,"type":null,"version":null,"arch":null,"os":null,"osRelease":null,"osVersion":null,"externalId":null,"authPolicyId":"8cce46f6-bfb4-4688-9486-fbc8a78de1c6","disabled":false,"disabledAt":null,"disabledUntil":null,"hasApiSession":false,"hasEdgeRouterConnection":false,"lastOnlineAt":null,"syncId":null,"syncResourceId":null,"attributes":["#novis"],"jwtExpiresAt":null,"mfaEnabled":false,"jwt":null,"online":false,"managedBy":"Router","_links":{"auth-policy":{"href":"https://gateway.production.netfoundry.io/core/v2/auth-policies/8cce46f6-bfb4-4688-9486-fbc8a78de1c6","title":"Default"},"self":{"href":"https://gateway.production.netfoundry.io/core/v2/endpoints/bee3cc2c-bcdd-4f69-9fbb-2d8d2bc1096c","title":"be-er-2-us-east-2"},"network":{"href":"https://gateway.production.netfoundry.io/core/v2/networks/3d22b880-31df-4b5d-949f-e34fec3cd068","title":"dariuszdev","profile":"parent"}}}[0m[1mdata.template_cloudinit_config.config-client[1]: Reading...[0m[0m
 [0m[1mdata.template_cloudinit_config.config-client[0]: Reading...[0m[0m
 [0m[1mdata.template_cloudinit_config.config-client[0]: Read complete after 0s [id=2171264367][0m
+[0m[1mdata.template_cloudinit_config.config-client[1]: Read complete after 0s [id=2171264367][0m
 
 Terraform used the selected providers to generate the following execution
 plan. Resource actions are indicated with the following symbols:
   [32m+[0m create[0m
+ [36m<=[0m read (data resources)[0m
 
 Terraform will perform the following actions:
 
-[1m  # aws_iam_instance_profile.secret_manager_zfw_ec2_profile[0m will be created
+[1m  # data.template_cloudinit_config.config-be[0][0m will be read during apply
+  # (config refers to values not yet known)
+[0m [36m<=[0m[0m data "template_cloudinit_config" "config-be" {
+      [32m+[0m[0m base64_encode = true
+      [32m+[0m[0m gzip          = true
+      [32m+[0m[0m id            = (known after apply)
+      [32m+[0m[0m rendered      = (known after apply)
+
+      [32m+[0m[0m part {
+          [32m+[0m[0m content      = (known after apply)
+          [32m+[0m[0m content_type = "text/cloud-config"
+        }
+    }
+
+[1m  # data.template_cloudinit_config.config-be[1][0m will be read during apply
+  # (config refers to values not yet known)
+[0m [36m<=[0m[0m data "template_cloudinit_config" "config-be" {
+      [32m+[0m[0m base64_encode = true
+      [32m+[0m[0m gzip          = true
+      [32m+[0m[0m id            = (known after apply)
+      [32m+[0m[0m rendered      = (known after apply)
+
+      [32m+[0m[0m part {
+          [32m+[0m[0m content      = (known after apply)
+          [32m+[0m[0m content_type = "text/cloud-config"
+        }
+    }
+
+[1m  # aws_iam_instance_profile.secret_manager_zfw_ec2_profile[0][0m will be created
 [0m  [32m+[0m[0m resource "aws_iam_instance_profile" "secret_manager_zfw_ec2_profile" {
       [32m+[0m[0m arn         = (known after apply)
       [32m+[0m[0m create_date = (known after apply)
       [32m+[0m[0m id          = (known after apply)
-      [32m+[0m[0m name        = "glb_test_zfw_ec2_profile_us-east-2"
+      [32m+[0m[0m name        = "be-er-1-us-east-2_profile_us-east-2"
+      [32m+[0m[0m name_prefix = (known after apply)
+      [32m+[0m[0m path        = "/"
+      [32m+[0m[0m role        = "glb_test_zfw_ec2_role_us-east-2"
+      [32m+[0m[0m tags_all    = (known after apply)
+      [32m+[0m[0m unique_id   = (known after apply)
+    }
+
+[1m  # aws_iam_instance_profile.secret_manager_zfw_ec2_profile[1][0m will be created
+[0m  [32m+[0m[0m resource "aws_iam_instance_profile" "secret_manager_zfw_ec2_profile" {
+      [32m+[0m[0m arn         = (known after apply)
+      [32m+[0m[0m create_date = (known after apply)
+      [32m+[0m[0m id          = (known after apply)
+      [32m+[0m[0m name        = "be-er-2-us-east-2_profile_us-east-2"
       [32m+[0m[0m name_prefix = (known after apply)
       [32m+[0m[0m path        = "/"
       [32m+[0m[0m role        = "glb_test_zfw_ec2_role_us-east-2"
@@ -1364,7 +1593,7 @@ Terraform will perform the following actions:
       [32m+[0m[0m arn                            = (known after apply)
       [32m+[0m[0m force_overwrite_replica_secret = false
       [32m+[0m[0m id                             = (known after apply)
-      [32m+[0m[0m name                           = "glb_test_zfw_repo"
+      [32m+[0m[0m name                           = (known after apply)
       [32m+[0m[0m name_prefix                    = (known after apply)
       [32m+[0m[0m policy                         = (known after apply)
       [32m+[0m[0m recovery_window_in_days        = 0
@@ -1381,6 +1610,22 @@ Terraform will perform the following actions:
       [32m+[0m[0m version_stages = (known after apply)
     }
 
+[1m  # random_string.random_secret_name[0m will be created
+[0m  [32m+[0m[0m resource "random_string" "random_secret_name" {
+      [32m+[0m[0m id          = (known after apply)
+      [32m+[0m[0m length      = 20
+      [32m+[0m[0m lower       = true
+      [32m+[0m[0m min_lower   = 0
+      [32m+[0m[0m min_numeric = 0
+      [32m+[0m[0m min_special = 0
+      [32m+[0m[0m min_upper   = 0
+      [32m+[0m[0m number      = false
+      [32m+[0m[0m numeric     = false
+      [32m+[0m[0m result      = (known after apply)
+      [32m+[0m[0m special     = false
+      [32m+[0m[0m upper       = false
+    }
+
 [1m  # module.compute_backend[0].aws_instance.this[0][0m will be created
 [0m  [32m+[0m[0m resource "aws_instance" "this" {
       [32m+[0m[0m ami                                  = "ami-0b30ef8bf8f331e78"
@@ -1395,7 +1640,7 @@ Terraform will perform the following actions:
       [32m+[0m[0m get_password_data                    = false
       [32m+[0m[0m host_id                              = (known after apply)
       [32m+[0m[0m host_resource_group_arn              = (known after apply)
-      [32m+[0m[0m iam_instance_profile                 = "glb_test_zfw_ec2_profile_us-east-2"
+      [32m+[0m[0m iam_instance_profile                 = "be-er-1-us-east-2_profile_us-east-2"
       [32m+[0m[0m id                                   = (known after apply)
       [32m+[0m[0m instance_initiated_shutdown_behavior = (known after apply)
       [32m+[0m[0m instance_lifecycle                   = (known after apply)
@@ -1421,20 +1666,20 @@ Terraform will perform the following actions:
       [32m+[0m[0m subnet_id                            = (known after apply)
       [32m+[0m[0m tags                                 = {
           [32m+[0m[0m "Environment" = "dariusz"
-          [32m+[0m[0m "Name"        = "be-er-us-east-2a"
+          [32m+[0m[0m "Name"        = "be-er-1-us-east-2"
           [32m+[0m[0m "Terraform"   = "true"
         }
       [32m+[0m[0m tags_all                             = {
           [32m+[0m[0m "Environment" = "dariusz"
-          [32m+[0m[0m "Name"        = "be-er-us-east-2a"
+          [32m+[0m[0m "Name"        = "be-er-1-us-east-2"
           [32m+[0m[0m "Terraform"   = "true"
         }
       [32m+[0m[0m tenancy                              = (known after apply)
       [32m+[0m[0m user_data                            = (known after apply)
-      [32m+[0m[0m user_data_base64                     = "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"
+      [32m+[0m[0m user_data_base64                     = (known after apply)
       [32m+[0m[0m user_data_replace_on_change          = false
       [32m+[0m[0m volume_tags                          = {
-          [32m+[0m[0m "Name" = "be-er-us-east-2a"
+          [32m+[0m[0m "Name" = "be-er-1-us-east-2"
         }
       [32m+[0m[0m vpc_security_group_ids               = (known after apply)
 
@@ -1469,7 +1714,7 @@ Terraform will perform the following actions:
       [32m+[0m[0m get_password_data                    = false
       [32m+[0m[0m host_id                              = (known after apply)
       [32m+[0m[0m host_resource_group_arn              = (known after apply)
-      [32m+[0m[0m iam_instance_profile                 = "glb_test_zfw_ec2_profile_us-east-2"
+      [32m+[0m[0m iam_instance_profile                 = "be-er-2-us-east-2_profile_us-east-2"
       [32m+[0m[0m id                                   = (known after apply)
       [32m+[0m[0m instance_initiated_shutdown_behavior = (known after apply)
       [32m+[0m[0m instance_lifecycle                   = (known after apply)
@@ -1495,20 +1740,20 @@ Terraform will perform the following actions:
       [32m+[0m[0m subnet_id                            = (known after apply)
       [32m+[0m[0m tags                                 = {
           [32m+[0m[0m "Environment" = "dariusz"
-          [32m+[0m[0m "Name"        = "be-er-us-east-2b"
+          [32m+[0m[0m "Name"        = "be-er-2-us-east-2"
           [32m+[0m[0m "Terraform"   = "true"
         }
       [32m+[0m[0m tags_all                             = {
           [32m+[0m[0m "Environment" = "dariusz"
-          [32m+[0m[0m "Name"        = "be-er-us-east-2b"
+          [32m+[0m[0m "Name"        = "be-er-2-us-east-2"
           [32m+[0m[0m "Terraform"   = "true"
         }
       [32m+[0m[0m tenancy                              = (known after apply)
       [32m+[0m[0m user_data                            = (known after apply)
-      [32m+[0m[0m user_data_base64                     = "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"
+      [32m+[0m[0m user_data_base64                     = (known after apply)
       [32m+[0m[0m user_data_replace_on_change          = false
       [32m+[0m[0m volume_tags                          = {
-          [32m+[0m[0m "Name" = "be-er-us-east-2b"
+          [32m+[0m[0m "Name" = "be-er-2-us-east-2"
         }
       [32m+[0m[0m vpc_security_group_ids               = (known after apply)
 
@@ -1870,7 +2115,7 @@ Terraform will perform the following actions:
       [32m+[0m[0m tags_all                       = (known after apply)
     }
 
-[1m  # module.sg_be.aws_security_group.this_name_prefix[0][0m will be created
+[1m  # module.sg_be[0].aws_security_group.this_name_prefix[0][0m will be created
 [0m  [32m+[0m[0m resource "aws_security_group" "this_name_prefix" {
       [32m+[0m[0m arn                    = (known after apply)
       [32m+[0m[0m description            = "Security group for backend er of glb with custom ports open within VPC"
@@ -1878,17 +2123,17 @@ Terraform will perform the following actions:
       [32m+[0m[0m id                     = (known after apply)
       [32m+[0m[0m ingress                = (known after apply)
       [32m+[0m[0m name                   = (known after apply)
-      [32m+[0m[0m name_prefix            = "be-er-sg-"
+      [32m+[0m[0m name_prefix            = "be-er-1-us-east-2-sg-"
       [32m+[0m[0m owner_id               = (known after apply)
       [32m+[0m[0m revoke_rules_on_delete = false
       [32m+[0m[0m tags                   = {
           [32m+[0m[0m "Environment" = "dariusz"
-          [32m+[0m[0m "Name"        = "be-er-sg"
+          [32m+[0m[0m "Name"        = "be-er-1-us-east-2-sg"
           [32m+[0m[0m "Terraform"   = "true"
         }
       [32m+[0m[0m tags_all               = {
           [32m+[0m[0m "Environment" = "dariusz"
-          [32m+[0m[0m "Name"        = "be-er-sg"
+          [32m+[0m[0m "Name"        = "be-er-1-us-east-2-sg"
           [32m+[0m[0m "Terraform"   = "true"
         }
       [32m+[0m[0m vpc_id                 = (known after apply)
@@ -1899,7 +2144,7 @@ Terraform will perform the following actions:
         }
     }
 
-[1m  # module.sg_be.aws_security_group_rule.egress_with_cidr_blocks[0][0m will be created
+[1m  # module.sg_be[0].aws_security_group_rule.egress_with_cidr_blocks[0][0m will be created
 [0m  [32m+[0m[0m resource "aws_security_group_rule" "egress_with_cidr_blocks" {
       [32m+[0m[0m cidr_blocks              = [
           [32m+[0m[0m "0.0.0.0/0",
@@ -1917,7 +2162,7 @@ Terraform will perform the following actions:
       [32m+[0m[0m type                     = "egress"
     }
 
-[1m  # module.sg_be.aws_security_group_rule.ingress_with_cidr_blocks[0][0m will be created
+[1m  # module.sg_be[0].aws_security_group_rule.ingress_with_cidr_blocks[0][0m will be created
 [0m  [32m+[0m[0m resource "aws_security_group_rule" "ingress_with_cidr_blocks" {
       [32m+[0m[0m cidr_blocks              = [
           [32m+[0m[0m "10.0.0.0/8",
@@ -1935,7 +2180,90 @@ Terraform will perform the following actions:
       [32m+[0m[0m type                     = "ingress"
     }
 
-[1m  # module.sg_be.aws_security_group_rule.ingress_with_cidr_blocks[1][0m will be created
+[1m  # module.sg_be[0].aws_security_group_rule.ingress_with_cidr_blocks[1][0m will be created
+[0m  [32m+[0m[0m resource "aws_security_group_rule" "ingress_with_cidr_blocks" {
+      [32m+[0m[0m cidr_blocks              = [
+          [32m+[0m[0m "0.0.0.0/0",
+        ]
+      [32m+[0m[0m description              = "Ingress Rule"
+      [32m+[0m[0m from_port                = 22
+      [32m+[0m[0m id                       = (known after apply)
+      [32m+[0m[0m prefix_list_ids          = []
+      [32m+[0m[0m protocol                 = "tcp"
+      [32m+[0m[0m security_group_id        = (known after apply)
+      [32m+[0m[0m security_group_rule_id   = (known after apply)
+      [32m+[0m[0m self                     = false
+      [32m+[0m[0m source_security_group_id = (known after apply)
+      [32m+[0m[0m to_port                  = 22
+      [32m+[0m[0m type                     = "ingress"
+    }
+
+[1m  # module.sg_be[1].aws_security_group.this_name_prefix[0][0m will be created
+[0m  [32m+[0m[0m resource "aws_security_group" "this_name_prefix" {
+      [32m+[0m[0m arn                    = (known after apply)
+      [32m+[0m[0m description            = "Security group for backend er of glb with custom ports open within VPC"
+      [32m+[0m[0m egress                 = (known after apply)
+      [32m+[0m[0m id                     = (known after apply)
+      [32m+[0m[0m ingress                = (known after apply)
+      [32m+[0m[0m name                   = (known after apply)
+      [32m+[0m[0m name_prefix            = "be-er-2-us-east-2-sg-"
+      [32m+[0m[0m owner_id               = (known after apply)
+      [32m+[0m[0m revoke_rules_on_delete = false
+      [32m+[0m[0m tags                   = {
+          [32m+[0m[0m "Environment" = "dariusz"
+          [32m+[0m[0m "Name"        = "be-er-2-us-east-2-sg"
+          [32m+[0m[0m "Terraform"   = "true"
+        }
+      [32m+[0m[0m tags_all               = {
+          [32m+[0m[0m "Environment" = "dariusz"
+          [32m+[0m[0m "Name"        = "be-er-2-us-east-2-sg"
+          [32m+[0m[0m "Terraform"   = "true"
+        }
+      [32m+[0m[0m vpc_id                 = (known after apply)
+
+      [32m+[0m[0m timeouts {
+          [32m+[0m[0m create = "10m"
+          [32m+[0m[0m delete = "15m"
+        }
+    }
+
+[1m  # module.sg_be[1].aws_security_group_rule.egress_with_cidr_blocks[0][0m will be created
+[0m  [32m+[0m[0m resource "aws_security_group_rule" "egress_with_cidr_blocks" {
+      [32m+[0m[0m cidr_blocks              = [
+          [32m+[0m[0m "0.0.0.0/0",
+        ]
+      [32m+[0m[0m description              = "Egress Rule"
+      [32m+[0m[0m from_port                = -1
+      [32m+[0m[0m id                       = (known after apply)
+      [32m+[0m[0m prefix_list_ids          = []
+      [32m+[0m[0m protocol                 = "-1"
+      [32m+[0m[0m security_group_id        = (known after apply)
+      [32m+[0m[0m security_group_rule_id   = (known after apply)
+      [32m+[0m[0m self                     = false
+      [32m+[0m[0m source_security_group_id = (known after apply)
+      [32m+[0m[0m to_port                  = -1
+      [32m+[0m[0m type                     = "egress"
+    }
+
+[1m  # module.sg_be[1].aws_security_group_rule.ingress_with_cidr_blocks[0][0m will be created
+[0m  [32m+[0m[0m resource "aws_security_group_rule" "ingress_with_cidr_blocks" {
+      [32m+[0m[0m cidr_blocks              = [
+          [32m+[0m[0m "10.0.0.0/8",
+        ]
+      [32m+[0m[0m description              = "Ingress Rule"
+      [32m+[0m[0m from_port                = -1
+      [32m+[0m[0m id                       = (known after apply)
+      [32m+[0m[0m prefix_list_ids          = []
+      [32m+[0m[0m protocol                 = "-1"
+      [32m+[0m[0m security_group_id        = (known after apply)
+      [32m+[0m[0m security_group_rule_id   = (known after apply)
+      [32m+[0m[0m self                     = false
+      [32m+[0m[0m source_security_group_id = (known after apply)
+      [32m+[0m[0m to_port                  = -1
+      [32m+[0m[0m type                     = "ingress"
+    }
+
+[1m  # module.sg_be[1].aws_security_group_rule.ingress_with_cidr_blocks[1][0m will be created
 [0m  [32m+[0m[0m resource "aws_security_group_rule" "ingress_with_cidr_blocks" {
       [32m+[0m[0m cidr_blocks              = [
           [32m+[0m[0m "0.0.0.0/0",
@@ -2317,7 +2645,7 @@ Terraform will perform the following actions:
       [32m+[0m[0m vpc_id          = (known after apply)
     }
 
-[1mPlan:[0m 43 to add, 0 to change, 0 to destroy.
+[1mPlan:[0m 49 to add, 0 to change, 0 to destroy.
 [0m
 Changes to Outputs:
   [32m+[0m[0m backend_public_ips = [
@@ -2339,124 +2667,183 @@ Changes to Outputs:
       [32m+[0m[0m (known after apply),
       [32m+[0m[0m (known after apply),
     ]
-[0m[1maws_iam_role.secret_manager_zfw_ec2_role: Creating...[0m[0m
-[0m[1maws_key_pair.ssh_public_key: Creating...[0m[0m
-[0m[1maws_secretsmanager_secret.zfw_secret_pt: Creating...[0m[0m
+[0m[1mrandom_string.random_secret_name: Creating...[0m[0m
+[0m[1mrandom_string.random_secret_name: Creation complete after 0s [id=aabtoshyzkarfropdiqu][0m
+[0m[1mdata.template_cloudinit_config.config-be[0]: Reading...[0m[0m
+[0m[1mdata.template_cloudinit_config.config-be[1]: Reading...[0m[0m
+[0m[1mdata.template_cloudinit_config.config-be[1]: Read complete after 0s [id=3215328315][0m
+[0m[1mdata.template_cloudinit_config.config-be[0]: Read complete after 0s [id=1546897140][0m
 [0m[1mmodule.vpc1.aws_vpc.this[0]: Creating...[0m[0m
+[0m[1maws_iam_role.secret_manager_zfw_ec2_role: Creating...[0m[0m
+[0m[1maws_secretsmanager_secret.zfw_secret_pt: Creating...[0m[0m
+[0m[1maws_key_pair.ssh_public_key: Creating...[0m[0m
+[0m[1maws_secretsmanager_secret.zfw_secret_pt: Creation complete after 0s [id=arn:aws:secretsmanager:us-east-2:925908137963:secret:aabtoshyzkarfropdiqu-RMhBQP][0m
+[0m[1maws_secretsmanager_secret_version.zfw_secret_pt: Creating...[0m[0m
+[0m[1maws_iam_role.secret_manager_zfw_ec2_role: Creation complete after 0s [id=glb_test_zfw_ec2_role_us-east-2][0m
+[0m[1maws_iam_instance_profile.secret_manager_zfw_ec2_profile[0]: Creating...[0m[0m
+[0m[1maws_iam_instance_profile.secret_manager_zfw_ec2_profile[1]: Creating...[0m[0m
+[0m[1maws_secretsmanager_secret_version.zfw_secret_pt: Creation complete after 0s [id=arn:aws:secretsmanager:us-east-2:925908137963:secret:aabtoshyzkarfropdiqu-RMhBQP|terraform-20240810184144258200000002][0m
+[0m[1maws_iam_policy.secret_manager_zfw_policy: Creating...[0m[0m
 [0m[1maws_key_pair.ssh_public_key: Creation complete after 1s [id=be-test-ssh-key][0m
-[0m[1maws_iam_role.secret_manager_zfw_ec2_role: Creation complete after 1s [id=glb_test_zfw_ec2_role_us-east-2][0m
-[0m[1maws_iam_instance_profile.secret_manager_zfw_ec2_profile: Creating...[0m[0m
-[0m[1maws_secretsmanager_secret.zfw_secret_pt: Still creating... [10s elapsed][0m[0m
+[0m[1maws_iam_policy.secret_manager_zfw_policy: Creation complete after 1s [id=arn:aws:iam::925908137963:policy/glb_test_zfw_secret_read_policy_us-east-2][0m
+[0m[1maws_iam_role_policy_attachment.secret_manager_zfw_policy_attachment: Creating...[0m[0m
+[0m[1maws_iam_instance_profile.secret_manager_zfw_ec2_profile[1]: Creation complete after 1s [id=be-er-2-us-east-2_profile_us-east-2][0m
+[0m[1maws_iam_instance_profile.secret_manager_zfw_ec2_profile[0]: Creation complete after 1s [id=be-er-1-us-east-2_profile_us-east-2][0m
+[0m[1maws_iam_role_policy_attachment.secret_manager_zfw_policy_attachment: Creation complete after 0s [id=glb_test_zfw_ec2_role_us-east-2-20240810184144896600000003][0m
 [0m[1mmodule.vpc1.aws_vpc.this[0]: Still creating... [10s elapsed][0m[0m
-[0m[1mmodule.vpc1.aws_vpc.this[0]: Creation complete after 12s [id=vpc-0bb2bcc551ea8fb09][0m
-[0m[1mmodule.vpc1.aws_default_security_group.this[0]: Creating...[0m[0m
-[0m[1mmodule.vpc1.aws_default_route_table.default[0]: Creating...[0m[0m
-[0m[1mmodule.gwlb1.aws_lb_target_group.glb_tg: Creating...[0m[0m
-[0m[1mmodule.vpc1.aws_default_network_acl.this[0]: Creating...[0m[0m
-[0m[1mmodule.vpc1.aws_subnet.public[0]: Creating...[0m[0m
-[0m[1mmodule.vpc1.aws_subnet.public[1]: Creating...[0m[0m
-[0m[1mmodule.vpc1.aws_internet_gateway.this[0]: Creating...[0m[0m
+[0m[1mmodule.vpc1.aws_vpc.this[0]: Creation complete after 12s [id=vpc-0d53507dd9ea780ad][0m
 [0m[1mmodule.sg_client.aws_security_group.this_name_prefix[0]: Creating...[0m[0m
-[0m[1mmodule.sg_be.aws_security_group.this_name_prefix[0]: Creating...[0m[0m
-[0m[1mmodule.vpc1.aws_default_route_table.default[0]: Creation complete after 0s [id=rtb-0c7e5a7e9688b270c][0m
-[0m[1mmodule.vpc1.aws_vpn_gateway.this[0]: Creating...[0m[0m
-[0m[1mmodule.vpc1.aws_internet_gateway.this[0]: Creation complete after 1s [id=igw-07878d01ec3613c34][0m
 [0m[1mmodule.vpc1.aws_route_table.public[0]: Creating...[0m[0m
-[0m[1mmodule.vpc1.aws_route_table.public[0]: Creation complete after 0s [id=rtb-08ee2ec78f16a6496][0m
+[0m[1mmodule.gwlb1.aws_lb_target_group.glb_tg: Creating...[0m[0m
+[0m[1mmodule.vpc1.aws_default_security_group.this[0]: Creating...[0m[0m
+[0m[1mmodule.vpc1.aws_internet_gateway.this[0]: Creating...[0m[0m
+[0m[1mmodule.sg_be[0].aws_security_group.this_name_prefix[0]: Creating...[0m[0m
+[0m[1mmodule.sg_be[1].aws_security_group.this_name_prefix[0]: Creating...[0m[0m
+[0m[1mmodule.vpc1.aws_subnet.public[0]: Creating...[0m[0m
+[0m[1mmodule.vpc1.aws_default_route_table.default[0]: Creating...[0m[0m
+[0m[1mmodule.vpc1.aws_default_network_acl.this[0]: Creating...[0m[0m
+[0m[1mmodule.vpc1.aws_default_route_table.default[0]: Creation complete after 1s [id=rtb-0361dba25ae5c0f72][0m
+[0m[1mmodule.vpc1.aws_subnet.public[1]: Creating...[0m[0m
+[0m[1mmodule.vpc1.aws_internet_gateway.this[0]: Creation complete after 1s [id=igw-0c270102296fb1db9][0m
+[0m[1mmodule.vpc1.aws_vpn_gateway.this[0]: Creating...[0m[0m
+[0m[1mmodule.vpc1.aws_route_table.public[0]: Creation complete after 1s [id=rtb-007ff03930c5d3043][0m
 [0m[1mmodule.vpc1.aws_route.public_internet_gateway[0]: Creating...[0m[0m
-[0m[1mmodule.vpc1.aws_default_network_acl.this[0]: Creation complete after 1s [id=acl-0ec6145a1959a8540][0m
-[0m[1mmodule.gwlb1.aws_lb_target_group.glb_tg: Creation complete after 2s [id=arn:aws:elasticloadbalancing:us-east-2:925908137963:targetgroup/nf-lb-tg/00f4b8f6e376c29e35][0m
-[0m[1mmodule.vpc1.aws_default_security_group.this[0]: Creation complete after 2s [id=sg-037b175192a692f69][0m
-[0m[1mmodule.sg_client.aws_security_group.this_name_prefix[0]: Creation complete after 2s [id=sg-0b6d8bc074eda9cd5][0m
-[0m[1mmodule.sg_client.aws_security_group_rule.ingress_with_cidr_blocks[1]: Creating...[0m[0m
+[0m[1mmodule.vpc1.aws_default_network_acl.this[0]: Creation complete after 1s [id=acl-0ebc2528a8d8d69d2][0m
+[0m[1mmodule.vpc1.aws_route.public_internet_gateway[0]: Creation complete after 0s [id=r-rtb-007ff03930c5d30431080289494][0m
+[0m[1mmodule.gwlb1.aws_lb_target_group.glb_tg: Creation complete after 2s [id=arn:aws:elasticloadbalancing:us-east-2:925908137963:targetgroup/nf-lb-tg/004ac76f247f3d1e18][0m
+[0m[1mmodule.vpc1.aws_default_security_group.this[0]: Creation complete after 2s [id=sg-031a58d4581e7730b][0m
+[0m[1mmodule.sg_be[0].aws_security_group.this_name_prefix[0]: Creation complete after 2s [id=sg-01a7bc10de1cde663][0m
+[0m[1mmodule.sg_client.aws_security_group.this_name_prefix[0]: Creation complete after 2s [id=sg-0854851da77548f6a][0m
 [0m[1mmodule.sg_client.aws_security_group_rule.egress_with_cidr_blocks[0]: Creating...[0m[0m
 [0m[1mmodule.sg_client.aws_security_group_rule.ingress_with_cidr_blocks[0]: Creating...[0m[0m
-[0m[1mmodule.sg_be.aws_security_group.this_name_prefix[0]: Creation complete after 2s [id=sg-05d30e37ac5901cc4][0m
-[0m[1mmodule.vpc1.aws_route.public_internet_gateway[0]: Creation complete after 1s [id=r-rtb-08ee2ec78f16a64961080289494][0m
-[0m[1mmodule.sg_be.aws_security_group_rule.ingress_with_cidr_blocks[1]: Creating...[0m[0m
-[0m[1mmodule.sg_be.aws_security_group_rule.egress_with_cidr_blocks[0]: Creating...[0m[0m
-[0m[1mmodule.sg_be.aws_security_group_rule.ingress_with_cidr_blocks[0]: Creating...[0m[0m
-[0m[1mmodule.sg_client.aws_security_group_rule.ingress_with_cidr_blocks[1]: Creation complete after 1s [id=sgrule-3510464897][0m
-[0m[1mmodule.sg_be.aws_security_group_rule.ingress_with_cidr_blocks[1]: Creation complete after 1s [id=sgrule-1997544615][0m
-[0m[1mmodule.sg_be.aws_security_group_rule.egress_with_cidr_blocks[0]: Creation complete after 1s [id=sgrule-3341461625][0m
-[0m[1mmodule.sg_client.aws_security_group_rule.ingress_with_cidr_blocks[0]: Creation complete after 1s [id=sgrule-2247493305][0m
-[0m[1mmodule.sg_client.aws_security_group_rule.egress_with_cidr_blocks[0]: Creation complete after 2s [id=sgrule-374035195][0m
-[0m[1mmodule.sg_be.aws_security_group_rule.ingress_with_cidr_blocks[0]: Creation complete after 2s [id=sgrule-3509270035][0m
-[0m[1maws_secretsmanager_secret.zfw_secret_pt: Still creating... [20s elapsed][0m[0m
+[0m[1mmodule.sg_client.aws_security_group_rule.ingress_with_cidr_blocks[1]: Creating...[0m[0m
+[0m[1mmodule.sg_be[1].aws_security_group.this_name_prefix[0]: Creation complete after 2s [id=sg-0b330e3835b3f6c7a][0m
+[0m[1mmodule.sg_be[0].aws_security_group_rule.ingress_with_cidr_blocks[0]: Creating...[0m[0m
+[0m[1mmodule.sg_be[0].aws_security_group_rule.ingress_with_cidr_blocks[1]: Creating...[0m[0m
+[0m[1mmodule.sg_be[1].aws_security_group_rule.egress_with_cidr_blocks[0]: Creating...[0m[0m
+[0m[1mmodule.sg_be[1].aws_security_group_rule.ingress_with_cidr_blocks[1]: Creating...[0m[0m
+[0m[1mmodule.sg_client.aws_security_group_rule.ingress_with_cidr_blocks[1]: Creation complete after 0s [id=sgrule-3621221961][0m
+[0m[1mmodule.sg_be[1].aws_security_group_rule.ingress_with_cidr_blocks[0]: Creating...[0m[0m
+[0m[1mmodule.sg_be[1].aws_security_group_rule.egress_with_cidr_blocks[0]: Creation complete after 1s [id=sgrule-3165628134][0m
+[0m[1mmodule.sg_be[0].aws_security_group_rule.egress_with_cidr_blocks[0]: Creating...[0m[0m
+[0m[1mmodule.sg_be[0].aws_security_group_rule.ingress_with_cidr_blocks[0]: Creation complete after 1s [id=sgrule-2742049659][0m
+[0m[1mmodule.sg_client.aws_security_group_rule.egress_with_cidr_blocks[0]: Creation complete after 1s [id=sgrule-2004002574][0m
+[0m[1mmodule.sg_be[1].aws_security_group_rule.ingress_with_cidr_blocks[1]: Creation complete after 1s [id=sgrule-300979474][0m
+[0m[1mmodule.sg_be[0].aws_security_group_rule.ingress_with_cidr_blocks[1]: Creation complete after 1s [id=sgrule-3110868721][0m
+[0m[1mmodule.sg_be[1].aws_security_group_rule.ingress_with_cidr_blocks[0]: Creation complete after 2s [id=sgrule-3226138180][0m
+[0m[1mmodule.sg_client.aws_security_group_rule.ingress_with_cidr_blocks[0]: Creation complete after 2s [id=sgrule-569013483][0m
+[0m[1mmodule.sg_be[0].aws_security_group_rule.egress_with_cidr_blocks[0]: Creation complete after 1s [id=sgrule-2125294274][0m
 [0m[1mmodule.vpc1.aws_subnet.public[0]: Still creating... [10s elapsed][0m[0m
 [0m[1mmodule.vpc1.aws_subnet.public[1]: Still creating... [10s elapsed][0m[0m
 [0m[1mmodule.vpc1.aws_vpn_gateway.this[0]: Still creating... [10s elapsed][0m[0m
-[0m[1mmodule.vpc1.aws_subnet.public[0]: Creation complete after 11s [id=subnet-066234d090594f098][0m
-[0m[1mmodule.vpc1.aws_subnet.public[1]: Creation complete after 11s [id=subnet-0fa2f65775c5f8462][0m
+[0m[1mmodule.vpc1.aws_subnet.public[0]: Creation complete after 11s [id=subnet-00863a8360c0b5156][0m
+[0m[1mmodule.vpc1.aws_subnet.public[1]: Creation complete after 11s [id=subnet-095bb6acf06bc4b7f][0m
 [0m[1mmodule.vpc1.aws_route_table_association.public[1]: Creating...[0m[0m
 [0m[1mmodule.vpc1.aws_route_table_association.public[0]: Creating...[0m[0m
 [0m[1mmodule.gwlb1.aws_lb.glb: Creating...[0m[0m
+[0m[1mmodule.compute_backend[1].aws_instance.this[0]: Creating...[0m[0m
 [0m[1mmodule.compute_client[1].aws_instance.this[0]: Creating...[0m[0m
+[0m[1mmodule.compute_backend[0].aws_instance.this[0]: Creating...[0m[0m
 [0m[1mmodule.compute_client[0].aws_instance.this[0]: Creating...[0m[0m
-[0m[1mmodule.vpc1.aws_route_table_association.public[1]: Creation complete after 1s [id=rtbassoc-062137e4704ae9fa7][0m
-[0m[1mmodule.vpc1.aws_route_table_association.public[0]: Creation complete after 1s [id=rtbassoc-0ff91cd9e2aee86f2][0m
-[0m[1maws_secretsmanager_secret.zfw_secret_pt: Still creating... [30s elapsed][0m[0m
+[0m[1mmodule.vpc1.aws_route_table_association.public[0]: Creation complete after 0s [id=rtbassoc-0a7a2747ea7d5e3d6][0m
+[0m[1mmodule.vpc1.aws_route_table_association.public[1]: Creation complete after 0s [id=rtbassoc-0ed7bed904fc07240][0m
 [0m[1mmodule.vpc1.aws_vpn_gateway.this[0]: Still creating... [20s elapsed][0m[0m
 [0m[1mmodule.gwlb1.aws_lb.glb: Still creating... [10s elapsed][0m[0m
-[0m[1mmodule.compute_client[1].aws_instance.this[0]: Still creating... [11s elapsed][0m[0m
+[0m[1mmodule.compute_backend[1].aws_instance.this[0]: Still creating... [10s elapsed][0m[0m
 [0m[1mmodule.compute_client[0].aws_instance.this[0]: Still creating... [10s elapsed][0m[0m
-[0m[1mmodule.compute_client[1].aws_instance.this[0]: Creation complete after 14s [id=i-050d6c447bda931e2][0m
-[0m[1mmodule.compute_client[0].aws_instance.this[0]: Creation complete after 13s [id=i-071434e2bf2f6b021][0m
-[0m[1maws_secretsmanager_secret.zfw_secret_pt: Still creating... [40s elapsed][0m[0m
+[0m[1mmodule.compute_client[1].aws_instance.this[0]: Still creating... [10s elapsed][0m[0m
+[0m[1mmodule.compute_backend[0].aws_instance.this[0]: Still creating... [10s elapsed][0m[0m
+[0m[1mmodule.compute_client[0].aws_instance.this[0]: Creation complete after 13s [id=i-0cc9558acb0cbb606][0m
+[0m[1mmodule.compute_backend[0].aws_instance.this[0]: Creation complete after 13s [id=i-073f81c5dd272ce09][0m
+[0m[1mmodule.compute_backend[1].aws_instance.this[0]: Creation complete after 13s [id=i-0927ea736a85857a5][0m
+[0m[1mmodule.compute_client[1].aws_instance.this[0]: Creation complete after 13s [id=i-0c7e71d6287eae7cd][0m
+[0m[1mmodule.gwlb1.aws_lb_target_group_attachment.glb_tg_attach[1]: Creating...[0m[0m
+[0m[1mmodule.gwlb1.aws_lb_target_group_attachment.glb_tg_attach[0]: Creating...[0m[0m
+[0m[1maws_route.be_resolver_routes[1]: Creating...[0m[0m
+[0m[1maws_route.be_resolver_routes[0]: Creating...[0m[0m
+[0m[1mmodule.gwlb1.aws_lb_target_group_attachment.glb_tg_attach[1]: Creation complete after 1s [id=arn:aws:elasticloadbalancing:us-east-2:925908137963:targetgroup/nf-lb-tg/004ac76f247f3d1e18-2024081018422152850000000c][0m
+[0m[1mmodule.gwlb1.aws_lb_target_group_attachment.glb_tg_attach[0]: Creation complete after 1s [id=arn:aws:elasticloadbalancing:us-east-2:925908137963:targetgroup/nf-lb-tg/004ac76f247f3d1e18-2024081018422170850000000d][0m
+[0m[1maws_route.be_resolver_routes[1]: Creation complete after 1s [id=r-rtb-007ff03930c5d30431783271065][0m
+[0m[1maws_route.be_resolver_routes[0]: Creation complete after 1s [id=r-rtb-007ff03930c5d30433143537501][0m
 [0m[1mmodule.vpc1.aws_vpn_gateway.this[0]: Still creating... [30s elapsed][0m[0m
 [0m[1mmodule.gwlb1.aws_lb.glb: Still creating... [20s elapsed][0m[0m
-[0m[1mmodule.vpc1.aws_vpn_gateway.this[0]: Creation complete after 34s [id=vgw-04c9f68b00d7fcc11][0m
-[0m[1maws_secretsmanager_secret.zfw_secret_pt: Still creating... [50s elapsed][0m[0m
+[0m[1mmodule.vpc1.aws_vpn_gateway.this[0]: Creation complete after 34s [id=vgw-09ed25be266e7a51c][0m
 [0m[1mmodule.gwlb1.aws_lb.glb: Still creating... [30s elapsed][0m[0m
-[0m[1maws_secretsmanager_secret.zfw_secret_pt: Still creating... [1m0s elapsed][0m[0m
 [0m[1mmodule.gwlb1.aws_lb.glb: Still creating... [40s elapsed][0m[0m
-[0m[1maws_secretsmanager_secret.zfw_secret_pt: Still creating... [1m10s elapsed][0m[0m
 [0m[1mmodule.gwlb1.aws_lb.glb: Still creating... [50s elapsed][0m[0m
-[0m[1maws_secretsmanager_secret.zfw_secret_pt: Still creating... [1m20s elapsed][0m[0m
 [0m[1mmodule.gwlb1.aws_lb.glb: Still creating... [1m0s elapsed][0m[0m
-[0m[1maws_secretsmanager_secret.zfw_secret_pt: Still creating... [1m30s elapsed][0m[0m
 [0m[1mmodule.gwlb1.aws_lb.glb: Still creating... [1m10s elapsed][0m[0m
-[0m[1maws_secretsmanager_secret.zfw_secret_pt: Still creating... [1m40s elapsed][0m[0m
-[0m[1mmodule.gwlb1.aws_lb.glb: Still creating... [1m21s elapsed][0m[0m
-[0m[1maws_secretsmanager_secret.zfw_secret_pt: Still creating... [1m50s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_lb.glb: Still creating... [1m20s elapsed][0m[0m
 [0m[1mmodule.gwlb1.aws_lb.glb: Still creating... [1m30s elapsed][0m[0m
-[0m[1mmodule.gwlb1.aws_lb.glb: Still creating... [1m41s elapsed][0m[0m
-[0m[1mmodule.gwlb1.aws_lb.glb: Still creating... [1m51s elapsed][0m[0m
-[0m[1mmodule.gwlb1.aws_lb.glb: Still creating... [2m1s elapsed][0m[0m
-[0m[1mmodule.gwlb1.aws_lb.glb: Still creating... [2m11s elapsed][0m[0m
-[0m[1mmodule.gwlb1.aws_lb.glb: Still creating... [2m21s elapsed][0m[0m
-[0m[1mmodule.gwlb1.aws_lb.glb: Creation complete after 2m23s [id=arn:aws:elasticloadbalancing:us-east-2:925908137963:loadbalancer/gwy/nf-lb-01/99639daeb83e4dfc][0m
+[0m[1mmodule.gwlb1.aws_lb.glb: Still creating... [1m40s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_lb.glb: Still creating... [1m50s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_lb.glb: Still creating... [2m0s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_lb.glb: Still creating... [2m10s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_lb.glb: Still creating... [2m20s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_lb.glb: Still creating... [2m30s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_lb.glb: Still creating... [2m40s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_lb.glb: Creation complete after 2m42s [id=arn:aws:elasticloadbalancing:us-east-2:925908137963:loadbalancer/gwy/nf-lb-01/41365b27abc4863b][0m
 [0m[1mmodule.gwlb1.aws_vpc_endpoint_service.glb_es: Creating...[0m[0m
 [0m[1mmodule.gwlb1.aws_lb_listener.glb_fe: Creating...[0m[0m
-[0m[1mmodule.gwlb1.aws_lb_listener.glb_fe: Creation complete after 0s [id=arn:aws:elasticloadbalancing:us-east-2:925908137963:listener/gwy/nf-lb-01/99639daeb83e4dfc/3aa6b2263a0f2be2][0m
-[0m[1mmodule.gwlb1.aws_vpc_endpoint_service.glb_es: Creation complete after 6s [id=vpce-svc-05eb2c1a7bb8cd5fd][0m
-[0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[0]: Creating...[0m[0m
+[0m[1mmodule.gwlb1.aws_lb_listener.glb_fe: Creation complete after 1s [id=arn:aws:elasticloadbalancing:us-east-2:925908137963:listener/gwy/nf-lb-01/41365b27abc4863b/5e3c94d5000e5e89][0m
+[0m[1mmodule.gwlb1.aws_vpc_endpoint_service.glb_es: Creation complete after 6s [id=vpce-svc-083cf8db8492edbef][0m
 [0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[1]: Creating...[0m[0m
+[0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[0]: Creating...[0m[0m
 [0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[1]: Still creating... [10s elapsed][0m[0m
 [0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[0]: Still creating... [10s elapsed][0m[0m
-[0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[0]: Still creating... [20s elapsed][0m[0m
 [0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[1]: Still creating... [20s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[0]: Still creating... [20s elapsed][0m[0m
 [0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[1]: Still creating... [30s elapsed][0m[0m
 [0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[0]: Still creating... [30s elapsed][0m[0m
-[0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[0]: Still creating... [40s elapsed][0m[0m
 [0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[1]: Still creating... [40s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[0]: Still creating... [40s elapsed][0m[0m
 [0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[1]: Still creating... [50s elapsed][0m[0m
 [0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[0]: Still creating... [50s elapsed][0m[0m
-[0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[0]: Still creating... [1m0s elapsed][0m[0m
 [0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[1]: Still creating... [1m0s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[0]: Still creating... [1m0s elapsed][0m[0m
 [0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[1]: Still creating... [1m10s elapsed][0m[0m
 [0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[0]: Still creating... [1m10s elapsed][0m[0m
-[0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[0]: Still creating... [1m20s elapsed][0m[0m
 [0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[1]: Still creating... [1m20s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[0]: Still creating... [1m20s elapsed][0m[0m
 [0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[1]: Still creating... [1m30s elapsed][0m[0m
 [0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[0]: Still creating... [1m30s elapsed][0m[0m
-[0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[0]: Still creating... [1m40s elapsed][0m[0m
 [0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[1]: Still creating... [1m40s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[0]: Still creating... [1m40s elapsed][0m[0m
 [0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[1]: Still creating... [1m50s elapsed][0m[0m
 [0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[0]: Still creating... [1m50s elapsed][0m[0m
-[0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[1]: Creation complete after 1m51s [id=vpce-04df44a95ad68a82c][0m
-[0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[0]: Creation complete after 1m52s [id=vpce-0920c01cc2a98f628][0m
-[0m[1mmodule.gwlb1.aws_route.glb_routes[1]: Creating...[0m[0m
+[0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[1]: Still creating... [2m0s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[0]: Still creating... [2m0s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[1]: Still creating... [2m10s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[0]: Still creating... [2m10s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[1]: Still creating... [2m20s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[0]: Still creating... [2m20s elapsed][0m[0m
+[0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[1]: Creation complete after 2m22s [id=vpce-0f00ef97c87d2befd][0m
+[0m[1mmodule.gwlb1.aws_vpc_endpoint.ep[0]: Creation complete after 2m23s [id=vpce-06d0fe496f7853a0d][0m
 [0m[1mmodule.gwlb1.aws_route.glb_routes[0]: Creating...[0m[0m
-[0m[1mmodule.gwlb1.aws_route.glb_routes[1]: Creation complete after 1s [id=r-rtb-0c7e5a7e9688b270c3117404284][0m
-[0m[1mmodule.gwlb1.aws_route.glb_routes[0]: Creation complete after 1s [id=r-rtb-08ee2ec78f16a64963117404284][0m
+[0m[1mmodule.gwlb1.aws_route.glb_routes[1]: Creating...[0m[0m
+[0m[1mmodule.gwlb1.aws_route.glb_routes[1]: Creation complete after 1s [id=r-rtb-0361dba25ae5c0f723117404284][0m
+[0m[1mmodule.gwlb1.aws_route.glb_routes[0]: Creation complete after 1s [id=r-rtb-007ff03930c5d30433117404284][0m
+[0m[1m[32m
+Apply complete! Resources: 49 added, 0 changed, 0 destroyed.
+[0m[0m[1m[32m
+Outputs:
+
+[0mbackend_public_ips = [
+  "3.12.76.187",
+  "18.222.131.82",
+]
+client_public_ips = [
+  "13.59.89.216",
+  "3.129.62.165",
+]
+endpoint_ids = [
+  "vpce-06d0fe496f7853a0d",
+  "vpce-0f00ef97c87d2befd",
+]
+route_table_ids = [
+  "rtb-007ff03930c5d3043",
+]
+subnets = [
+  "subnet-00863a8360c0b5156",
+  "subnet-095bb6acf06bc4b7f",
+]
