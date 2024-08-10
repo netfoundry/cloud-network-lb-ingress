@@ -92,32 +92,6 @@ run () {
         terraform apply -var-file input_vars.tfvars.json -var region=$AWS_REGION -auto-approve
         let "x++"
     done
-
-    # export AWS_REGION='us-west-2'
-    # terraform workspace new $AWS_REGION
-    # export ATTRIBUTE="bind-services"
-    # # router1
-    # export ER=$REGION2_ER1
-    # export COUNT=0
-    # get_nf_er_reg_keys
-    # # router2
-    # export ER=$REGION2_ER2
-    # export COUNT=1
-    # get_nf_er_reg_keys
-    # terraform apply -var-file input_vars.tfvars.json -var region=$AWS_REGION -auto-approve
-
-    # export AWS_REGION='us-east-2'
-    # terraform workspace new $AWS_REGION
-    # export ATTRIBUTE="novis"
-    # # router1
-    # export ER=$REGION1_ER1
-    # export COUNT=0
-    # get_nf_er_reg_keys
-    # # router2
-    # export ER=$REGION1_ER2
-    # export COUNT=1
-    # get_nf_er_reg_keys
-    # terraform apply -var-file input_vars.tfvars.json -var region=$AWS_REGION -auto-approve
     
 }
 
