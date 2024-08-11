@@ -1,5 +1,6 @@
 variable "er_map_be" {
   type = list(object({
+    name          = string
     edgeRouterKey = string
     dnsSvcIpRange = string
     zone          = string
@@ -11,9 +12,6 @@ variable "region" {
   default = "us-east-2"
 }
 
-variable "instance_be_prefix" {
-  default = "nf-be-er"
-}
 variable "instance_client_prefix" {
   default = "test_client"
 }
@@ -36,12 +34,20 @@ variable "github_pt" {
   default = "test-secret"
 }
 
-variable "aws_secret_name" {
-  default = "glb_test_zfw_repo"
-}
-
 variable "ssh_public_key" {}
 
 variable "ssh_key_name" {
   default = "be-test-ssh-key"
+}
+
+variable "test_initital_delay" {
+  default = 600
+}
+
+variable "test_iterate_count" {
+  default = 200
+}
+
+variable "s3_bucket_key" {
+  default = "."
 }

@@ -28,8 +28,9 @@ module "vpc1" {
 
 module "sg_be" {
     source = "terraform-aws-modules/security-group/aws"
+    count = length(var.er_map_be)
 
-    name        = "${var.instance_be_prefix}-sg"
+    name        = "${var.er_map_be[count.index].name}-sg"
     description = "Security group for backend er of glb with custom ports open within VPC"
     vpc_id      = module.vpc1.vpc_id
 
@@ -110,8 +111,15 @@ data "template_cloudinit_config" "config-client" {
     }
 }
 
+resource "random_string" "random_secret_name" {
+  length    = 20
+  special   = false
+  numeric   = false
+  upper     = false
+}
+
 resource "aws_secretsmanager_secret" "zfw_secret_pt" {
-    name                    = var.aws_secret_name
+    name                    = local.aws_secret_name
     recovery_window_in_days = 0
     #checkov:skip=CVK2_AWS_57: Disable Secrets Manager secrets automatic rotation
 }
@@ -165,8 +173,9 @@ resource "aws_iam_role_policy_attachment" "secret_manager_zfw_policy_attachment"
 }
 
 resource "aws_iam_instance_profile" "secret_manager_zfw_ec2_profile" {
+    count = length(var.er_map_be)
     role = aws_iam_role.secret_manager_zfw_ec2_role.name
-    name = "glb_test_zfw_ec2_profile_${var.region}"
+    name = "${var.er_map_be[count.index].name}_profile_${var.region}"
 }
 
 resource "aws_key_pair" "ssh_public_key" {
@@ -181,7 +190,7 @@ module "compute_backend" {
 
     count = length(var.er_map_be)
 
-    name = "${var.instance_be_prefix}-${var.region}${var.er_map_be[count.index].zone}"
+    name = var.er_map_be[count.index].name
     availability_zone = "${var.region}${var.er_map_be[count.index].zone}"
     associate_public_ip_address = true
 
@@ -189,10 +198,10 @@ module "compute_backend" {
     instance_type            = "t3.medium"
     key_name                 = var.ssh_key_name
     monitoring               = true
-    vpc_security_group_ids   = [module.sg_be.security_group_id]
+    vpc_security_group_ids   = [module.sg_be[count.index].security_group_id]
     subnet_id                = module.vpc1.public_subnets[count.index]
     source_dest_check        = false
-    iam_instance_profile     = aws_iam_instance_profile.secret_manager_zfw_ec2_profile.name
+    iam_instance_profile     = aws_iam_instance_profile.secret_manager_zfw_ec2_profile[count.index].name
     user_data_base64         = data.template_cloudinit_config.config-be[count.index].rendered
 
     tags = {
