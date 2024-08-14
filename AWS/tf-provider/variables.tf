@@ -25,8 +25,8 @@ variable "include_route_resolver" {
 
 variable "ami_id" {
   default = {
-    us-east-2 = "ami-0b30ef8bf8f331e78"
-    us-west-2 = "ami-0333611f8a06d64d0"
+    us-east-2 = "ami-0d416b2fad9018104"
+    us-west-2 = "ami-0d85e528260797f0e"
   }
 }
 
