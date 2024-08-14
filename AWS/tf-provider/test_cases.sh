@@ -81,7 +81,11 @@ run () {
         y=0
         export AWS_REGION=$region
         export ATTRIBUTE="${ATTRIBUTES[$x]}"
-        terraform workspace new $AWS_REGION
+        terraform workspace select -or-create=true $AWS_REGION
+        ANY_RESOURCES=`terraform state list |wc -l`
+        if [ $ANY_RESOURCES > 0 ]; then
+            terraform apply -destroy -var-file input_vars.tfvars.json -var region=$AWS_REGION -auto-approve
+        fi
         for router in "${ROUTERS[@]}"
         do
             export COUNT=$y
@@ -93,7 +97,7 @@ run () {
         let "x++"
     done
     
-}
+} 
 
 cleanup () {
 
