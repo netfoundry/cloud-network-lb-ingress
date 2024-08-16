@@ -9,48 +9,93 @@ get_nf_network_id () {
 
 }
 
+get_nf_router_id () {
+    export ER_RESP=`curl --silent --location --request GET "https://gateway.production.netfoundry.io/core/v2/edge-routers?name=$ER&networkId=$NETWORK_ID" \
+        --header "Content-Type: application/json" \
+        --header "Authorization: $token_type $token"`
+    TOTAL_ER_COUNT=`echo $ER_RESP |jq -r .page.totalElements`
+    if [[ $TOTAL_ER_COUNT > 0 ]]; then
+        export ER_ID=`echo $ER_RESP | jq -r --arg ER_NAME "$ER" '._embedded.edgeRouterList[] | select(.name==$ER_NAME).id'`
+        echo "ER ID is $ER_ID!"
+    else
+        unset ER_ID
+        echo "ER ID not found!"
+    fi
+}
+
 get_nf_er_reg_keys () {
 
     get_nf_network_id
-    export ER_RESP=`curl --silent --location --request POST "https://gateway.production.netfoundry.io/core/v2/edge-routers" \
-        --header "Content-Type: application/json" \
-        --header "Authorization: $token_type $token" \
-        --data "{
-            \"name\":\"$ER\",
-            \"networkId\":\"$NETWORK_ID\",
-            \"linkListener\":false,
-            \"attributes\":[],
-            \"tunnelerEnabled\": true,
-            \"noTraversal\": false
-        }"`
-    export ER_ID=`jq -r .id <<< "$ER_RESP"`
-    sleep 10
-    export ER_KEY_JSON=`curl --silent --location --request POST "https://gateway.production.netfoundry.io/core/v2/edge-routers/$ER_ID/registration-key" \
-        --header "Content-Type: application/json" \
-        --header "Authorization: $token_type $token"`
-    export ER_KEY=`jq -r .registrationKey <<< "$ER_KEY_JSON"` 
-    jq ".er_map_be[$COUNT].edgeRouterKey = \"$ER_KEY\"" input_vars.tfvars.json > "tmp" && mv "tmp" input_vars.tfvars.json
-    jq ".er_map_be[$COUNT].name = \"$ER\"" input_vars.tfvars.json > "tmp" && mv "tmp" input_vars.tfvars.json
-    ER_IDENT_RESP=`curl --silent --location --request GET "https://gateway.production.netfoundry.io/core/v2/endpoints?name=$ER" \
-        --header "Content-Type: application/json" \
-        --header "Authorization: $token_type $token"`
-    ER_IDENT_ID=`jq -r ._embedded.endpointList[0].id <<< "$ER_IDENT_RESP"`
-    curl --silent --location --request PATCH "https://gateway.production.netfoundry.io/core/v2/endpoints/$ER_IDENT_ID" \
-        --header "Content-Type: application/json" \
-        --header "Authorization: $token_type $token" \
-        --data "{\"attributes\": [\"#$ATTRIBUTE\"]}"
+    if [ -n "$ER" ] && [ -n "$NETWORK_ID" ]; then
+        get_nf_router_id
+        if [ -n "$ER_ID" ]; then
+            echo "Deleting Edge Router $ER"
+            curl --silent --location --request DELETE "https://gateway.production.netfoundry.io/core/v2/edge-routers/$ER_ID" \
+                --header "Content-Type: application/json" \
+                --header "Authorization: $token_type $token"
+            sleep 15
+        else
+            echo "ER ID is not found  $ER_ID; Will attempt to create it!"
+        fi
+        export ER_RESP=`curl --silent --location --request POST "https://gateway.production.netfoundry.io/core/v2/edge-routers" \
+            --header "Content-Type: application/json" \
+            --header "Authorization: $token_type $token" \
+            --data "{
+                \"name\":\"$ER\",
+                \"networkId\":\"$NETWORK_ID\",
+                \"linkListener\":false,
+                \"attributes\":[],
+                \"tunnelerEnabled\": true,
+                \"noTraversal\": false
+            }"`
+        found=`jq 'has("id")' <<< "$ER_RESP"`
+        echo $found
+        if [ $found == true ]; then
+            export ER_ID=`jq -r .id <<< "$ER_RESP"`
+            sleep 15
+        else 
+            unset ER_ID
+            echo "ER ID is not found  $ER_ID; create attempt failed!"
+            echo "$ER_RESP" | jq .
+        fi
+        if [ -n "$ER_ID" ]; then
+            export ER_KEY_JSON=`curl --silent --location --request POST "https://gateway.production.netfoundry.io/core/v2/edge-routers/$ER_ID/registration-key" \
+                --header "Content-Type: application/json" \
+                --header "Authorization: $token_type $token"`
+            export ER_KEY=`jq -r .registrationKey <<< "$ER_KEY_JSON"` 
+            jq ".er_map_be[$COUNT].edgeRouterKey = \"$ER_KEY\"" input_vars.tfvars.json > "tmp" && mv "tmp" input_vars.tfvars.json
+            jq ".er_map_be[$COUNT].name = \"$ER\"" input_vars.tfvars.json > "tmp" && mv "tmp" input_vars.tfvars.json
+            ER_IDENT_RESP=`curl --silent --location --request GET "https://gateway.production.netfoundry.io/core/v2/endpoints?name=$ER" \
+                --header "Content-Type: application/json" \
+                --header "Authorization: $token_type $token"`
+            ER_IDENT_ID=`jq -r ._embedded.endpointList[0].id <<< "$ER_IDENT_RESP"`
+            curl --silent --location --request PATCH "https://gateway.production.netfoundry.io/core/v2/endpoints/$ER_IDENT_ID" \
+                --header "Content-Type: application/json" \
+                --header "Authorization: $token_type $token" \
+                --data "{\"attributes\": [\"#$ATTRIBUTE\"]}"
+        else
+            echo "ER ID is not found  $ER_ID!"
+            exit 0
+        fi
+    fi
 
 }
 
 delete_nf_er () {
 
-    export ER_RESP=`curl --silent --location --request GET "https://gateway.production.netfoundry.io/core/v2/edge-routers?name=$ER" \
-        --header "Content-Type: application/json" \
-        --header "Authorization: $token_type $token"`
-    export ER_ID=`jq -r ._embedded.edgeRouterList[0].id <<< "$ER_RESP"`
-    curl --silent --location --request DELETE "https://gateway.production.netfoundry.io/core/v2/edge-routers/$ER_ID" \
-        --header "Content-Type: application/json" \
-        --header "Authorization: $token_type $token"
+    get_nf_network_id
+    if [ -n "$ER" ] && [ -n "$NETWORK_ID" ]; then
+        get_nf_router_id
+        if [ -n "$ER_ID" ]; then
+            echo "Deleting Edge Router $ER"
+            curl --silent --location --request DELETE "https://gateway.production.netfoundry.io/core/v2/edge-routers/$ER_ID" \
+                --header "Content-Type: application/json" \
+                --header "Authorization: $token_type $token"
+        fi
+    else
+        echo "ER NAME or Network ID is empty string: $ER or $NETWORK_ID!"
+        echo "Skipping router delete"
+    fi
 
 }
 
