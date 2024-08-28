@@ -48,7 +48,7 @@ runcmd:
   /usr/bin/ip address add 100.127.255.254/32 dev lo scope host
   /opt/netfoundry/router-registration --dnsIPRange ${s.dnsSvcIpRange} --tunnel_ip 100.127.255.254 --lanIf $LANIF ${s.edgeRouterKey}
   /var/lib/cloud/diverter.sh
-  /opt/netfoundry/dl_artifacts_zfw.sh $(/opt/netfoundry/get_aws_secret.py --secret-name ${s.awsSecretName} --region-name ${s.region}) 1
+  /opt/netfoundry/dl_artifacts_zfw.sh $(/opt/netfoundry/get_aws_secret.py --secret-name ${s.awsSecretName} --region-name ${s.region}) 3
   /usr/bin/systemctl restart ziti-router.service
   /usr/bin/systemctl restart keepalived.service
 EOF
