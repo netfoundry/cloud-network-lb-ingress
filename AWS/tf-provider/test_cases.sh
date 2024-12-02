@@ -10,90 +10,112 @@ get_nf_network_id () {
 }
 
 get_nf_router_id () {
-    export ER_RESP=`curl --silent --location --request GET "https://gateway.production.netfoundry.io/core/v2/edge-routers?name=$ER&networkId=$NETWORK_ID" \
+
+    er_create_response=`curl --silent --location --request GET "https://gateway.production.netfoundry.io/core/v2/edge-routers?name=$ER&networkId=$NETWORK_ID" \
         --header "Content-Type: application/json" \
         --header "Authorization: $token_type $token"`
-    TOTAL_ER_COUNT=`echo $ER_RESP |jq -r .page.totalElements`
-    if [[ $TOTAL_ER_COUNT > 0 ]]; then
-        export ER_ID=`echo $ER_RESP | jq -r --arg ER_NAME "$ER" '._embedded.edgeRouterList[] | select(.name==$ER_NAME).id'`
+    total_er_count=`echo $er_create_response |jq -r .page.totalElements`
+    if [[ $total_er_count > 0 ]]; then
+        export ER_ID=`echo $er_create_response | jq -r --arg ER_NAME "$ER" '._embedded.edgeRouterList[] | select(.name==$ER_NAME).id'`
         echo "ER ID is $ER_ID!"
     else
         unset ER_ID
         echo "ER ID not found!"
     fi
+    
 }
 
 get_nf_er_reg_keys () {
 
-    get_nf_network_id
-    if [ -n "$ER" ] && [ -n "$NETWORK_ID" ]; then
-        get_nf_router_id
-        if [ -n "$ER_ID" ]; then
-            echo "Deleting Edge Router $ER"
-            curl --silent --location --request DELETE "https://gateway.production.netfoundry.io/core/v2/edge-routers/$ER_ID" \
-                --header "Content-Type: application/json" \
-                --header "Authorization: $token_type $token"
-            sleep 15
-        else
-            echo "ER ID is not found  $ER_ID; Will attempt to create it!"
+    delete_nf_er
+        
+    sleep 15
+
+    er_create_response=`curl --silent --location --request POST "https://gateway.production.netfoundry.io/core/v2/edge-routers" \
+        --header "Content-Type: application/json" \
+        --header "Authorization: $token_type $token" \
+        --data "{
+            \"name\":\"$ER\",
+            \"networkId\":\"$NETWORK_ID\",
+            \"linkListener\":false,
+            \"attributes\":[],
+            \"tunnelerEnabled\": true,
+            \"noTraversal\": false
+        }"`
+
+    while : ; do
+        er_status=`curl --silent --location --request GET "$(echo $er_create_response | jq -r ._links.execution.href)" \
+        --header "Content-Type: application/json" \
+        --header "Authorization: $token_type $token"`
+        if [ "$(echo $er_status | jq -r .status)" == "SUCCESS" ]; then
+            echo "The event is to \"$(echo $er_status | jq -r .description)\"."
+            echo "The status is $(echo $er_status | jq -r .status), and id is $(echo $er_status | jq -r .resourceId)."
+            export ER_ID=`jq -r .resourceId <<< "$er_status"`
+            break
         fi
-        export ER_RESP=`curl --silent --location --request POST "https://gateway.production.netfoundry.io/core/v2/edge-routers" \
+        echo "ER ID $(echo $er_status | jq -r .resourceId) is being created".
+        echo "The status is $(echo $er_status | jq -r .status)"
+    done
+
+    sleep 15
+
+    if [ -n "$ER_ID" ]; then
+        export ER_KEY_JSON=`curl --silent --location --request POST "https://gateway.production.netfoundry.io/core/v2/edge-routers/$ER_ID/registration-key" \
+            --header "Content-Type: application/json" \
+            --header "Authorization: $token_type $token"`
+        export ER_KEY=`jq -r .registrationKey <<< "$ER_KEY_JSON"` 
+        jq ".er_map_be[$COUNT].edgeRouterKey = \"$ER_KEY\"" input_vars.tfvars.json > "tmp" && mv "tmp" input_vars.tfvars.json
+        jq ".er_map_be[$COUNT].name = \"$ER\"" input_vars.tfvars.json > "tmp" && mv "tmp" input_vars.tfvars.json
+        ER_IDENT_RESP=`curl --silent --location --request GET "https://gateway.production.netfoundry.io/core/v2/endpoints?name=$ER" \
+            --header "Content-Type: application/json" \
+            --header "Authorization: $token_type $token"`
+        ER_IDENT_ID=`jq -r ._embedded.endpointList[0].id <<< "$ER_IDENT_RESP"`
+        curl --silent --location --request PATCH "https://gateway.production.netfoundry.io/core/v2/endpoints/$ER_IDENT_ID" \
             --header "Content-Type: application/json" \
             --header "Authorization: $token_type $token" \
-            --data "{
-                \"name\":\"$ER\",
-                \"networkId\":\"$NETWORK_ID\",
-                \"linkListener\":false,
-                \"attributes\":[],
-                \"tunnelerEnabled\": true,
-                \"noTraversal\": false
-            }"`
-        found=`jq 'has("id")' <<< "$ER_RESP"`
-        echo $found
-        if [ $found == true ]; then
-            export ER_ID=`jq -r .id <<< "$ER_RESP"`
-            sleep 15
-        else 
-            unset ER_ID
-            echo "ER ID is not found  $ER_ID; create attempt failed!"
-            echo "$ER_RESP" | jq .
-        fi
-        if [ -n "$ER_ID" ]; then
-            export ER_KEY_JSON=`curl --silent --location --request POST "https://gateway.production.netfoundry.io/core/v2/edge-routers/$ER_ID/registration-key" \
-                --header "Content-Type: application/json" \
-                --header "Authorization: $token_type $token"`
-            export ER_KEY=`jq -r .registrationKey <<< "$ER_KEY_JSON"` 
-            jq ".er_map_be[$COUNT].edgeRouterKey = \"$ER_KEY\"" input_vars.tfvars.json > "tmp" && mv "tmp" input_vars.tfvars.json
-            jq ".er_map_be[$COUNT].name = \"$ER\"" input_vars.tfvars.json > "tmp" && mv "tmp" input_vars.tfvars.json
-            ER_IDENT_RESP=`curl --silent --location --request GET "https://gateway.production.netfoundry.io/core/v2/endpoints?name=$ER" \
-                --header "Content-Type: application/json" \
-                --header "Authorization: $token_type $token"`
-            ER_IDENT_ID=`jq -r ._embedded.endpointList[0].id <<< "$ER_IDENT_RESP"`
-            curl --silent --location --request PATCH "https://gateway.production.netfoundry.io/core/v2/endpoints/$ER_IDENT_ID" \
-                --header "Content-Type: application/json" \
-                --header "Authorization: $token_type $token" \
-                --data "{\"attributes\": [\"#$ATTRIBUTE\"]}"
-        else
-            echo "ER ID is not found  $ER_ID!"
-            exit 0
-        fi
+            --data "{\"attributes\": [\"#$ATTRIBUTE\"]}"
+    else
+        echo "ER ID is not found  $ER_ID!"
+        exit 0
     fi
 
 }
 
 delete_nf_er () {
 
-    get_nf_network_id
-    if [ -n "$ER" ] && [ -n "$NETWORK_ID" ]; then
-        get_nf_router_id
-        if [ -n "$ER_ID" ]; then
-            echo "Deleting Edge Router $ER"
-            curl --silent --location --request DELETE "https://gateway.production.netfoundry.io/core/v2/edge-routers/$ER_ID" \
-                --header "Content-Type: application/json" \
-                --header "Authorization: $token_type $token"
+    if [ -n "$ER" ] && [ -n "$NF_NETWORK_NAME" ]; then
+        get_nf_network_id
+        if [ -n "$NETWORK_ID" ]; then
+            get_nf_router_id
+            if [ -n "$ER_ID" ]; then
+                echo "Deleting Edge Router $ER"
+                er_delete_response=`curl --silent --location --request DELETE "https://gateway.production.netfoundry.io/core/v2/edge-routers/$ER_ID" \
+                    --header "Content-Type: application/json" \
+                    --header "Authorization: $token_type $token"`
+
+                while : ; do
+                    er_status=`curl --silent --location --request GET "$(echo $er_delete_response | jq -r ._links.execution.href)" \
+                    --header "Content-Type: application/json" \
+                    --header "Authorization: $token_type $token"`
+                    if [ "$(echo $er_status | jq -r .status)" == "SUCCESS" ]; then
+                        echo "The event is to \"$(echo $er_status | jq -r .description)\"."
+                        echo "The status is $(echo $er_status | jq -r .status), and id is $(echo $er_status | jq -r .resourceId)."
+                        unset ER_ID
+                        break
+                    fi
+                    echo "ER ID $(echo $er_status | jq -r .resourceId) is being deleted".
+                    echo "The status is $(echo $er_status | jq -r .status)"
+                done
+            else
+                echo "ER ID is empty for $ER"
+                echo "Skipping router delete"
+            fi
+        else
+            echo "Network ID is empty string: $NETWORK_ID!"
+            echo "Skipping router delete"
         fi
     else
-        echo "ER NAME or Network ID is empty string: $ER or $NETWORK_ID!"
+        echo "ER or Network Name is empty string: $ER or $NF_NETWORK_NAME!"
         echo "Skipping router delete"
     fi
 
