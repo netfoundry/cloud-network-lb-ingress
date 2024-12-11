@@ -9,19 +9,89 @@ get_nf_network_id () {
 
 }
 
-get_nf_router_id () {
+resume_network () {
 
-    er_create_response=`curl --silent --location --request GET "https://gateway.production.netfoundry.io/core/v2/edge-routers?name=$ER&networkId=$NETWORK_ID" \
-        --header "Content-Type: application/json" \
-        --header "Authorization: $token_type $token"`
-    total_er_count=`echo $er_create_response |jq -r .page.totalElements`
-    if [[ $total_er_count > 0 ]]; then
-        export ER_ID=`echo $er_create_response | jq -r --arg ER_NAME "$ER" '._embedded.edgeRouterList[] | select(.name==$ER_NAME).id'`
-        echo "ER ID is $ER_ID!"
-    else
-        unset ER_ID
-        echo "ER ID not found!"
+    if [ -n "$NF_NETWORK_NAME" ]; then
+        get_nf_network_id
+        if [ -n "$NETWORK_ID" ]; then
+            echo "Resuming Network ID $NETWORK_ID!"
+            network_resume_response=`curl --silent --location --request POST "https://gateway.production.netfoundry.io/core/v2/networks/$NETWORK_ID/resume" \
+                    --header "Content-Type: application/json" \
+                    --header "Authorization: $token_type $token"`
+
+            while : ; do
+                network_status=`curl --silent --location --request GET "$(echo $network_resume_response | jq -r ._links.execution.href)" \
+                --header "Content-Type: application/json" \
+                --header "Authorization: $token_type $token"`
+                if [ "$(echo $network_status | jq -r .status)" == "SUCCESS" ]; then
+                    echo "The event is to \"$(echo $network_status | jq -r .description)\"."
+                    echo "The status is $(echo $network_status | jq -r .status), and Network ID is $(echo $network_status | jq -r .resourceId)."
+                    break
+                fi
+                echo "Network ID $(echo $network_status | jq -r .resourceId) is being resumed".
+                echo "The status is $(echo $network_status | jq -r .status)"
+            done
+
+            return
+        fi
     fi
+    echo "Network Name or ID is not found: $NF_NETWORK_NAME or $NETWORK_ID!"
+    echo "Failed to resume the network: $NF_NETWORK_NAME!"
+    exit 1
+
+}
+
+suspend_network () {
+
+    if [ -n "$NF_NETWORK_NAME" ]; then
+        get_nf_network_id
+        if [ -n "$NETWORK_ID" ]; then
+            echo "Suspending Network ID $NETWORK_ID!"
+            network_suspend_response=`curl --silent --location --request POST "https://gateway.production.netfoundry.io/core/v2/networks/$NETWORK_ID/suspend" \
+                    --header "Content-Type: application/json" \
+                    --header "Authorization: $token_type $token"`
+
+            while : ; do
+                network_status=`curl --silent --location --request GET "$(echo $network_suspend_response | jq -r ._links.execution.href)" \
+                --header "Content-Type: application/json" \
+                --header "Authorization: $token_type $token"`
+                if [ "$(echo $network_status | jq -r .status)" == "SUCCESS" ]; then
+                    echo "The event is to \"$(echo $network_status | jq -r .description)\"."
+                    echo "The status is $(echo $network_status | jq -r .status), and iNetwork ID is $(echo $network_status | jq -r .resourceId)."
+                    unset NETWORK_ID
+                    break
+                fi
+                echo "Network ID $(echo $network_status | jq -r .resourceId) is being suspended".
+                echo "The status is $(echo $network_status | jq -r .status)"
+            done
+
+            return
+        fi
+    fi
+    echo "Network Name or ID is not found: $NF_NETWORK_NAME or $NETWORK_ID!"
+    echo "Failed to suspend the network: $NF_NETWORK_NAME!"
+    exit 1
+
+}
+
+get_nf_router_id () {
+    if [ -n "$NF_NETWORK_NAME" ]; then
+        get_nf_network_id
+        if [ -n "$NETWORK_ID" ]; then
+            er_create_response=`curl --silent --location --request GET "https://gateway.production.netfoundry.io/core/v2/edge-routers?name=$ER&networkId=$NETWORK_ID" \
+                --header "Content-Type: application/json" \
+                --header "Authorization: $token_type $token"`
+            total_er_count=`echo $er_create_response |jq -r .page.totalElements`
+            if [[ $total_er_count > 0 ]]; then
+                export ER_ID=`echo $er_create_response | jq -r --arg ER_NAME "$ER" '._embedded.edgeRouterList[] | select(.name==$ER_NAME).id'`
+                echo "ER ID is $ER_ID!"
+                return
+            fi
+        fi
+    fi
+    unset ER_ID
+    echo "All or none from Network Name or Network ID or Router ID is not found: $NF_NETWORK_NAME or $NETWORK_ID or $ER_ID!"
+    echo "Failed to get ER ID for $ER!"
     
 }
 
@@ -74,50 +144,42 @@ get_nf_er_reg_keys () {
             --header "Content-Type: application/json" \
             --header "Authorization: $token_type $token" \
             --data "{\"attributes\": [\"#$ATTRIBUTE\"]}"
-    else
-        echo "ER ID is not found  $ER_ID!"
-        exit 0
+        return
     fi
+    echo "ER ID is not found  $ER_ID!"
+    exit 1
 
 }
 
 delete_nf_er () {
 
-    if [ -n "$ER" ] && [ -n "$NF_NETWORK_NAME" ]; then
-        get_nf_network_id
-        if [ -n "$NETWORK_ID" ]; then
-            get_nf_router_id
-            if [ -n "$ER_ID" ]; then
-                echo "Deleting Edge Router $ER"
-                er_delete_response=`curl --silent --location --request DELETE "https://gateway.production.netfoundry.io/core/v2/edge-routers/$ER_ID" \
-                    --header "Content-Type: application/json" \
-                    --header "Authorization: $token_type $token"`
+    if [ -n "$ER" ]; then
+        get_nf_router_id
+        if [ -n "$ER_ID" ]; then
+            echo "Deleting Edge Router $ER"
+            er_delete_response=`curl --silent --location --request DELETE "https://gateway.production.netfoundry.io/core/v2/edge-routers/$ER_ID" \
+                --header "Content-Type: application/json" \
+                --header "Authorization: $token_type $token"`
 
-                while : ; do
-                    er_status=`curl --silent --location --request GET "$(echo $er_delete_response | jq -r ._links.execution.href)" \
-                    --header "Content-Type: application/json" \
-                    --header "Authorization: $token_type $token"`
-                    if [ "$(echo $er_status | jq -r .status)" == "SUCCESS" ]; then
-                        echo "The event is to \"$(echo $er_status | jq -r .description)\"."
-                        echo "The status is $(echo $er_status | jq -r .status), and id is $(echo $er_status | jq -r .resourceId)."
-                        unset ER_ID
-                        break
-                    fi
-                    echo "ER ID $(echo $er_status | jq -r .resourceId) is being deleted".
-                    echo "The status is $(echo $er_status | jq -r .status)"
-                done
-            else
-                echo "ER ID is empty for $ER"
-                echo "Skipping router delete"
-            fi
-        else
-            echo "Network ID is empty string: $NETWORK_ID!"
-            echo "Skipping router delete"
+            while : ; do
+                er_status=`curl --silent --location --request GET "$(echo $er_delete_response | jq -r ._links.execution.href)" \
+                --header "Content-Type: application/json" \
+                --header "Authorization: $token_type $token"`
+                if [ "$(echo $er_status | jq -r .status)" == "SUCCESS" ]; then
+                    echo "The event is to \"$(echo $er_status | jq -r .description)\"."
+                    echo "The status is $(echo $er_status | jq -r .status), and id is $(echo $er_status | jq -r .resourceId)."
+                    unset ER_ID
+                    break
+                fi
+                echo "ER ID $(echo $er_status | jq -r .resourceId) is being deleted".
+                echo "The status is $(echo $er_status | jq -r .status)"
+            done
+
+            return
         fi
-    else
-        echo "ER or Network Name is empty string: $ER or $NF_NETWORK_NAME!"
-        echo "Skipping router delete"
     fi
+    echo "ER Name or ID is empty for $ER or $ER_ID!"
+    echo "Skipping router delete"
 
 }
 
@@ -142,6 +204,7 @@ run () {
 
     get_nf_token
     terraform init -backend-config=backend.tfvars.json
+    resume_network
     x=0
     for region in "${REGIONS[@]}"
     do
@@ -187,6 +250,7 @@ cleanup () {
     do
         terraform workspace delete $workspace
     done
+    suspend_network
 
 }
 
