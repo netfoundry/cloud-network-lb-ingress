@@ -183,6 +183,16 @@ resource "aws_key_pair" "ssh_public_key" {
   public_key = var.ssh_public_key
 }
 
+data aws_ami nf_er {
+  most_recent = true
+  owners      = ["aws-marketplace"]
+
+  filter {
+    name   = "product-code"
+    values = ["eai0ozn6apmy1qwwd5on40ec7"]
+  }
+}
+
 module "compute_backend" {
     depends_on = [ resource.aws_key_pair.ssh_public_key ]
     source  = "terraform-aws-modules/ec2-instance/aws"
@@ -194,7 +204,7 @@ module "compute_backend" {
     availability_zone = "${var.region}${var.er_map_be[count.index].zone}"
     associate_public_ip_address = true
 
-    ami                      = var.ami_id[var.region]
+    ami                      = data.aws_ami.nf_er.id
     instance_type            = "t3.medium"
     key_name                 = var.ssh_key_name
     monitoring               = true
@@ -222,7 +232,7 @@ module "compute_client" {
     availability_zone = "${var.region}${var.er_map_be[count.index].zone}"
     associate_public_ip_address = true
 
-    ami                    = var.ami_id[var.region]
+    ami                    = data.aws_ami.nf_er.id
     instance_type          = "t3.medium"
     key_name               = var.ssh_key_name
     monitoring             = true

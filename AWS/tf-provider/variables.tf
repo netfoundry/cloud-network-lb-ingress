@@ -23,13 +23,6 @@ variable "include_route_resolver" {
   default = false
 }
 
-variable "ami_id" {
-  default = {
-    us-east-2 = "ami-0ab634f83396bab07"
-    us-west-2 = "ami-0265d0c8400b1d6dd"
-  }
-}
-
 variable "github_pt" {
   default = "test-secret"
 }
