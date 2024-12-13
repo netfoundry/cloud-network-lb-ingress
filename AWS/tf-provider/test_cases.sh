@@ -6,6 +6,7 @@ get_nf_network_id () {
            --header "Content-Type: application/json" \
            --header "Authorization: $token_type $token"`
     export NETWORK_ID=`echo $network_list | jq -r --arg NF_NETWORK_NAME "$NF_NETWORK_NAME" '._embedded.networkList[] | select(.name==$NF_NETWORK_NAME).id'`
+    export NETWORK_STATUS=`echo $network_list | jq -r --arg NF_NETWORK_NAME "$NF_NETWORK_NAME" '._embedded.networkList[] | select(.name==$NF_NETWORK_NAME).status'`
 
 }
 
@@ -13,7 +14,7 @@ resume_network () {
 
     if [ -n "$NF_NETWORK_NAME" ]; then
         get_nf_network_id
-        if [ -n "$NETWORK_ID" ]; then
+        if [ -n "$NETWORK_ID" ] && [ "$NETWORK_STATUS" == "SUSPENDED" ]; then
             echo "Resuming Network ID $NETWORK_ID!"
             network_resume_response=`curl --silent --location --request POST "https://gateway.production.netfoundry.io/core/v2/networks/$NETWORK_ID/resume" \
                     --header "Content-Type: application/json" \
@@ -34,7 +35,13 @@ resume_network () {
 
             return
         fi
+        if [ "$NETWORK_STATUS" == "PROVISIONED" ]; then
+            echo "The network status is already $NETWORK_STATUS"
+            unset NETWORK_STATUS
+            return
+        fi
     fi
+
     echo "Network Name or ID is not found: $NF_NETWORK_NAME or $NETWORK_ID!"
     echo "Failed to resume the network: $NF_NETWORK_NAME!"
     exit 1
