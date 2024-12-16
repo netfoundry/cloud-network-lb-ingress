@@ -21,6 +21,7 @@ resume_network () {
                     --header "Authorization: $token_type $token"`
 
             while : ; do
+                sleep 15
                 network_status=`curl --silent --location --request GET "$(echo $network_resume_response | jq -r ._links.execution.href)" \
                 --header "Content-Type: application/json" \
                 --header "Authorization: $token_type $token"`
@@ -59,6 +60,7 @@ suspend_network () {
                     --header "Authorization: $token_type $token"`
 
             while : ; do
+                sleep 15
                 network_status=`curl --silent --location --request GET "$(echo $network_suspend_response | jq -r ._links.execution.href)" \
                 --header "Content-Type: application/json" \
                 --header "Authorization: $token_type $token"`
@@ -121,6 +123,7 @@ get_nf_er_reg_keys () {
         }"`
 
     while : ; do
+        sleep 15
         er_status=`curl --silent --location --request GET "$(echo $er_create_response | jq -r ._links.execution.href)" \
         --header "Content-Type: application/json" \
         --header "Authorization: $token_type $token"`
@@ -169,6 +172,7 @@ delete_nf_er () {
                 --header "Authorization: $token_type $token"`
 
             while : ; do
+                sleep 15
                 er_status=`curl --silent --location --request GET "$(echo $er_delete_response | jq -r ._links.execution.href)" \
                 --header "Content-Type: application/json" \
                 --header "Authorization: $token_type $token"`
