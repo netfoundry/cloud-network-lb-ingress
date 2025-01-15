@@ -18,7 +18,7 @@ Need to Create 2 Customer Hosted Edge Routers on your NF Network using the follo
 
 1. Clone the repo and cd into NetworkLoadBalancer/GCP/tf-provider
 1. Create provider.tf in this folder with the api file details in it as shown:
-    ```powershell
+    ```shell
     provider "google" {
         project     = "YOUR PROJECT NAME"
         region      = "us-east1"

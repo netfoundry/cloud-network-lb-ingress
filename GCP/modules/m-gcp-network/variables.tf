@@ -1,4 +1,4 @@
-
+variable "project" {}
 variable "vcn_name" {}
 variable "region" {}
 variable "nf_subnet_name" {

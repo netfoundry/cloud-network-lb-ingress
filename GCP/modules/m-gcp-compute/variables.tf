@@ -1,8 +1,9 @@
 variable "region" {}
+variable "project" {}
 variable "zone_list" {
     description = "zone list used to deply NF ERs in"
     type        = list
-    default     = ["b"]
+    default     = ["b","c"]
 }
 variable "er_ssh_public_key" {}
 variable "nf_subnet_name" {
@@ -24,7 +25,7 @@ variable "instance_shape" {
 variable "er_reg_keys" {
   type = list(string)
   validation {
-    condition     = length(var.er_reg_keys) == 1
+    condition     = length(var.er_reg_keys) == 2
     error_message = "The edge router registration keys were not provided, count of valid keys should be 2"
   }
 }

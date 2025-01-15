@@ -1,12 +1,13 @@
 
-
 resource "google_compute_network" "vpc_net_10" {
+  project = var.project
   count = var.create_vcn ? 1 : 0
   name = var.vcn_name
   auto_create_subnetworks = false
 }
 
 resource "google_compute_subnetwork" "nf_public_sn_10" {
+  project = var.project
   count = var.create_vcn ? 1 : 0
   name = var.nf_subnet_name
   ip_cidr_range = var.nf_subnet_cidr
@@ -15,6 +16,7 @@ resource "google_compute_subnetwork" "nf_public_sn_10" {
 }
 
 resource "google_compute_firewall" "fw_ssh_10" {
+  project = var.project
   count = var.create_vcn ? 1 : 0
   name        = "nf-fw-ssh-${var.region}"
   network     = var.vcn_name
@@ -33,6 +35,7 @@ resource "google_compute_firewall" "fw_ssh_10" {
 }
 
 resource "google_compute_firewall" "fw_hc_10" {
+  project = var.project
   count = var.create_vcn ? 1 : 0
   name        = "nf-fw-hc-${var.region}"
   network     = var.vcn_name
@@ -86,9 +89,9 @@ resource "google_compute_firewall" "fw_hc_01" {
 
   allow {
     protocol  = "tcp"
-    ports     = ["8081"]
+    ports     = ["8081","8080"]
   }
 
-  source_ranges =  ["130.211.0.0/22", "35.191.0.0/16"]
+  source_ranges =  ["130.211.0.0/22", "35.191.0.0/16", var.nf_subnet_cidr]
   target_tags = ["nf-fw-rules"]
 }
