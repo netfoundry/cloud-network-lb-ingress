@@ -18,7 +18,7 @@ Need to Create 2 Customer Hosted Edge Routers on your NF Network using the follo
 
 1. Clone the repo and cd into NetworkLoadBalancer/GCP/tf-provider
 1. Create provider.tf in this folder with the api file details in it as shown:
-    ```powershell
+    ```shell
     provider "google" {
         project     = "YOUR PROJECT NAME"
         region      = "us-east1"
@@ -34,26 +34,27 @@ Need to Create 2 Customer Hosted Edge Routers on your NF Network using the follo
 
     To deploy in more than one region, one can use workspaces if the creds or access controls are the same(not recommended if not [as state here](https://www.terraform.io/language/state/workspaces#using-workspaces)). Here is how to initialize them. You would need to update the region and nf_subnet_cidr in your input_vars.tfvars.json as well when you switch workspaces and you want to create a new region.
 
-    ```bash
+    ```shell
     terraform workspace new us-east1
     terraform workspace new us-west1
     etc...
     ```
     Then you can list or select one:
-    ```
+    ```shell
     terraform workspace list
     terraform workspace select us-west1
     ```
 1.  Initialize terraform
-    ```bash
+    ```shell
     terraform init
     ```
 1. Update the variables input file with your parameters
-    ```bash
+    ```shell
     nano input_vars.tfvars.json
     ```
     ```json
     {
+        "project": "cloud-dev",
         "region": "us-east1",
         "nf_subnet_cidr": "10.2.0.0/24",
         "vcn_name": "nf-lb-test-01",
@@ -62,13 +63,13 @@ Need to Create 2 Customer Hosted Edge Routers on your NF Network using the follo
     ```
 1. Run the plan
 
-    ```bash
+    ```shell
     terraform plan -var-file input_vars.tfvars.json
     ```
 
 1. Apply the plan if no errors otherwise fix them
 
-    ```bash
+    ```shell
     terraform apply -var-file input_vars.tfvars.json
     ```
 
@@ -84,7 +85,7 @@ Need to Create 2 Customer Hosted Edge Routers on your NF Network using the follo
 
 If one wants to test the configuration before deployment, it can be done on the new virtual network. The new virtual network will be created by the terraform plan. To do that enable the following parameters in the root terrafrom file (i.e .tf).
 
-```powershell
+```shell
     module "vcn1" {
         ...
         create_vcn = true

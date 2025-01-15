@@ -1,4 +1,6 @@
 variable "region" {}
+variable "project" {}
+variable "vcn_name" {}
 variable "zone_list" {
     description = "zone list used to deply NF ERs in"
     type        = list
@@ -18,5 +20,11 @@ variable "session_affinity" {
 }
 variable "lb_name_prefix" {
   default = "nf-lb"
+}
+
+variable "dest_cidr_list" {
+    description = "Destination Cidr List to forward"
+    type        = list
+    default     = ["192.168.4.0/22"]
 }
 

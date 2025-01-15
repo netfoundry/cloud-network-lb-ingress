@@ -6,27 +6,30 @@
 #
 # Search for created instances, only on per zone supported
 # 
-data "google_compute_instance" "nf-edge-routers" {
-    count  = length(var.zone_list)
-    name   = "${var.instance_name_prefix}-${var.region}-${count.index}"
-    zone   = "${var.region}-${var.zone_list[count.index]}"
+data "google_compute_instance" "backend_edge_router" {
+    project      = var.project
+    count        = length(var.zone_list)
+    name         = "${var.instance_name_prefix}-${var.region}-${count.index}"
+    zone         = "${var.region}-${var.zone_list[count.index]}"
 }
 
 # ------------------------------------------------------------------------------
 # CREATE Instance Group
 # ------------------------------------------------------------------------------
-resource "google_compute_instance_group" "nf-edge-routers-group" {
-  count  = length(data.google_compute_instance.nf-edge-routers.*.self_link)
-  name   = "${var.instance_name_prefix}-${var.region}-${count.index}"
-  zone = "${var.region}-${var.zone_list[count.index]}"
-  instances = [try(element(data.google_compute_instance.nf-edge-routers.*.self_link, count.index))]
+resource "google_compute_instance_group" "backend_edge_router-group" {
+  project   = var.project
+  count     = length(data.google_compute_instance.backend_edge_router)
+  name      = "${var.instance_name_prefix}-${var.region}"
+  zone      = "${var.region}-${var.zone_list[count.index]}"
+  instances = [element(data.google_compute_instance.backend_edge_router.*.id, count.index)]
 }
 
 # ------------------------------------------------------------------------------
 # CREATE HEALTH CHECK ´https'´
 # ------------------------------------------------------------------------------
 
-resource "google_compute_health_check" "nf-edge-routers-hc" {
+resource "google_compute_health_check" "backend_edge_router-hc" {
+  project             = var.project
   name                = "${var.instance_name_prefix}-${var.region}-hc"
   https_health_check {
     port          = "8081"
@@ -43,18 +46,19 @@ resource "google_compute_health_check" "nf-edge-routers-hc" {
 # ------------------------------------------------------------------------------
 
 resource "google_compute_region_backend_service" "nlb-beadd-tcp" {
+  project                         = var.project
   name                            = "${var.lb_name_prefix}-${var.region}-tcp"
   region                          = var.region
-  health_checks                   = [google_compute_health_check.nf-edge-routers-hc.id]
+  health_checks                   = [google_compute_health_check.backend_edge_router-hc.id]
   connection_draining_timeout_sec = 300
   session_affinity                = var.session_affinity
-  backend {
-    group                         = google_compute_instance_group.nf-edge-routers-group.0.self_link
-  }
-  backend {
-    group                         = google_compute_instance_group.nf-edge-routers-group.1.self_link
-  }
   protocol                        = "TCP"
+  backend {
+    group = google_compute_instance_group.backend_edge_router-group[0].self_link
+  }
+  backend {
+    group = google_compute_instance_group.backend_edge_router-group[1].self_link
+  }
 }
 
 # ------------------------------------------------------------------------------
@@ -62,17 +66,18 @@ resource "google_compute_region_backend_service" "nlb-beadd-tcp" {
 # ------------------------------------------------------------------------------
 
 resource "google_compute_region_backend_service" "nlb-beadd-udp" {
-  name                            = "${var.lb_name_prefix}-${var.region}-udp"
-  region                          = var.region
-  health_checks                   = [google_compute_health_check.nf-edge-routers-hc.id]
-  session_affinity                = var.session_affinity
+  project             = var.project
+  name                = "${var.lb_name_prefix}-${var.region}-udp"
+  region              = var.region
+  health_checks       = [google_compute_health_check.backend_edge_router-hc.id]
+  session_affinity    = var.session_affinity
+  protocol            = "UDP"
   backend {
-    group                         = google_compute_instance_group.nf-edge-routers-group.0.self_link
+    group = google_compute_instance_group.backend_edge_router-group[0].self_link
   }
   backend {
-    group                         = google_compute_instance_group.nf-edge-routers-group.1.self_link
+    group = google_compute_instance_group.backend_edge_router-group[1].self_link
   }
-  protocol                        = "UDP"
 }
 
 # ------------------------------------------------------------------------------
@@ -80,11 +85,12 @@ resource "google_compute_region_backend_service" "nlb-beadd-udp" {
 # ------------------------------------------------------------------------------
 
 resource "google_compute_forwarding_rule" "nlb-fw-rl-tcp" {
+  project               = var.project
   name                  = "${var.lb_name_prefix}-${var.region}-fw-rl-tcp"
   region                = var.region
   subnetwork            = var.nf_subnet_name
   load_balancing_scheme = "INTERNAL"
-  backend_service       = google_compute_region_backend_service.nlb-beadd-tcp.self_link
+  backend_service       = google_compute_region_backend_service.nlb-beadd-tcp.id
   ip_protocol           = "TCP"
   all_ports             = true
 }
@@ -94,11 +100,30 @@ resource "google_compute_forwarding_rule" "nlb-fw-rl-tcp" {
 # ------------------------------------------------------------------------------
 
 resource "google_compute_forwarding_rule" "nlb-fwd-rl-udp" {
+  project               = var.project
   name                  = "${var.lb_name_prefix}-${var.region}-fwd-rl-udp"
   region                = var.region
   subnetwork            = var.nf_subnet_name
   load_balancing_scheme = "INTERNAL"
-  backend_service       = google_compute_region_backend_service.nlb-beadd-udp.self_link
+  backend_service       = google_compute_region_backend_service.nlb-beadd-udp.id
   ip_protocol           = "UDP"
   all_ports             = true
+}
+
+resource "google_compute_route" "route-ilb-tcp" {
+  project      = var.project
+  name         = "route-ilb-tcp"
+  dest_range   = var.dest_cidr_list[0]
+  network      = var.vcn_name
+  next_hop_ilb = google_compute_forwarding_rule.nlb-fw-rl-tcp.id
+  priority     = 2000
+}
+
+resource "google_compute_route" "route-ilb-udp" {
+  project      = var.project
+  name         = "route-ilb-udp"
+  dest_range   = var.dest_cidr_list[0]
+  network      = var.vcn_name
+  next_hop_ilb = google_compute_forwarding_rule.nlb-fwd-rl-udp.id
+  priority     = 2000
 }
