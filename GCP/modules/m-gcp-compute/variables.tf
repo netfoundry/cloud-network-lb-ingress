@@ -5,7 +5,9 @@ variable "zone_list" {
     type        = list
     default     = ["b","c"]
 }
-variable "er_ssh_public_key" {}
+variable "er_ssh_public_key" {
+  default = "~/.ssh/id_rsa.pub"
+}
 variable "nf_subnet_name" {
     description = "NetFoundry subnet name"
     type        = string
@@ -28,4 +30,5 @@ variable "er_reg_keys" {
     condition     = length(var.er_reg_keys) == 2
     error_message = "The edge router registration keys were not provided, count of valid keys should be 2"
   }
+  default = [" "," "]
 }

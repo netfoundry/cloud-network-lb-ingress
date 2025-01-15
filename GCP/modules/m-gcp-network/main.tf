@@ -43,10 +43,10 @@ resource "google_compute_firewall" "fw_hc_10" {
 
   allow {
     protocol  = "tcp"
-    ports     = ["8081"]
+    ports     = ["8081", "8080"]
   }
 
-  source_ranges =  ["130.211.0.0/22", "35.191.0.0/16"]
+  source_ranges =  ["130.211.0.0/22", "35.191.0.0/16", var.nf_subnet_cidr]
   target_tags = ["nf-fw-rules"]
   depends_on = [
     google_compute_network.vpc_net_10
