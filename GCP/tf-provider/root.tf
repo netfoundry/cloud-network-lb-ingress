@@ -11,10 +11,14 @@ module "compute1" {
   depends_on = [
     module.vcn1
   ]
-  source      = "../modules/m-gcp-compute"
-  project     = var.project
-  region      = var.region
-  er_reg_keys = var.nf_router_registration_key_list
+  source           = "../modules/m-gcp-compute"
+  project          = var.project
+  vcn_name         = var.vcn_name
+  region           = var.region
+  zone_list        = var.zone_list
+  er_reg_keys      = var.nf_router_registration_key_list
+  dns_svc_ip_range = var.dns_svc_ip_range
+  tunnel_ip        = "100.127.255.254"
 }
 
 module "compute-test" {
@@ -24,7 +28,9 @@ module "compute-test" {
   ]
   source = "../modules/m-gcp-compute"
   project              = var.project
+  vcn_name             = var.vcn_name
   region               = var.region
+  zone_list            = var.zone_list
   instance_name_prefix = "lb-test-vm"
 }
 
@@ -32,10 +38,12 @@ module "nlb1" {
   depends_on = [
     module.compute1
   ]
-  source   = "../modules/m-gcp-nlb"
-  project  = var.project
-  vcn_name = var.vcn_name
-  region   = var.region
+  source           = "../modules/m-gcp-nlb"
+  project          = var.project
+  vcn_name         = var.vcn_name
+  region           = var.region
+  zone_list        = var.zone_list
+  dns_svc_ip_range = var.dns_svc_ip_range
 }
 
 

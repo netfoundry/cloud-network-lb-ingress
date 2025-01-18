@@ -1,10 +1,7 @@
 variable "region" {}
 variable "project" {}
-variable "zone_list" {
-    description = "zone list used to deply NF ERs in"
-    type        = list
-    default     = ["b","c"]
-}
+variable "vcn_name" {}
+variable "zone_list" {}
 variable "er_ssh_public_key" {
   default = "~/.ssh/id_rsa.pub"
 }
@@ -30,5 +27,12 @@ variable "er_reg_keys" {
     condition     = length(var.er_reg_keys) == 2
     error_message = "The edge router registration keys were not provided, count of valid keys should be 2"
   }
-  default = [" "," "]
+  default = ["",""]
 }
+variable "dns_svc_ip_range" {
+  default = ["",""]
+}
+variable "tunnel_ip" {
+  default = ""
+}
+

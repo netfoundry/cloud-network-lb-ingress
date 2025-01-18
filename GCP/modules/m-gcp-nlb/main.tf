@@ -127,3 +127,31 @@ resource "google_compute_route" "route-ilb-udp" {
   next_hop_ilb = google_compute_forwarding_rule.nlb-fwd-rl-udp.id
   priority     = 2000
 }
+
+resource "google_compute_route" "route-dns-reslv-tcp" {
+  project      = var.project
+  name         = "route-dns-reslv-tcp"
+  dest_range   = "100.127.255.254/32"
+  network      = var.vcn_name
+  next_hop_ilb = google_compute_forwarding_rule.nlb-fw-rl-tcp.id
+  priority     = 2000
+}
+
+resource "google_compute_route" "route-dns-reslv-udp" {
+  project      = var.project
+  name         = "route-dns-reslv-udp"
+  dest_range   = "100.127.255.254/32"
+  network      = var.vcn_name
+  next_hop_ilb = google_compute_forwarding_rule.nlb-fwd-rl-udp.id
+  priority     = 2000
+}
+
+resource "google_compute_route" "route-dnssvciprange" {
+  project      = var.project
+  count        = length(var.zone_list)
+  name         = "route-dnssvcip${count.index}"
+  dest_range   = var.dns_svc_ip_range[count.index]
+  network      = var.vcn_name
+  next_hop_ip  = data.google_compute_instance.backend_edge_router[count.index].network_interface.0.network_ip
+  priority     = 2000
+}

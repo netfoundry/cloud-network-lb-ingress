@@ -24,7 +24,7 @@ resource "google_compute_firewall" "fw_ssh_10" {
 
   allow {
     protocol  = "tcp"
-    ports     = ["22"]
+    ports     = [22]
   }
 
   source_ranges = ["0.0.0.0/0"]
@@ -43,10 +43,34 @@ resource "google_compute_firewall" "fw_hc_10" {
 
   allow {
     protocol  = "tcp"
-    ports     = ["8081", "8080"]
+    ports     = [8081]
   }
 
-  source_ranges =  ["130.211.0.0/22", "35.191.0.0/16", var.nf_subnet_cidr]
+  source_ranges =  ["130.211.0.0/22", "35.191.0.0/16"]
+  target_tags = ["nf-fw-rules"]
+  depends_on = [
+    google_compute_network.vpc_net_10
+  ]
+}
+
+resource "google_compute_firewall" "fw_svc_10" {
+  project = var.project
+  count = var.create_vcn ? 1 : 0
+  name        = "nf-fw-svc-${var.region}"
+  network     = var.vcn_name
+  description = "Creates firewall rule targeting tagged instances"
+
+  allow {
+    protocol  = "tcp"
+    ports     = [8080, 53]
+  }
+
+  allow {
+    protocol  = "udp"
+    ports     = [8080, 53]
+  }
+
+  source_ranges =  [ var.nf_subnet_cidr ]
   target_tags = ["nf-fw-rules"]
   depends_on = [
     google_compute_network.vpc_net_10
@@ -74,7 +98,7 @@ resource "google_compute_firewall" "fw_ssh_01" {
 
   allow {
     protocol  = "tcp"
-    ports     = ["22"]
+    ports     = [22]
   }
 
   source_ranges = ["0.0.0.0/0"]
@@ -89,9 +113,30 @@ resource "google_compute_firewall" "fw_hc_01" {
 
   allow {
     protocol  = "tcp"
-    ports     = ["8081","8080"]
+    ports     = [8081]
   }
 
-  source_ranges =  ["130.211.0.0/22", "35.191.0.0/16", var.nf_subnet_cidr]
+  source_ranges =  ["130.211.0.0/22", "35.191.0.0/16"]
+  target_tags = ["nf-fw-rules"]
+}
+
+resource "google_compute_firewall" "fw_svc_01" {
+  project = var.project
+  count = var.create_vcn ? 0 : 1
+  name        = "nf-fw-svc-${var.region}"
+  network     = var.vcn_name
+  description = "Creates firewall rule targeting tagged instances"
+
+  allow {
+    protocol  = "tcp"
+    ports     = [8080, 53]
+  }
+
+  allow {
+    protocol  = "udp"
+    ports     = [8080, 53]
+  }
+
+  source_ranges =  [ var.nf_subnet_cidr ]
   target_tags = ["nf-fw-rules"]
 }
