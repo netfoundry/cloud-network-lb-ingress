@@ -34,6 +34,14 @@
             "type": "string",
             "defaultValue": "10.17.0.0/24"
         },
+        "er1DnsPrefix": {
+            "type": "string",
+            "defaultValue": "100.64.0.0/13"
+        },
+        "er2DnsPrefix": {
+            "type": "string",
+            "defaultValue": "100.72.0.0/13"
+        },
         "virtualMachineNamePrefix": {
             "type": "string",
             "defaultValue": "Belb-er"
@@ -82,14 +90,15 @@
         "lbId": "[resourceId(resourceGroup().name, 'Microsoft.Network/loadBalancers', variables('loadbalancerName'))]",
         "routeTableId": "[resourceId(resourceGroup().name,'Microsoft.Network/routeTables', parameters('routeTableName'))]",
         "cloudInitUfw": "\n- [/usr/sbin/ufw, allow, to, any, port, 8081, proto, tcp, from, 168.63.129.16/32]",
-        "cloudInit1": "[concat('#cloud-config\nruncmd:\n- [/opt/netfoundry/router-registration, ', parameters('edgeRouterKey1'), ']', variables('cloudInitUfw'))]",
-        "cloudInit2": "[concat('#cloud-config\nruncmd:\n- [/opt/netfoundry/router-registration, ', parameters('edgeRouterKey2'), ']', variables('cloudInitUfw'))]"
-        
+        "er1_reg_string": "[concat('\n- [/opt/netfoundry/router-registration, --dnsIPRange, 100.64.0.0/13, ', parameters('edgeRouterKey1'), ']')]",
+        "er2_reg_string": "[concat('\n- [/opt/netfoundry/router-registration, --dnsIPRange, 100.72.0.0/13, ', parameters('edgeRouterKey2'), ']')]",
+        "cloudInit1": "[concat('#cloud-config\nruncmd:', variables('er1_reg_string'), variables('cloudInitUfw'))]",
+        "cloudInit2": "[concat('#cloud-config\nruncmd:', variables('er2_reg_string'), variables('cloudInitUfw'))]"
     },
     "resources": [
         {
             "type": "Microsoft.Network/networkInterfaces",
-            "apiVersion": "2021-08-01",
+            "apiVersion": "2024-05-01",
             "name": "[variables('networkInterfaceName1')]",
             "location": "[parameters('location')]",
             "dependsOn": [
@@ -129,7 +138,7 @@
         },
         {
             "type": "Microsoft.Network/networkInterfaces",
-            "apiVersion": "2021-08-01",
+            "apiVersion": "2024-05-01",
             "name": "[variables('networkInterfaceName2')]",
             "location": "[parameters('location')]",
             "dependsOn": [
@@ -169,7 +178,7 @@
         },
         {
             "type": "Microsoft.Network/networkSecurityGroups",
-            "apiVersion": "2021-08-01",
+            "apiVersion": "2024-05-01",
             "name": "[variables('networkSecurityGroupName1')]",
             "location": "[parameters('location')]",
             "properties": {
@@ -218,7 +227,7 @@
         },
         {
             "type": "Microsoft.Network/virtualNetworks",
-            "apiVersion": "2021-08-01",
+            "apiVersion": "2024-05-01",
             "name": "[parameters('vnetName')]",
             "location": "[parameters('location')]",
             "dependsOn": [
@@ -243,7 +252,7 @@
         },
         {
             "type": "Microsoft.Network/publicIpAddresses",
-            "apiVersion": "2021-08-01",
+            "apiVersion": "2024-05-01",
             "name": "[variables('publicIpAddressName1')]",
             "location": "[parameters('location')]",
             "sku": {
@@ -258,7 +267,7 @@
         },
         {
             "type": "Microsoft.Network/publicIpAddresses",
-            "apiVersion": "2021-08-01",
+            "apiVersion": "2024-05-01",
             "name": "[variables('publicIpAddressName2')]",
             "location": "[parameters('location')]",
             "sku": {
@@ -273,7 +282,7 @@
         },
         {
             "type": "Microsoft.Compute/virtualMachines",
-            "apiVersion": "2021-11-01",
+            "apiVersion": "2024-07-01",
             "name": "[variables('virtualMachineName1')]",
             "location": "[parameters('location')]",
             "dependsOn": [
@@ -341,7 +350,7 @@
         },
         {
             "type": "Microsoft.Compute/virtualMachines",
-            "apiVersion": "2021-11-01",
+            "apiVersion": "2024-07-01",
             "name": "[variables('virtualMachineName2')]",
             "location": "[parameters('location')]",
             "dependsOn": [
@@ -408,7 +417,7 @@
             }
         },
         {
-            "apiVersion": "2021-08-01",
+            "apiVersion": "2024-05-01",
             "name": "[variables('loadbalancerName')]",
             "type": "Microsoft.Network/loadBalancers",
             "location": "[parameters('location')]",
@@ -442,11 +451,9 @@
                     {
                         "name": "[variables('loadbalancerNameProbes')]",
                         "properties": {
-                            "protocol": "Https",
+                            "protocol": "Tcp",
                             "port": 8081,
-                            "requestPath": "/health-checks",
-                            "intervalInSeconds": 5,
-                            "numberOfProbes": 2
+                            "intervalInSeconds": 5
                         }
                     }
                 ],
@@ -462,7 +469,6 @@
                             "enableFloatingIP": false,
                             "idleTimeoutInMinutes": 4,
                             "protocol": "All",
-                            "loadDistribution": "SourceIPProtocol",
                             "probe": {
                                 "id": "[concat(variables('lbId'),'/probes/',variables('loadbalancerNameProbes'))]"  
                             },
@@ -485,7 +491,7 @@
             }
         },
         {
-            "apiVersion": "2021-08-01",
+            "apiVersion": "2024-05-01",
             "type": "Microsoft.Network/routeTables",
             "name": "[parameters('routeTableName')]",
             "location": "[parameters('location')]",
@@ -494,9 +500,17 @@
                 "disableBgpRoutePropagation": false,
                 "routes": [
                     {
-                        "name": "Ziti-Services",
+                        "name": "zitiServices",
                         "properties": {
                             "addressPrefix": "[parameters('peerAddressPrefix')]",
+                            "nextHopType": "VirtualAppliance",
+                            "nextHopIpAddress": "[parameters('loadBalancerIP')]"
+                        }
+                    },
+                    {
+                        "name": "erIpResolver",
+                        "properties": {
+                            "addressPrefix": "100.127.255.254/32",
                             "nextHopType": "VirtualAppliance",
                             "nextHopIpAddress": "[parameters('loadBalancerIP')]"
                         }
@@ -510,13 +524,21 @@
             "type": "string",
             "value": "[parameters('adminUsername')]"
         }, 
-        "virtualMachineName1": {
+        "virtualMachineName1PublicIp": {
             "type": "string",
             "value": "[reference(resourceId('Microsoft.Network/publicIPAddresses',variables('publicIpAddressName1'))).IpAddress]"
         }, 
-        "virtualMachineName2": {
+        "virtualMachineName2PublicIp": {
             "type": "string",
             "value": "[reference(resourceId('Microsoft.Network/publicIPAddresses',variables('publicIpAddressName2'))).IpAddress]"
+        },
+        "virtualMachineName1PrivateIp": {
+            "type": "string",
+            "value": "[reference(resourceId('Microsoft.Network/networkInterfaces',variables('networkInterfaceName1'))).ipConfigurations[0].properties.privateIPAddress]"
+        }, 
+        "virtualMachineName2PrivateIp": {
+            "type": "string",
+            "value": "[reference(resourceId('Microsoft.Network/networkInterfaces',variables('networkInterfaceName2'))).ipConfigurations[0].properties.privateIPAddress]"
         }
     }
 }
