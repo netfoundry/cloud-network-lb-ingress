@@ -17,7 +17,7 @@ If you need such HA set up in more than one region, you can rerun it more than o
 
     [Add API Key-Based Authentication](https://docs.oracle.com/en-us/iaas/developer-tutorials/tutorials/tf-provider/01-summary.htm#:~:text=Add%20API%20Key%2DBased%20Authentication)
 
-1. Clone the repo and cd into NetworkLoadBalancer/OCI
+1. Clone the repo and cd into cloud-network-lb-ingress/OCI
 1. Update the variables input file with your parameters
     ```bash
     nano input_vars.tfvars.json

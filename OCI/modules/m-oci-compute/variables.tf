@@ -29,4 +29,11 @@ variable "er_reg_keys" {
     condition     = length(var.er_reg_keys) == 2
     error_message = "The edge router registration keys were not provided, count of valid keys should be 2"
   }
+  default = ["",""]
+}
+variable "dns_svc_ip_range" {
+  default = ["",""]
+}
+variable "tunnel_ip" {
+  default = ""
 }
