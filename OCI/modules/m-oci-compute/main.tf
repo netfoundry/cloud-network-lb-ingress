@@ -44,7 +44,7 @@ data "oci_core_app_catalog_listing_resource_version" "test_catalog_listing" {
   resource_version = data.oci_marketplace_listing_package.test_listing_package.app_catalog_listing_resource_version
 }
 /*
-Lookup vcn id and route table id
+Lookup vcn id, route table id,  subnet id
 */
 data "oci_core_vcns" "lookup_vcn" {
   compartment_id  = var.compartment_ocid
@@ -55,26 +55,12 @@ data "oci_core_route_tables" "lookup_route_table" {
   display_name    = var.route_table_name
   vcn_id          = data.oci_core_vcns.lookup_vcn.virtual_networks[0].id
 }
-/*
-Create nf edge router subnet
-*/
-resource "oci_core_subnet" "nf_subnet" {
-  cidr_block          = var.subnet_cidr
-  display_name        = "${var.vcn_name}_nfsn"
-  dns_label           = replace(var.vcn_name, "_", "")
-  compartment_id      = var.compartment_ocid
-  vcn_id              = data.oci_core_vcns.lookup_vcn.virtual_networks[0].id
-  route_table_id      = data.oci_core_route_tables.lookup_route_table.route_tables[0].id
-  freeform_tags = {
-    "creator" = var.freeform_tag
-  }
-  provisioner "local-exec" {
-    command = "sleep 5"
-  }
+data "oci_core_subnets" "lookup_subnet" {
+  compartment_id  = var.compartment_ocid
+  display_name    = "${var.vcn_name}_nfsn"
+  vcn_id          = data.oci_core_vcns.lookup_vcn.virtual_networks[0].id
 }
-/*
-Security group for Edge Routers
-*/
+
 resource "oci_core_network_security_group" "edge_router_sg1" {
   compartment_id = var.compartment_ocid
   vcn_id = data.oci_core_vcns.lookup_vcn.virtual_networks[0].id
@@ -132,7 +118,7 @@ resource "oci_core_instance" "backend_edge_router" {
   }
 
   create_vnic_details {
-    subnet_id                 = resource.oci_core_subnet.nf_subnet.id
+    subnet_id                 = data.oci_core_subnets.lookup_subnet.subnets[0].id
     display_name              = "${var.instance_name_prefix}${count.index}-vnic"
     assign_public_ip          = true
     assign_private_dns_record = true
@@ -173,7 +159,7 @@ output "instance_ids" {
 }
 
 output "subnet_id" {
-  value = oci_core_subnet.nf_subnet.id
+  value = data.oci_core_subnets.lookup_subnet.subnets[0].id
 }
 
 output "vcn_id" {
@@ -182,4 +168,12 @@ output "vcn_id" {
 
 data "oci_identity_availability_domains" "ads" {
   compartment_id = var.compartment_ocid
+}
+
+output "vcn_default_route_table_id" {
+  value = data.oci_core_vcns.lookup_vcn.virtual_networks[0].default_route_table_id
+}
+
+output "er_sg1_id" {
+  value = oci_core_network_security_group.edge_router_sg1.id
 }

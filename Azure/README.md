@@ -26,4 +26,4 @@ az login
 az deployment group create --subscription "Your Subscription ID"   --resource-group "Your RG" --template-file template.json --parameters parameters.json
 ```
 2. Using Azure Button
-[![Deploy to Azure](https://azurecomcdn.azureedge.net/mediahandler/acomblog/media/Default/blog/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FNetFoundry%2Fazure-deploy%2Fmaster%2FNetworkLoadBalancer%2FAzure%2Ftemplate.json)
+[![Deploy to Azure](https://azurecomcdn.azureedge.net/mediahandler/acomblog/media/Default/blog/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fnetfoundry%2Fcloud-network-lb-ingress%2Fmaster%2FAzure%2Ftemplate.json)

@@ -1,6 +1,8 @@
 variable "region" {}
 variable "compartment_ocid" {}
 variable "vcn_id" {}
+variable "vcn_default_route_table_id" {}
+variable "vcn_name" {}
 variable "subnet_id" {}
 variable "route_table_name" {}
 variable "backend_set_policy" {
@@ -37,3 +39,6 @@ variable "backend_is_backup" {
 variable "availability_domain" {
   default = 3
 }
+variable "peerAddressPrefix" {}
+variable "dns_svc_ip_range" {}
+variable "er_sg1_id" {}
