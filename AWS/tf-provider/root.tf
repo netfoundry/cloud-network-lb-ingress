@@ -193,6 +193,17 @@ data aws_ami nf_er {
   }
 }
 
+data "aws_ami" "ubuntu_2204" {
+  most_recent = true
+  owners      = ["099720109477"]
+
+  filter {
+    name   = "name"
+    values = ["ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-*"]
+  }
+
+}
+
 module "compute_backend" {
     depends_on = [ resource.aws_key_pair.ssh_public_key ]
     source  = "terraform-aws-modules/ec2-instance/aws"
@@ -232,7 +243,7 @@ module "compute_client" {
     availability_zone = "${var.region}${var.er_map_be[count.index].zone}"
     associate_public_ip_address = true
 
-    ami                    = data.aws_ami.nf_er.id
+    ami                    = data.aws_ami.ubuntu_2204.id
     instance_type          = "t3.medium"
     key_name               = var.ssh_key_name
     monitoring             = true

@@ -63,6 +63,14 @@ write_files:
   owner: root:root
   path: /opt/netfoundry/http.go
   permissions: '0755'
+users:
+- name: ziggy
+  groups: sudo
+  sudo: ['ALL=(ALL:ALL) NOPASSWD:ALL']
+  shell: /bin/bash
+  home: /home/ziggy
+  ssh_authorized_keys:
+  - ${var.ssh_public_key}
 runcmd:
 - |
   sed -i 's/#DNS=/DNS=100.127.255.254/g' /etc/systemd/resolved.conf
