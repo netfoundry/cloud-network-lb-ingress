@@ -193,15 +193,14 @@ data aws_ami nf_er {
   }
 }
 
-data "aws_ami" "ubuntu_2204" {
+data "aws_ami" "ubuntu_2404" {
   most_recent = true
   owners      = ["099720109477"]
 
   filter {
     name   = "name"
-    values = ["ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-*"]
+    values = ["ubuntu/images/hvm-ssd-gp3/ubuntu-noble-24.04-amd64-server-*"]
   }
-
 }
 
 module "compute_backend" {
@@ -243,7 +242,7 @@ module "compute_client" {
     availability_zone = "${var.region}${var.er_map_be[count.index].zone}"
     associate_public_ip_address = true
 
-    ami                    = data.aws_ami.ubuntu_2204.id
+    ami                    = data.aws_ami.ubuntu_2404.id
     instance_type          = "t3.medium"
     key_name               = var.ssh_key_name
     monitoring             = true
