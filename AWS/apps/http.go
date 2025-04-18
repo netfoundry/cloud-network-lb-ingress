@@ -77,7 +77,6 @@ var (
 		"laeqdc01.sap.lamosa.com",
 		"mtsdwdcnsapvq11.sap.novis.cl",
 		"valmsplcp201.sap.lamosa.com",
-		"nvsqwcintec.sapnvs.novis.cl",
 		"lacqdc01.sap.lamosa.com",
 		"hw3pas01.atc.internal",
 		"bchqlscspoq.sap.bcentral.cl",
