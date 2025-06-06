@@ -44,3 +44,7 @@ variable "test_iterate_count" {
 variable "s3_bucket_key" {
   default = "."
 }
+
+variable "repo_name" {
+  default = "ziti-firewall"
+}
