@@ -1,6 +1,6 @@
 locals {
   aws_secret_name = "${random_string.random_secret_name.result}"
-  er_map_be = [ for er in var.er_map_be:  merge(er, {region=var.region, awsSecretName=local.aws_secret_name})]
+  er_map_be = [ for er in var.er_map_be:  merge(er, {region=var.region, awsSecretName=local.aws_secret_name, repo_name=var.repo_name})]
   user_data_be = [ for s in local.er_map_be : <<EOF
 #cloud-config
 package_update: true
@@ -37,7 +37,7 @@ write_files:
   path: /opt/netfoundry/get_aws_secret.py
   permissions: '0755'
 - encoding: b64
-  content: "IyEvYmluL2Jhc2gKCi91c3IvYmluL2doIGF1dGggbG9naW4gLS13aXRoLXRva2VuIDw8PCQxCmFzc2V0PSQoL3Vzci9iaW4vZ2ggYXBpIC9yZXBvcy9uZXRmb3VuZHJ5L3pmdy9hY3Rpb25zL2FydGlmYWN0cyAtLWpxICcoIGxhc3QgKCguYXJ0aWZhY3RzIHwgc29ydF9ieSguY3JlYXRlZF9hdCkpLltdIHwgc2VsZWN0KC5uYW1lIHwgZW5kc3dpdGgoInJvdXRlci1hbWQ2NC1kZWIiKSkuYXJjaGl2ZV9kb3dubG9hZF91cmwpKScpCi91c3IvYmluL2N1cmwgLUxzICAiJGFzc2V0IiAgICAtSCAiQWNjZXB0OiBhcHBsaWNhdGlvbi92bmQuZ2l0aHViLnYzK2pzb24iICAgIC1IICJBdXRob3JpemF0aW9uOiBCZWFyZXIgJDEiICAtLW91dHB1dCAvb3B0L25ldGZvdW5kcnkvYXJ0aWZhY3QuemlwCi91c3IvYmluL3VuemlwICAtZCAvb3B0L25ldGZvdW5kcnkvIC9vcHQvbmV0Zm91bmRyeS9hcnRpZmFjdC56aXAKL3Vzci9iaW4vZHBrZyAtaSAvb3B0L25ldGZvdW5kcnkvemZ3LXJvdXRlcl8qX2FtZDY0LmRlYg=="
+  content: "IyEvYmluL2Jhc2gKCi91c3IvYmluL2doIGF1dGggbG9naW4gLS13aXRoLXRva2VuIDw8PCQxCmFzc2V0PSQoL3Vzci9iaW4vZ2ggYXBpIC9yZXBvcy9uZXRmb3VuZHJ5LyQyL2FjdGlvbnMvYXJ0aWZhY3RzIC0tanEgJyggbGFzdCAoKC5hcnRpZmFjdHMgfCBzb3J0X2J5KC5jcmVhdGVkX2F0KSkuW10gfCBzZWxlY3QoLm5hbWUgfCBlbmRzd2l0aCgicm91dGVyLWFtZDY0LWRlYiIpKS5hcmNoaXZlX2Rvd25sb2FkX3VybCkpJykKL3Vzci9iaW4vY3VybCAtTHMgICIkYXNzZXQiICAgIC1IICJBY2NlcHQ6IGFwcGxpY2F0aW9uL3ZuZC5naXRodWIudjMranNvbiIgICAgLUggIkF1dGhvcml6YXRpb246IEJlYXJlciAkMSIgIC0tb3V0cHV0IC9vcHQvbmV0Zm91bmRyeS9hcnRpZmFjdC56aXAKL3Vzci9iaW4vdW56aXAgIC1kIC9vcHQvbmV0Zm91bmRyeS8gL29wdC9uZXRmb3VuZHJ5L2FydGlmYWN0LnppcAovdXNyL2Jpbi9kcGtnIC1pIC9vcHQvbmV0Zm91bmRyeS96Znctcm91dGVyXypfYW1kNjQuZGVi"
   owner: root:root
   path: /opt/netfoundry/dl_artifacts_zfw.sh
   permissions: '0755'
@@ -48,7 +48,7 @@ runcmd:
   /usr/bin/ip address add 100.127.255.254/32 dev lo scope host
   /opt/netfoundry/router-registration --dnsIPRange ${s.dnsSvcIpRange} --tunnel_ip 100.127.255.254 --lanIf $LANIF ${s.edgeRouterKey}
   /var/lib/cloud/diverter.sh
-  /opt/netfoundry/dl_artifacts_zfw.sh $(/opt/netfoundry/get_aws_secret.py --secret-name ${s.awsSecretName} --region-name ${s.region})
+  /opt/netfoundry/dl_artifacts_zfw.sh $(/opt/netfoundry/get_aws_secret.py --secret-name ${s.awsSecretName} --region-name ${s.region}) ${s.repo_name}
   /usr/bin/systemctl restart ziti-router.service
   /usr/bin/systemctl restart keepalived.service
 EOF
