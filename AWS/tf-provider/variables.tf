@@ -46,5 +46,9 @@ variable "s3_bucket_key" {
 }
 
 variable "repo_name" {
-  default = "ziti-firewall"
+  default = "zfw"
+}
+
+variable "ziti_type" {
+  default = "zfw-router"
 }
