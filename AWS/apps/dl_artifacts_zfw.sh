@@ -5,7 +5,7 @@ set -euo pipefail  # Exit on error, undefined vars, pipe failures
 # Check arguments first, before authentication
 if [ $# -ne 3 ]; then
   echo "Usage: $0 <github_token> <repo_name> <artifact_type>"
-  echo "artifact_type should be: zfw or router"
+  echo "artifact_type should be: zfw or zfw-router"
   exit 1
 fi
 
@@ -25,11 +25,11 @@ case "$ARTIFACT_TYPE" in
   "zfw")
     pattern="zfw-amd64-deb"
     ;;
-  "router")
+  "zfw-router")
     pattern="router-amd64-deb"
     ;;
   *)
-    echo "Error: artifact_type must be 'zfw' or 'router'"
+    echo "Error: artifact_type must be 'zfw' or 'zfw-router'"
     exit 1
     ;;
 esac
