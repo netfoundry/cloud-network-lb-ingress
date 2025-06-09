@@ -52,3 +52,18 @@ variable "repo_name" {
 variable "ziti_type" {
   default = "zfw-router"
 }
+
+variable "custom_ami_id" {
+  description = "Custom AMI IDs per region"
+  type        = map(string)
+  default = {
+    us-east-2 = "ami-09517c1d39178d677"
+    us-west-2 = "ami-0de211ca151303d4e"
+  }
+}
+
+variable "use_custom_ami" {
+  description = "Use custom AMI instead of marketplace NF ER AMI"
+  type        = bool
+  default     = false
+}
