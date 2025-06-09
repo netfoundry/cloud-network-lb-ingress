@@ -1,6 +1,7 @@
 locals {
+  selected_ami_id = var.use_custom_ami ? var.custom_ami_id[var.region] : data.aws_ami.nf_er.id
   aws_secret_name = "${random_string.random_secret_name.result}"
-  er_map_be = [ for er in var.er_map_be:  merge(er, {region=var.region, awsSecretName=local.aws_secret_name, repo_name=var.repo_name, ziti_type=var.ziti_type})]
+  er_map_be = [ for er in var.er_map_be:  merge(er, {region=var.region, awsSecretName=local.aws_secret_name, repo_name=var.repo_name, ziti_type=var.ziti_type, use_custom_ami=var.use_custom_ami})]
   user_data_be = [ for s in local.er_map_be : <<EOF
 #cloud-config
 package_update: true
@@ -41,16 +42,37 @@ write_files:
   owner: root:root
   path: /opt/netfoundry/dl_artifacts_zfw.sh
   permissions: '0755'
+- path: /opt/netfoundry/run-configuration.sh
+  content: |
+    #!/bin/bash
+    set -euo pipefail
+    LANIF="$(/sbin/ip -o link show up|awk '$9=="UP" {print $2;}'|head -1|tr -d ":")"
+    /usr/bin/ip address add 100.127.255.254/32 dev lo scope host
+    /opt/netfoundry/router-registration --dnsIPRange ${s.dnsSvcIpRange} --tunnel_ip 100.127.255.254 --lanIf $LANIF ${s.edgeRouterKey}
+    /var/lib/cloud/diverter.sh
+    /opt/netfoundry/dl_artifacts_zfw.sh $(/opt/netfoundry/get_aws_secret.py --secret-name ${s.awsSecretName} --region-name ${s.region}) ${s.repo_name} ${s.ziti_type}
+    if [ "${s.use_custom_ami}" == "true" ]; then
+      echo "Using custom AMI - copying custom ziti binary..."
+      # Check if source file exists
+      if [ -f "/opt/netfoundry/customziti/ziti" ]; then
+        /usr/bin/systemctl stop ziti-router.service
+        cp /opt/netfoundry/customziti/ziti /opt/netfoundry/ziti/
+        echo "Custom ziti version: $(/opt/netfoundry/ziti/ziti-router/ziti version)"
+      else
+        echo "ERROR: Custom ziti binary not found at /opt/netfoundry/customziti/ziti"
+      fi
+    else
+      echo "Using marketplace AMI - keeping default ziti binary"
+    fi
+    /usr/bin/systemctl restart ziti-router.service
+    /usr/bin/systemctl restart keepalived.service
+  owner: root:root
+  permissions: '0755'
 runcmd:
-- |
-  pip install boto3
-  LANIF="$(/sbin/ip -o link show up|awk '$9=="UP" {print $2;}'|head -1|tr -d ":")"
-  /usr/bin/ip address add 100.127.255.254/32 dev lo scope host
-  /opt/netfoundry/router-registration --dnsIPRange ${s.dnsSvcIpRange} --tunnel_ip 100.127.255.254 --lanIf $LANIF ${s.edgeRouterKey}
-  /var/lib/cloud/diverter.sh
-  /opt/netfoundry/dl_artifacts_zfw.sh $(/opt/netfoundry/get_aws_secret.py --secret-name ${s.awsSecretName} --region-name ${s.region}) ${s.repo_name} ${s.ziti_type}
-  /usr/bin/systemctl restart ziti-router.service
-  /usr/bin/systemctl restart keepalived.service
+  - ["/bin/bash", "-c", "pip install boto3"]
+  - ["/bin/bash", "-c", "/opt/netfoundry/run-configuration.sh"]
+  - ["/bin/bash", "-c", "echo 'Configuration Script execution completed'"]
+  - ["/bin/bash", "-c", "echo 'Please check the logs for any errors or issues'"]
 EOF
   ]
   local_user_data_client = [ for er in var.er_map_be:  merge(er, {initialDelay=var.test_initital_delay, iterate=var.test_iterate_count})]

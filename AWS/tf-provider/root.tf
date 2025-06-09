@@ -204,7 +204,7 @@ module "compute_backend" {
     availability_zone = "${var.region}${var.er_map_be[count.index].zone}"
     associate_public_ip_address = true
 
-    ami                      = data.aws_ami.nf_er.id
+    ami                      = local.selected_ami_id 
     instance_type            = "t3.medium"
     key_name                 = var.ssh_key_name
     monitoring               = true
@@ -232,7 +232,7 @@ module "compute_client" {
     availability_zone = "${var.region}${var.er_map_be[count.index].zone}"
     associate_public_ip_address = true
 
-    ami                    = data.aws_ami.nf_er.id
+    ami                    = local.selected_ami_id
     instance_type          = "t3.medium"
     key_name               = var.ssh_key_name
     monitoring             = true
