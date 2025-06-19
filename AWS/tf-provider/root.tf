@@ -3,6 +3,7 @@
 
 module "vpc1" {
     source = "terraform-aws-modules/vpc/aws"
+    version = "~>5.0"
 
     name = "${var.lb_name_prefix}-vpc"
     cidr = "10.40.0.0/16"
@@ -28,6 +29,7 @@ module "vpc1" {
 
 module "sg_be" {
     source = "terraform-aws-modules/security-group/aws"
+    version = "~>5.0"
     count = length(var.er_map_be)
 
     name        = "${var.er_map_be[count.index].name}-sg"
@@ -61,6 +63,7 @@ module "sg_be" {
 
 module "sg_client" {
     source = "terraform-aws-modules/security-group/aws"
+    version = "~>5.0"
 
     name        = "${var.instance_client_prefix}-sg"
     description = "Security group for clients with custom ports open within VPC"
@@ -196,7 +199,7 @@ data aws_ami nf_er {
 module "compute_backend" {
     depends_on = [ resource.aws_key_pair.ssh_public_key ]
     source  = "terraform-aws-modules/ec2-instance/aws"
-    version = "~> 3.0"
+    version = "~>5.0"
 
     count = length(var.er_map_be)
 
@@ -224,7 +227,7 @@ module "compute_backend" {
 module "compute_client" {
     depends_on = [ resource.aws_key_pair.ssh_public_key ]
     source  = "terraform-aws-modules/ec2-instance/aws"
-    version = "~> 3.0"
+    version = "~>5.0"
 
     count = length(var.er_map_be)
 
