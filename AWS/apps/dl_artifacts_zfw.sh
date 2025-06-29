@@ -57,9 +57,10 @@ echo "Extracting artifact..."
 
 echo "The artifact to be installed is ${ARTIFACT_TYPE}"
 if [ "$ARTIFACT_TYPE" == "zfw" ]; then
-    echo "Removing existing router deb package..."
+    echo "Removing existing router/zfw  deb package..."
     /opt/openziti/bin/revert_ebpf_router.py || true
-    /usr/bin/dpkg -r zfw-router || true
+    /usr/bin/dpkg -P zfw-router || true
+    /usr/bin/dpkg -P zfw || true
 fi
 
 echo "Installing package..."
