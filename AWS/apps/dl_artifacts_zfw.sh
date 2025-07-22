@@ -66,6 +66,19 @@ fi
 echo "Installing package..."
 /usr/bin/dpkg -i /opt/netfoundry/${ARTIFACT_TYPE}_*_amd64.deb
 
+if [ "$ARTIFACT_TYPE" == "zfw-router" ]; then
+    echo "Preparing ${ARTIFACT_TYPE} ..."
+    MAP_DIR="/sys/fs/bpf/tc/globals"
+    if [ -d "$MAP_DIR" ]; then
+      if find "$MAP_DIR" -mindepth 1 -maxdepth 1 | read dummy; then
+          echo "Clearing old zfw-router maps"
+          /opt/openziti/bin/zfw -Q > /dev/null 2>&1
+      fi
+    fi
+    echo "restarting ziti-router service"
+    sudo systemctl restart ziti-router || true
+fi
+
 if [ "$ARTIFACT_TYPE" == "zfw" ]; then
     echo "Starting ${ARTIFACT_TYPE} service..."
     /opt/openziti/bin/start_ebpf_router.py || true
